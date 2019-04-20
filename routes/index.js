@@ -16,7 +16,7 @@ router.get("/about", function(req, res, next) {
 });
 
 router.get("/checkout", function(req, res, next) {
-  res.render("customer-views/checkout", { title: "Shopng cart" });
+  res.render("customer-views/checkout", { title: "Shoping cart" });
 });
 
 router.get("/contact", function(req, res, next) {
