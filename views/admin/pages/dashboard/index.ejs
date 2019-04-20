@@ -42,19 +42,23 @@
                             alert('Ok');
                           });
                         </script> -->
+                      
                           <input type="text" class="form-control form-control-sm" value="04/2013" data-date-format="mm/yyyy" id="daypicker" >
                           <script>
-                              $('#daypicker').datepicker(
-                                {viewMode: 'months',
-                                format: 'mm/yyyy'
-                              });
-                              $('#daypicker').on('changeDate', function (ev) {
-                                  //close when viewMode='0' (days)
-                                  if(ev.viewMode === 'months'){
-                                    $('#daypicker').datepicker('hide');
-                                  }
-                              });
+                                $('#daypicker').datepicker(
+                                  {viewMode: 'months',
+                                  format: 'mm/yyyy'
+                                });
+                                $('#daypicker').on('changeDate', function (ev) {
+                                    //close when viewMode='0' (days)
+                                    if(ev.viewMode === 'months'){
+                                      $('#daypicker').datepicker('hide');
+                                   
+                                    }
+                                });
+                               
                            </script>
+                        
                       </div>
                       <!-- <div class="col-sm-2 btn-group btn-group-toggle offset-md-4" >
                         <div class="row">
