@@ -175,8 +175,22 @@
 }
 .input-append.date .add-on i,
 .input-prepend.date .add-on i {
-  display: block;
+  display: flex;
+  flex-direction: row;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+}
+
+.add-on{
+  height: 25px !important;
+  width: 20% !important;
+  margin-top: 5px !important;
+}
+
+.cus_span2{
+  margin-left: 3px !important;
+  width: 75% !important;
+  height: 25px !important; 
+  margin-top: 5px !important;
 }
