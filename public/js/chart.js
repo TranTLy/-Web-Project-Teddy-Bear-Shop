@@ -119,7 +119,6 @@ $(function() {
 
     };
     var optionsTop = {
-<<<<<<< HEAD
         responsive: true,
         scales: {
             yAxes: [{
@@ -141,23 +140,7 @@ $(function() {
         },
         hover: {
             mode: 'nearest',
-            intersect: true
-=======
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-        legend: {
-            display: false
-        },
-        elements: {
-            point: {
-                radius: 0
-            }
->>>>>>> c744528b87225cf201b2caf64f9b7d797be6f67a
+            intersect: true,
         },
         title: {
             display: true,
