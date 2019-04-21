@@ -29,10 +29,9 @@
           <div class="responsive_tabs">
             <div id="horizontalTab">
               <ul class="resp-tabs-list">
-                <li>Cash on delivery (COD)</li>
-                <li>Credit/Debit</li>
-                <li>Net Banking</li>
-                <li>Paypal Account</li>
+                <li>Thanh toán khi nhận (COD)</li>
+                <li>Thẻ Credit/Debit</li>
+                <li>Tài khoản Paypal</li>
               </ul>
               <div class="resp-tabs-container">
                 <!--/tab_one-->
@@ -45,9 +44,10 @@
                           <label class="anim">
                             <input type="checkbox" class="checkbox" />
                             <span>
-                              We also accept Credit/Debit card on delivery.
-                              Please Check with the agent.</span
-                            >
+                              Chúng tôi chấp nhận thẻ Credit/Debit. Bạn hãy
+                              check vào ô này một lần nữa
+                            </span>
+                            <input type="submit" value="Gửi" />
                           </label>
                         </div>
                       </div>
@@ -305,7 +305,7 @@
                             >
                           </select>
                         </div>
-                        <input type="submit" value="PAY NOW" />
+                        <input type="submit" value="Thanh toán" />
                       </form>
                     </div>
                   </div>
@@ -389,7 +389,7 @@
     </div>
   </div>
 </section>
-
+<% include ../components/footer%>
 <!-- easy-responsive-tabs -->
 <script src="javascripts/easy-responsive-tabs.js"></script>
 <script>
@@ -443,4 +443,3 @@
   });
 </script>
 <!-- //credit-card -->
-<% include ../components/footer%>
