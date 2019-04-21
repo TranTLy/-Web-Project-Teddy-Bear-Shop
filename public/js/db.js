@@ -47,15 +47,15 @@
             Id: 0
         },
         {
-            Name: "Loại sản phẩm 1",
+            Name: "Nhỏ",
             Id: 1
         },
         {
-            Name: "Loại sản phẩm 2",
+            Name: "Trung bình",
             Id: 2
         },
         {
-            Name: "Loại sản phẩm 3",
+            Name: "Lớn",
             Id: 3
         },
         {
