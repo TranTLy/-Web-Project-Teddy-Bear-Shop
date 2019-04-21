@@ -36,31 +36,41 @@
                         <h2 class="card-title">Theo ngày</h2>
                       </div>
                       <div class="col-sm-2 offset-md-4">
-                        <!-- <button id="btn1">Click</button>
-                        <script>
-                          $('#btn1').click(function() {
-                            alert('Ok');
-                          });
-                        </script> -->
-                          <input type="text" class="form-control form-control-sm" value="04/2013" data-date-format="mm/yyyy" id="daypicker" >
-                          <script>
-                              $('#daypicker').datepicker(
-                                {viewMode: 'months',
-                                format: 'mm/yyyy'
-                              });
-                              $('#daypicker').on('changeDate', function (ev) {
-                                  //close when viewMode='0' (days)
-                                  if(ev.viewMode === 'months'){
-                                    $('#daypicker').datepicker('hide');
-                                  }
-                              });
-                           </script>
+            <div class="well">
+                              <div class="input-append date" id="daypicker" data-date="04/2013" data-date-format="mm/yyyy">
+                              <input class="span2 cus_span2" size="14" type="text" value="04/2013">
+                              <span class="add-on"><i class="icon-th"></i></span>
+                              </div>
+                              </div>
                       </div>
-                      <!-- <div class="col-sm-2 btn-group btn-group-toggle offset-md-4" >
-                        <div class="row">
-                            <input type="text" class="form-control form-control-sm" value="04/2013" data-date-format="mm/yyyy" id="day-picker" >
-                        </div>
-                      </div> -->
+                          <!-- <input type="text" value="04/2013" data-date-format="mm/yyyy" id="daypicker" class="form-control">
+                          <i class="far fa-calendar-alt"></i> -->
+                       
+                          <script>
+                            
+                                $('#daypicker').datepicker(
+                                  {viewMode: 'months',
+                                  format: 'mm/yyyy'
+                              
+                                }
+                                );
+                                $('.add-on').on('click',function() {
+                                  $("div.datepicker").addClass("dropdown-menu");
+                                });
+
+                                $('#daypicker').on('changeDate', function (ev) {
+                                    //close when viewMode='0' (days)
+                                   
+                                    if(ev.viewMode === 'months'){
+                                      $('#daypicker').datepicker('hide');
+                                      $("div.datepicker").removeClass("dropdown-menu");
+                                      }
+                                });
+                               
+                           </script>
+                        
+                    
+                    
                     </div>
                 </div>
               <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
