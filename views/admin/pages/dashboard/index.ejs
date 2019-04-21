@@ -6,45 +6,16 @@
           <label class="btn btn-sm btn-outline-primary active" id="1">
             <input type="radio" name="options" checked="">
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Ngày</span>
-            <!-- <span class="d-block d-sm-none">
-                  <i class="tim-icons icon-single-02"></i>
-                </span> -->
           </label>
           <label class="btn btn-sm btn-outline-primary btn-simple" id="2">
             <input type="radio" class="d-none d-sm-none" name="options">
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Tuần & Tháng</span>
-            <!-- <span class="d-block d-sm-none">
-                  <i class="tim-icons icon-gift-2"></i>
-                </span> -->
           </label>
           <label class="btn btn-sm btn-outline-primary btn-simple" id="3">
             <input type="radio" class="d-none" name="options">
             <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Quý & Năm</span>
-            <!-- <span class="d-block d-sm-none">
-                  <i class="tim-icons icon-tap-02"></i>
-                </span> -->
           </label>
         </div>
-        <script>
-          $('label').click(function () {
-            var i = $(this).attr("id");
-            if (i === "1") {
-              $("#row-day").css({ display: 'flex', flexDirection: 'row' });
-              $("#row-week-month").css({ display: 'none' });
-              $("#row-quarter-year").css({ display: 'none' });
-            }
-            else if (i === "2") {
-              $("#row-day").css({ display: 'none' });
-              $("#row-week-month").css({ display: 'flex', flexDirection: 'row' });
-              $("#row-quarter-year").css({ display: 'none' });
-            }
-            else if (i === "3") {
-              $("#row-day").css({ display: 'none' });
-              $("#row-week-month").css({ display: 'none' });
-              $("#row-quarter-year").css({ display: 'flex', flexDirection: 'row' });
-            }
-          })
-        </script>
       </div>
     </div>
     <div class="none-padding col-lg-12 grid-margin stretch-card justify-content-center" id="row-day">
@@ -65,24 +36,20 @@
             </div>
             <script>
              
-              $('#dpDay').datepicker(
-                {
-                  viewMode: 'months',
-                  format: 'mm/yyyy'
-                }
-              );
-              $('.add-on').on('click', function () {
-                
-                $(".dp-dropdown").addClass("datepicker dropdown-menu");
-              });
-             
-              $('#dpDay').click('changeDate', function (ev) {
-                //close when viewMode='0' (days)
-                if (ev.viewMode === 'months') {
-                  $('#dpDay').datepicker('hide');
-                  $(".dp-dropdown").removeClass("datepicker dropdown-menu");
-                }
-              });
+             $('#dpDay').datepicker(
+                  {
+                    viewMode: 'months',
+                    format: 'mm/yyyy'
+                  }
+                );
+                $('#dpDay').on('changeDate', function (ev) {
+                  //close when viewMode='0' (days)
+
+                  if (ev.viewMode === 'months') {
+                    $('#dpDay').datepicker('hide');
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
+                  }
+                });
             </script>
           </div>
         </div>
@@ -127,16 +94,13 @@
                     format: 'mm/yyyy'
                   }
                 );
-                $('.add-on').on('click', function () {
-                  $("div.datepicker").addClass("dropdown-menu");
-                });
 
                 $('#dpWeek').on('changeDate', function (ev) {
                   //close when viewMode='0' (days)
 
                   if (ev.viewMode === 'months') {
                     $('#dpWeek').datepicker('hide');
-                    $("div.datepicker").removeClass("dropdown-menu");
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
                   }
                 });
               </script>
@@ -182,16 +146,13 @@
                     format: ' yyyy'
                   }
                 );
-                $('.add-on').on('click', function () {
-                  $("div.datepicker").addClass("dropdown-menu");
-                });
 
-                $('#dpMonth').click('changeDate', function (ev) {
+                $('#dpMonth').on('changeDate', function (ev) {
                   //close when viewMode='0' (days)
 
                   if (ev.viewMode === 'years') {
                     $('#dpMonth').datepicker('hide');
-                    $("div.datepicker").removeClass("dropdown-menu");
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
                   }
                 });
               </script>
@@ -239,16 +200,13 @@
                     format: ' yyyy'
                   }
                 );
-                $('.add-on').on('click', function () {
-                  $("div.datepicker").addClass("dropdown-menu");
-                });
-
+               
                 $('#dpQuarter').on('changeDate', function (ev) {
                   //close when viewMode='0' (days)
 
                   if (ev.viewMode === 'years') {
                     $('#dpQuarter').datepicker('hide');
-                    $("div.datepicker").removeClass("dropdown-menu");
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
                   }
                 });
               </script>
@@ -302,16 +260,13 @@
                     format: ' yyyy'
                   }
                 );
-                $('.add-on').on('click', function () {
-                  $("div.datepicker").addClass("dropdown-menu");
-                });
-
+                
                 $('#dpYearStart').on('changeDate', function (ev) {
                   //close when viewMode='0' (days)
 
                   if (ev.viewMode === 'years') {
                     $('#dpYearStart').datepicker('hide');
-                    $("div.datepicker").removeClass("dropdown-menu");
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
                   }
                 });
                 $('#dpYearEnd').datepicker(
@@ -320,16 +275,13 @@
                     format: ' yyyy'
                   }
                 );
-                $('.add-on').on('click', function () {
-                  $("div.datepicker").addClass("dropdown-menu");
-                });
-
+            
                 $('#dpYearEnd').on('changeDate', function (ev) {
                   //close when viewMode='0' (days)
 
                   if (ev.viewMode === 'years') {
                     $('#dpYearEnd').datepicker('hide');
-                    $("div.datepicker").removeClass("dropdown-menu");
+                    $("div.datepicker.dropdown-menu").css({display: 'none',});
                   }
                 });
               </script>
@@ -361,6 +313,9 @@
               <h5 class="card-category">Số lượng sản phẩm</h5>
               <h2 class="card-title">Top 10</h2>
             </div>
+            
+
+       
           </div>
         </div>
         <div class="card-body custom-card-body">
