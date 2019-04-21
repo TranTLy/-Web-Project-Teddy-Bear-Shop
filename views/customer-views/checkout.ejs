@@ -1,3 +1,4 @@
+<!-- TRANG GIỎ HÀNG -->
 <%include ../components/header%>
 <link rel="stylesheet" type="text/css" href="stylesheets/checkout.css" />
 
@@ -6,10 +7,10 @@
   <div class="inner_breadcrumb  ml-4">
     <ul class="short_ls">
       <li>
-        <a href="index.html">Home</a>
+        <a href="index.html">Trang chủ</a>
         <span>/ /</span>
       </li>
-      <li><a href="checkout">Checkout</a></li>
+      <li><a href="checkout">Giỏ hàng</a></li>
     </ul>
   </div>
 </div>
@@ -21,18 +22,18 @@
   <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
     <div class="shop_inner_inf">
       <div class="privacy about">
-        <h3>Chec<span>kout</span></h3>
+        <h3>Giỏ hàng</h3>
         <div class="checkout-right">
-          <h4>Your shopping cart contains: <span>3 Products</span></h4>
+          <h4>Giỏ hàng của bạn gồm: <span>3 sản phẩm</span></h4>
           <table class="timetable_sub">
             <thead>
               <tr>
-                <th>SL No.</th>
-                <th>Product</th>
-                <th>Quality</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Remove</th>
+                <th>STT</th>
+                <th>Hình ảnh</th>
+                <th>Số lượng</th>
+                <th>Tên hàng</th>
+                <th>Giá</th>
+                <th>Xóa</th>
               </tr>
             </thead>
             <tbody>
@@ -52,8 +53,8 @@
                     </div>
                   </div>
                 </td>
-                <td class="invert">Bella Toes</td>
-                <td class="invert">$675.00</td>
+                <td class="invert">Bella Gấu</td>
+                <td class="invert">675.000đ</td>
                 <td class="invert">
                   <div class="rem">
                     <div class="close1"></div>
@@ -76,35 +77,11 @@
                     </div>
                   </div>
                 </td>
-                <td class="invert">Red Bellies</td>
-                <td class="invert">$325.00</td>
+                <td class="invert">Gấu Bellies</td>
+                <td class="invert">325.000đ</td>
                 <td class="invert">
                   <div class="rem">
                     <div class="close2"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr class="rem3">
-                <td class="invert">3</td>
-                <td class="invert-image">
-                  <a href="single.html"
-                    ><img src="images/f3.jpg" alt=" " class="img-responsive"
-                  /></a>
-                </td>
-                <td class="invert">
-                  <div class="quantity">
-                    <div class="quantity-select">
-                      <div class="entry value-minus">&nbsp;</div>
-                      <div class="entry value"><span>1</span></div>
-                      <div class="entry value-plus active">&nbsp;</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="invert">Chikku Loafers</td>
-                <td class="invert">$405.00</td>
-                <td class="invert">
-                  <div class="rem">
-                    <div class="close3"></div>
                   </div>
                 </td>
               </tr>
@@ -113,19 +90,18 @@
         </div>
         <div class="checkout-left">
           <div class="col-md-4 checkout-left-basket">
-            <h4>Continue to basket</h4>
+            <h4>Hóa đơn</h4>
             <ul>
-              <li>Product1 <i>-</i> <span>$675.00 </span></li>
-              <li>Product2 <i>-</i> <span>$325.00 </span></li>
-              <li>Product3 <i>-</i> <span>$405.00 </span></li>
-              <li>Total Service Charges <i>-</i> <span>$55.00</span></li>
-              <li>Total <i>-</i> <span>$1405.00</span></li>
+              <li>Tên hàng 1 <i>-</i> <span>$675.000 </span></li>
+              <li>Tên hàng 2 <i>-</i> <span>$325.000 </span></li>
+              <li>Phí dịch vụ <i>-</i> <span>50.000</span></li>
+              <li>Tổng cộng <i>-</i> <span>1.050.000</span></li>
             </ul>
           </div>
           <div class="col-md-8 address_form">
-            <h4>Add a new Details</h4>
+            <h4>Thông tin giao hàng chi tiết</h4>
             <form
-              action="payment.html"
+              action="payment"
               method="post"
               class="creditly-card-form agileinfo_form"
             >
@@ -133,7 +109,7 @@
                 <div class="information-wrapper">
                   <div class="first-row form-group">
                     <div class="controls">
-                      <label class="control-label">Full name: </label>
+                      <label class="control-label">Họ và tên: </label>
                       <input
                         class="billing-address-name form-control"
                         type="text"
@@ -144,7 +120,7 @@
                     <div class="card_number_grids">
                       <div class="card_number_grid_left">
                         <div class="controls">
-                          <label class="control-label">Mobile number:</label>
+                          <label class="control-label">Điện thoại:</label>
                           <input
                             class="form-control"
                             type="text"
@@ -154,7 +130,9 @@
                       </div>
                       <div class="card_number_grid_right">
                         <div class="controls">
-                          <label class="control-label">Landmark: </label>
+                          <label class="control-label"
+                            >Số nhà, đường, phường/ khu phố:
+                          </label>
                           <input
                             class="form-control"
                             type="text"
@@ -165,7 +143,7 @@
                       <div class="clear"></div>
                     </div>
                     <div class="controls">
-                      <label class="control-label">Town/City: </label>
+                      <label class="control-label">Thị trấn/ thành phố</label>
                       <input
                         class="form-control"
                         type="text"
@@ -173,22 +151,22 @@
                       />
                     </div>
                     <div class="controls">
-                      <label class="control-label">Address type: </label>
+                      <label class="control-label">Loại địa chỉ: </label>
                       <select class="form-control option-w3ls">
-                        <option>Office</option>
-                        <option>Home</option>
-                        <option>Commercial</option>
+                        <option>Cơ quan</option>
+                        <option>Nhà riêng</option>
+                        <option>Thương mại</option>
                       </select>
                     </div>
                   </div>
                   <button class="submit check_out">
-                    Delivery to this Address
+                    Giao hàng đến địa chỉ này
                   </button>
                 </div>
               </section>
             </form>
             <div class="checkout-right-basket">
-              <a href="payment.html">Make a Payment </a>
+              <a href="payment">Thanh toán</a>
             </div>
           </div>
           <div class="clearfix"></div>
