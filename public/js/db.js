@@ -42,6 +42,7 @@
             Id: 2
         }
         ];
+
         db.products_size = [{
             Name: "",
             Id: 0
@@ -59,7 +60,29 @@
             Id: 3
         },
         {
-            Name: "Loại sản phẩm 4",
+            Name: "Rất lớn",
+            Id: 4
+        }
+        ];
+
+        db.products_color = [{
+            Name: "",
+            Id: 0
+        },
+        {
+            Name: "Xanh",
+            Id: 1
+        },
+        {
+            Name: "Xám",
+            Id: 2
+        },
+        {
+            Name: "Đen",
+            Id: 3
+        },
+        {
+            Name: "Đỏ",
             Id: 4
         }
         ];
@@ -69,19 +92,19 @@
             Id: 0
         },
         {
-            Name: "Loại sản phẩm 1",
+            Name: "Loại 1",
             Id: 1
         },
         {
-            Name: "Loại sản phẩm 2",
+            Name: "Loại 2",
             Id: 2
         },
         {
-            Name: "Loại sản phẩm 3",
+            Name: "Loại 3",
             Id: 3
         },
         {
-            Name: "Loại sản phẩm 4",
+            Name: "Loại 4",
             Id: 4
         }
         ];
@@ -117,115 +140,143 @@
         ];
         db.products = [
             {
-                "Tên sản phẩm" : "Gấu Teddy",
-                "Id sản phẩm" : "1568798201",
+                "Tên" : "Gấu Teddy",
+                "ID" : "1568798201",
                 "Giá" : 150000,
-                "Loại sản phẩm" : 1,
+                "Loại" : 1,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Todos",
-                "Id sản phẩm" : "1567878201",
+                "Tên" : "Gấu Todos",
+                "ID" : "1567878201",
                 "Giá" : 190000,
-                "Loại sản phẩm" : 4,
+                "Loại" : 4,
                 "Chiếc khấu" : 5,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Soft Todos",
-                "Id sản phẩm" : "157478201",
+                "Tên" : "Gấu Soft Todos",
+                "ID" : "157478201",
                 "Giá" : 200000,
-                "Loại sản phẩm" : 1,
+                "Loại" : 1,
                 "Chiếc khấu" : 1,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Soft Teddy",
-                "Id sản phẩm" : "156781401",
+                "Tên" : "Gấu Soft Teddy",
+                "ID" : "156781401",
                 "Giá" : 470000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 4,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Pink bear",
-                "Id sản phẩm" : "1747878201",
+                "Tên" : "Gấu Pink bear",
+                "ID" : "1747878201",
                 "Giá" : 390000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Grey Lucky",
-                "Id sản phẩm" : "1714235201",
+                "Tên" : "Gấu Grey Lucky",
+                "ID" : "1714235201",
                 "Giá" : 780000,
-                "Loại sản phẩm" : 2,
+                "Loại" : 2,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Mềm Pikachu",
-                "Id sản phẩm" : "1814235201",
+                "Tên" : "Gấu Mềm Pikachu",
+                "ID" : "1814235201",
                 "Giá" : 505000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 4,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Teddy",
-                "Id sản phẩm" : "1568798201",
+                "Tên" : "Gấu Teddy",
+                "ID" : "1568798201",
                 "Giá" : 150000,
-                "Loại sản phẩm" : 1,
+                "Loại" : 1,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Todos",
-                "Id sản phẩm" : "1567878201",
+                "Tên" : "Gấu Todos",
+                "ID" : "1567878201",
                 "Giá" : 190000,
-                "Loại sản phẩm" : 4,
+                "Loại" : 4,
                 "Chiếc khấu" : 5,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Soft Todos",
-                "Id sản phẩm" : "157478201",
+                "Tên" : "Gấu Soft Todos",
+                "ID" : "157478201",
                 "Giá" : 200000,
-                "Loại sản phẩm" : 1,
+                "Loại" : 1,
                 "Chiếc khấu" : 1,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Soft Teddy",
-                "Id sản phẩm" : "156781401",
+                "Tên" : "Gấu Soft Teddy",
+                "ID" : "156781401",
                 "Giá" : 470000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 4,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Pink bear",
-                "Id sản phẩm" : "1747878201",
+                "Tên" : "Gấu Pink bear",
+                "ID" : "1747878201",
                 "Giá" : 390000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Grey Lucky",
-                "Id sản phẩm" : "1714235201",
+                "Tên" : "Gấu Grey Lucky",
+                "ID" : "1714235201",
                 "Giá" : 780000,
-                "Loại sản phẩm" : 2,
+                "Loại" : 2,
                 "Chiếc khấu" : 2,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             },
             {
-                "Tên sản phẩm" : "Gấu Mềm Pikachu",
-                "Id sản phẩm" : "1814235201",
+                "Tên" : "Gấu Mềm Pikachu",
+                "ID" : "1814235201",
                 "Giá" : 505000,
-                "Loại sản phẩm" : 3,
+                "Loại" : 3,
                 "Chiếc khấu" : 4,
+                "Kích thước" : 1,
+                "Màu sắc" : 2,
                 "Link hình" : "https://bitly.vn/27in"
             }
         ]

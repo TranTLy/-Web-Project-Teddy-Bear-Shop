@@ -66,26 +66,19 @@
                 deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
                 data: db.products,
                 fields: [{
-                    name: "Tên sản phẩm",
+                    name: "Tên",
+                    type: "text",
+                    width: 120
+                },
+                {
+                    name: "ID",
                     type: "text",
                     width: 100
                 },
                 {
-                    name: "Id",
-                    type: "text",
-                    width: 60
-                },
-                {
                     name: "Giá",
                     type: "number",
-                    width: 60
-                },
-                {
-                    name: "Loại sản phẩm",
-                    type: "select",
-                    items: db.products_type,
-                    valueField: "Id",
-                    textField: "Name"
+                    width: 100
                 },
                 {
                     name: "Chiếc khấu",
@@ -95,13 +88,41 @@
                     textField: "Name"
                 },
                 {
+                    name: "Kích thước",
+                    type: "select",
+                    items: db.products_size,
+                    valueField: "Id",
+                    textField: "Name"
+                },
+                {
+                    name: "Màu sắc",
+                    type: "select",
+                    items: db.products_color,
+                    valueField: "Id",
+                    textField: "Name"
+                },
+                {
+                    name: "Mô tả",
+                    type: "textarea",
+                    width: 60,
+                    visible : false
+                },
+                {
                     name: "Link hình",
-                    type : "text",
+                    type: "text",
                     // itemTemplate: function (value) {
                     //     return $("<a>").attr("href", value).text(value);
                     // }, 
                     width: 100,
+                    visible : false,
                     filtering: true
+                },
+                {
+                    name: "Loại",
+                    type: "select",
+                    items: db.products_type,
+                    valueField: "Id",
+                    textField: "Name"
                 },
                 {
                     type: "control"
