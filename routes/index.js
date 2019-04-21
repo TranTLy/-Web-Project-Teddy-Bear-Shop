@@ -75,4 +75,7 @@ router.post("/*", function(req, res, next) {
   res.render("404-not-found", { title: "Single" });
 });
 
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Page' });
+// });
 module.exports = router;
