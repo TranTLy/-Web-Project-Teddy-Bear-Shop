@@ -13,3 +13,9 @@
 .custom-mt-xl-4 {
     margin-top: 0rem !important;
 }
+#row-week-month{
+    display: none;
+}
+#row-quarter-year{
+    display: none;
+}
