@@ -68,17 +68,17 @@
                 fields: [{
                     name: "Tên sản phẩm",
                     type: "text",
-                    width: 120
+                    width: 100
                 },
                 {
-                    name: "Id sản phẩm",
+                    name: "Id",
                     type: "text",
-                    width: 100
+                    width: 60
                 },
                 {
                     name: "Giá",
                     type: "number",
-                    width: 100
+                    width: 60
                 },
                 {
                     name: "Loại sản phẩm",
