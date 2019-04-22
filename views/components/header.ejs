@@ -39,6 +39,8 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- //font-awesome icons -->
     <link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui1.css" />
     <!--Shoping cart-->
@@ -183,5 +185,18 @@
     <!-- banner -->
     <div class="inner_page-banner one-img"></div>
     <!--//banner -->
+     <!-- navbar sticky -->
+  <script>
+    window.onscroll = function () { myFunction() };
+    let navbar = document.getElementsByClassName("navbar");
+    let sticky = $(".navbar").offset().top;
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+       $(".navbar").addClass("sticky");
+      } else {
+        $(".navbar").removeClass("sticky");
+      }
+    }
+  </script>
   </body>
 </html>

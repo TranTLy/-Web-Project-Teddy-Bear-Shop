@@ -585,18 +585,18 @@
   <!-- //slider flexisel -->
   <!-- navbar sticky -->
   <script>
-  window.onscroll = function () { myFunction() };
-  let navbar = document.getElementsByClassName("navbar");
-  let sticky = $(".navbar").offset().top;
-  function myFunction() {
-    console.log(sticky);
-    if (window.pageYOffset >= sticky) {
-     $(".navbar").addClass("sticky");
-    } else {
-      $(".navbar").removeClass("sticky");
+    window.onscroll = function () { myFunction() };
+    let navbar = document.getElementsByClassName("navbar");
+    let sticky = $(".navbar").offset().top;
+    function myFunction() {
+      console.log(sticky);
+      if (window.pageYOffset >= sticky) {
+       $(".navbar").addClass("sticky");
+      } else {
+        $(".navbar").removeClass("sticky");
+      }
     }
-  }
-</script>
+  </script>
 </body>
 
 </html>
