@@ -1,162 +1,234 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="row ">
-          <div class="col-sm-6 offset-md-6">
-            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-              <label class="btn btn-sm btn-outline-primary active" id="0" >
-                <input type="radio" name="options" checked="">
-                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Ngày</span>
-                <!-- <span class="d-block d-sm-none">
+  <div class="col-md-12">
+    <div class="row ">
+      <div class="col-sm-6 offset-md-6">
+        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+          <label class="btn btn-sm btn-outline-primary active" id="0">
+            <input type="radio" name="options" checked="">
+            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Ngày</span>
+            <!-- <span class="d-block d-sm-none">
                   <i class="tim-icons icon-single-02"></i>
                 </span> -->
-              </label>
-              <label class="btn btn-sm btn-outline-primary btn-simple" id="1">
-                <input type="radio" class="d-none d-sm-none" name="options">
-                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Tuần & Tháng</span>
-                <!-- <span class="d-block d-sm-none">
+          </label>
+          <label class="btn btn-sm btn-outline-primary btn-simple" id="1">
+            <input type="radio" class="d-none d-sm-none" name="options">
+            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Tuần & Tháng</span>
+            <!-- <span class="d-block d-sm-none">
                   <i class="tim-icons icon-gift-2"></i>
                 </span> -->
-              </label>
-              <label class="btn btn-sm btn-outline-primary btn-simple" id="2">
-                <input type="radio" class="d-none" name="options">
-                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Quý & Năm</span>
-                <!-- <span class="d-block d-sm-none">
+          </label>
+          <label class="btn btn-sm btn-outline-primary btn-simple" id="2">
+            <input type="radio" class="d-none" name="options">
+            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Quý & Năm</span>
+            <!-- <span class="d-block d-sm-none">
                   <i class="tim-icons icon-tap-02"></i>
                 </span> -->
-              </label>
-            </div>
-          </div>
+          </label>
         </div>
-        <div class="none-padding col-lg-12 grid-margin stretch-card justify-content-center">
-            <div class="card">
-                <div class="custom-card-header card-header ">
-                    <div class="row">
-                      <div class="col-sm-6 text-left">
-                        <h5 class="card-category">Danh số bán hàng</h5>
-                        <h2 class="card-title">Theo ngày</h2>
-                      </div>
-                      <div class="col-sm-2 offset-md-4">
-            <div class="well">
-                              <div class="input-append date" id="daypicker" data-date="04/2013" data-date-format="mm/yyyy">
-                              <input class="span2 cus_span2" size="14" type="text" value="04/2013">
-                              <span class="add-on"><i class="icon-th"></i></span>
-                              </div>
-                              </div>
-                      </div>
-                          <!-- <input type="text" value="04/2013" data-date-format="mm/yyyy" id="daypicker" class="form-control">
+      </div>
+    </div>
+    <div class="none-padding col-lg-12 grid-margin stretch-card justify-content-center">
+      <div class="card">
+        <div class="custom-card-header card-header ">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h5 class="card-category">Danh số bán hàng</h5>
+              <h2 class="card-title">Theo ngày</h2>
+            </div>
+            <div class="col-sm-2 offset-md-4">
+              <div class="well">
+                <div class="input-append date" id="daypicker" data-date="04/2013" data-date-format="mm/yyyy">
+                  <input class="span2 cus_span2" size="14" type="text" value="04/2013">
+                  <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+              </div>
+            </div>
+            <!-- <input type="text" value="04/2013" data-date-format="mm/yyyy" id="daypicker" class="form-control">
                           <i class="far fa-calendar-alt"></i> -->
-                       
-                          <script>
-                            
-                                $('#daypicker').datepicker(
-                                  {viewMode: 'months',
-                                  format: 'mm/yyyy'
-                              
-                                }
-                                );
-                                $('.add-on').on('click',function() {
-                                  $("div.datepicker").addClass("dropdown-menu");
-                                });
 
-                                $('#daypicker').on('changeDate', function (ev) {
-                                    //close when viewMode='0' (days)
-                                   
-                                    if(ev.viewMode === 'months'){
-                                      $('#daypicker').datepicker('hide');
-                                      $("div.datepicker").removeClass("dropdown-menu");
-                                      }
-                                });
-                               
-                           </script>
-                        
-                    
-                    
-                    </div>
-                </div>
-              <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                <canvas id="barChartDay" width="1000" height="400" class="chartjs-render-monitor" style="display: block; width: 457px; height: 228px;"></canvas>
-              </div>
-            </div>
+            <script>
+
+              $('#daypicker').datepicker(
+                {
+                  viewMode: 'months',
+                  format: 'mm/yyyy'
+
+                }
+              );
+              $('.add-on').on('click', function () {
+                $("div.datepicker").addClass("dropdown-menu");
+              });
+
+              $('#daypicker').on('changeDate', function (ev) {
+                //close when viewMode='0' (days)
+
+                if (ev.viewMode === 'months') {
+                  $('#daypicker').datepicker('hide');
+                  $("div.datepicker").removeClass("dropdown-menu");
+                }
+              });
+
+            </script>
+
+
+
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 grid-margin stretch-card justify-content-center">
-                <div class="card">
-                    <div class="custom-card-header card-header ">
-                        <div class="row">
-                          <div class="col-sm-8 text-left">
-                            <h5 class="card-category">Danh số bán hàng</h5>
-                            <h2 class="card-title">Theo Tuần</h2>
-                          </div>       
-                        </div>
-                    </div>
-                  <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                    <canvas id="barChartWeek" width="380" height="360" class="chartjs-render-monitor" style="display: block; width: 288px; height: 288px;"></canvas>
-                  </div>
-                </div>
+        <div class="card-body custom-card-body">
+          <div class="chartjs-size-monitor"
+            style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
             </div>
-            <div class="col-lg-8 grid-margin stretch-card justify-content-center">
-                <div class="card">
-                    <div class="custom-card-header card-header ">
-                        <div class="row">
-                          <div class="col-sm-8 text-left">
-                            <h5 class="card-category">Danh số bán hàng</h5>
-                            <h2 class="card-title">Theo tháng</h2>
-                          </div>       
-                        </div>
-                    </div>
-                  <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                    <canvas id="barChartMonth" width="1000" height="400" class="chartjs-render-monitor" style="display: block; width: 457px; height: 228px;"></canvas>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 grid-margin stretch-card justify-content-center">
-                <div class="card">
-                    <div class="custom-card-header card-header ">
-                        <div class="row">
-                          <div class="col-sm-8 text-left">
-                            <h5 class="card-category">Danh số bán hàng</h5>
-                            <h2 class="card-title">Theo Quý</h2>
-                          </div>       
-                        </div>
-                    </div>
-                  <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                    <canvas id="barChartQuarter" width="380" height="360" class="chartjs-render-monitor" style="display: block; width: 288px; height: 288px;"></canvas>
-                  </div>
-                </div>
-            </div>
-            <div class="col-lg-8 grid-margin stretch-card justify-content-center">
-                <div class="card">
-                    <div class="custom-card-header card-header ">
-                        <div class="row">
-                          <div class="col-sm-8 text-left">
-                            <h5 class="card-category">Danh số bán hàng</h5>
-                            <h2 class="card-title">Theo Năm</h2>
-                          </div>       
-                        </div>
-                    </div>
-                  <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                    <canvas id="barChartYear" width="1000" height="400" class="chartjs-render-monitor" style="display: block; width: 457px; height: 228px;"></canvas>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 grid-margin stretch-card justify-content-center">
-          <div class="card">
-              <div class="custom-card-header card-header ">
-                  <div class="row">
-                    <div class="col-sm-8 text-left">
-                      <h5 class="card-category">Số lượng sản phẩm</h5>
-                      <h2 class="card-title">Top 10</h2>
-                    </div>       
-                  </div>
-              </div>
-            <div class="card-body custom-card-body"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-              <canvas id="barChartTop" width="1000" height="400" class="chartjs-render-monitor" style="display: block; width: 457px; height: 228px;"></canvas>
+            <div class="chartjs-size-monitor-shrink"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
             </div>
           </div>
+          <canvas id="barChartDay" width="1000" height="400" class="chartjs-render-monitor"
+            style="display: block; width: 457px; height: 228px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 grid-margin stretch-card justify-content-center">
+        <div class="card">
+          <div class="custom-card-header card-header ">
+            <div class="row">
+              <div class="col-sm-8 text-left">
+                <h5 class="card-category">Danh số bán hàng</h5>
+                <h2 class="card-title">Theo Tuần</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="chartjs-size-monitor"
+              style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+              <div class="chartjs-size-monitor-expand"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+              </div>
+            </div>
+            <canvas id="barChartWeek" width="380" height="360" class="chartjs-render-monitor"
+              style="display: block; width: 288px; height: 288px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 grid-margin stretch-card justify-content-center">
+        <div class="card">
+          <div class="custom-card-header card-header ">
+            <div class="row">
+              <div class="col-sm-8 text-left">
+                <h5 class="card-category">Danh số bán hàng</h5>
+                <h2 class="card-title">Theo tháng</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="chartjs-size-monitor"
+              style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+              <div class="chartjs-size-monitor-expand"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+              </div>
+            </div>
+            <canvas id="barChartMonth" width="1000" height="400" class="chartjs-render-monitor"
+              style="display: block; width: 457px; height: 228px;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 grid-margin stretch-card justify-content-center">
+        <div class="card">
+          <div class="custom-card-header card-header ">
+            <div class="row">
+              <div class="col-sm-8 text-left">
+                <h5 class="card-category">Danh số bán hàng</h5>
+                <h2 class="card-title">Theo Quý</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="chartjs-size-monitor"
+              style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+              <div class="chartjs-size-monitor-expand"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+              </div>
+            </div>
+            <canvas id="barChartQuarter" width="380" height="360" class="chartjs-render-monitor"
+              style="display: block; width: 288px; height: 288px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 grid-margin stretch-card justify-content-center">
+        <div class="card">
+          <div class="custom-card-header card-header ">
+            <div class="row">
+              <div class="col-sm-8 text-left">
+                <h5 class="card-category">Danh số bán hàng</h5>
+                <h2 class="card-title">Theo Năm</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="chartjs-size-monitor"
+              style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+              <div class="chartjs-size-monitor-expand"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+              </div>
+            </div>
+            <canvas id="barChartYear" width="1000" height="400" class="chartjs-render-monitor"
+              style="display: block; width: 457px; height: 228px;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="none-padding col-lg-12 grid-margin stretch-card justify-content-center">
+      <div class="card">
+        <div class="custom-card-header card-header ">
+          <div class="row">
+            <div class="col-sm-8 text-left">
+              <h5 class="card-category">Số lượng sản phẩm</h5>
+              <h2 class="card-title">Top 10</h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-body custom-card-body">
+          <div class="chartjs-size-monitor"
+            style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+            </div>
+            <div class="chartjs-size-monitor-shrink"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+            </div>
+          </div>
+          <canvas id="barChartTop" width="1000" height="400" class="chartjs-render-monitor"
+            style="display: block; width: 457px; height: 228px;"></canvas>
+        </div>
       </div>
     </div>
   </div>
-
+</div>
