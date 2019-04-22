@@ -1,0 +1,116 @@
+<%include ../components/header%>
+<link rel="stylesheet" href="stylesheets/signup.css" />
+<div class="form-group">
+  <label id="lable-sign-up" for="sign-up">Đăng ký</label>
+  <br />
+  <div class="label-input">Email đăng nhập<span>*</span></div>
+  <input
+    type="email"
+    class="form-control"
+    name="sign-up"
+    id="email"
+    aria-describedby="helpId"
+    required
+  />
+  <small></small>
+
+  <div class="label-input">Số điện thoại<span></span></div>
+  <input
+    type="text"
+    class="form-control"
+    name="sign-up"
+    id="phone"
+    aria-describedby="helpId"
+  />
+
+  <div class="label-input" id="label-pass">Mật khẩu<span>*</span></div>
+  <input
+    type="password"
+    class="form-control"
+    name="sign-up"
+    id="password"
+    aria-describedby="helpId"
+    required
+    onkeydown="onValidPass()"
+  />
+
+  <div class="label-input" id="label-repass">
+    Nhập lại mật khẩu<span>*</span>
+  </div>
+  <input
+    type="password"
+    class="form-control"
+    name="sign-up"
+    id="re-password"
+    aria-describedby="helpId"
+    required
+    onkeydown="onValidPass()"
+  />
+
+  <button id="btn-sign-up" type="submit" onclick="checkSignUp()">
+    Đăng ký
+  </button>
+  <script>
+    const onValidPass = () => {
+      document.getElementById("label-pass").innerHTML =
+        "Mật khẩu<span>*</span>";
+      document.getElementById("label-repass").innerHTML =
+        "Nhập lại mật khẩu<span>*</span>";
+    };
+    const checkPassword = () => {
+      const pass = document.getElementById("password");
+      const repass = document.getElementById("re-password");
+
+      if (pass.value.length < 8) {
+        document.getElementById("label-pass").innerHTML =
+          'Mật khẩu<span>*</span>  <span class = "alert"> (Mật khẩu phải từ 8 ký tự trở lên) </span>';
+        pass.focus();
+        return false;
+      }
+
+      if (pass.value == repass.value) {
+        alert("Đăng ký thành công");
+        return true;
+      } else {
+        document.getElementById("label-repass").innerHTML =
+          'Nhập lại mật khẩu<span>*</span>  <span class = "alert"> (Vui lòng nhập lại password) </span>';
+        document.getElementById("re-password").focus();
+        return false;
+      }
+    };
+
+    const checkEmpty = () => {
+      const email = document.getElementById("email");
+
+      if (email.value == "") {
+        email.focus();
+        return false;
+      }
+
+      const pass = document.getElementById("password");
+      if (pass.value == "") {
+        pass.focus();
+        return false;
+      }
+    };
+    const checkSignUp = () => {
+      checkEmpty();
+      checkPassword();
+    };
+  </script>
+</div>
+
+<% include ../components/footer%>
+
+<div class="form-group">
+  <label for=""></label>
+  <input
+    type="text"
+    name=""
+    id=""
+    class="form-control"
+    placeholder=""
+    aria-describedby="helpId"
+  />
+  <small id="helpId" class="text-muted">Help text</small>
+</div>
