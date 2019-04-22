@@ -68,14 +68,20 @@ router.post("/single", function(req, res, next) {
 router.get("/404", function(req, res, next) {
   res.render("customer-views/single", { title: "Single" });
 });
-router.get("/*", function(req, res, next) {
-  res.render("404-not-found", { title: "Single" });
-});
-router.post("/*", function(req, res, next) {
-  res.render("404-not-found", { title: "Single" });
-});
+// router.get("/*", function(req, res, next) {
+//   res.render("404-not-found", { title: "Single" });
+// });
+// router.post("/*", function(req, res, next) {
+//   res.render("404-not-found", { title: "Single" });
+// });
 
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Page' });
 // });
+
+//Trần Phú Nguyện
+// router.get('/admin/dashboard', function (req, res, next) {
+//   res.render('admin/pages/dashboard/index', { title: 'Dashboard1' });
+// });
+//End Trần Phú Nguyện
 module.exports = router;
