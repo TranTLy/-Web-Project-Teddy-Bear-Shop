@@ -64,19 +64,14 @@ router.post("/single", function(req, res, next) {
   //add a comment
   res.render("customer-views/single", { title: "Add a comment" });
 });
-
+router.get("/signup", function(req, res, next) {
+  res.render("customer-views/signup", { title: "Single" });
+});
 router.get("/404", function(req, res, next) {
   res.render("customer-views/single", { title: "Single" });
 });
-// router.get("/*", function(req, res, next) {
-//   res.render("404-not-found", { title: "Single" });
-// });
 // router.post("/*", function(req, res, next) {
 //   res.render("404-not-found", { title: "Single" });
-// });
-
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Page' });
 // });
 
 //Trần Phú Nguyện

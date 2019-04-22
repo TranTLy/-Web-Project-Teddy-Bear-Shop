@@ -1,0 +1,43 @@
+.form-group {
+  width: 50%;
+  margin: 30px auto;
+}
+
+#lable-sign-up {
+  font-weight: bold !important;
+  font-size: 3em !important;
+  text-align: center !important;
+}
+
+.label-input {
+  display: inline-block;
+  color: #26bb48;
+  margin-left: 34px;
+}
+.label-input span {
+  color: red;
+}
+
+input {
+  padding: 25px 34px 25px 0px;
+  margin: 20px 10px;
+}
+
+#btn-sign-up {
+  padding: 10px;
+  background-color: rgb(234, 29, 145);
+  border: none;
+  display: block;
+  margin: auto;
+  font-size: 1.2em;
+  transition: all 0.5s cubic-bezier();
+}
+
+#btn-sign-up:hover {
+  background-color: #ffcb2d;
+}
+
+.alert {
+  color: #ff4c2d;
+  font-style: italic;
+}
