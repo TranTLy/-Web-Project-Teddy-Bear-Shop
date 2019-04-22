@@ -7,7 +7,7 @@
                     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                         <table class="jsgrid-table">
                             <tr class="jsgrid-header-row">
-                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 120px;">Tên sản phẩm
+                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 120px;">A sản phẩm
                                 </th>
                                 <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Id sản phẩm
                                 </th>
@@ -81,7 +81,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="jsgrid-grid-body" style="height: 301.625px;">
+                    <!-- <div class="jsgrid-grid-body" style="height: 301.625px;">
                         <table class="jsgrid-table">
                             <tbody>
                             </tbody>
@@ -108,8 +108,34 @@
                     </div>
                     <div class="jsgrid-load-panel"
                         style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card justify-content-center add-padding-top-20px">
+        <div class="card">
+            <div class="custom-card-header card-header ">
+                <div class="row">
+                    <div class="col-sm-8 text-left">
+                        <h2 class="card-title">Số lượng sản phẩm mỗi loại</h2>
                     </div>
                 </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="chartjs-size-monitor"
+                    style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                    <div class="chartjs-size-monitor-expand"
+                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink"
+                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                    </div>
+                </div>
+                <canvas id="barChartTypeProduct" width="1000" height="250" class="chartjs-render-monitor"
+                    style="display: block; width: 457px; height: 228px;"></canvas>
             </div>
         </div>
     </div>
