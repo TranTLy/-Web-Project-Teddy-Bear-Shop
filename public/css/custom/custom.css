@@ -13,7 +13,9 @@
 .custom-mt-xl-4 {
     margin-top: 0rem !important;
 }
-
-.add-padding-top-20px {
-    margin-top: 20px;
+#row-week-month{
+    display: none;
+}
+#row-quarter-year{
+    display: none;
 }
