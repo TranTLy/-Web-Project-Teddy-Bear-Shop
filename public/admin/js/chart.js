@@ -8,111 +8,82 @@ $(function() {
         labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13","14","15",
                  "16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Số tiền',
             data: [10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,1],
-            backgroundColor: [
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)'
-
-            ]
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
         }]
     };
     var dataWeek = {
         labels: ["W1", "W2", "W3", "W4"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Số tiền',
             data: [40, 75, 30, 50],
-            backgroundColor: [
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)'
-            ]
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
         }]
     };
     var dataMonth = {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Số tiền',
             data: [10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)'
-            ]
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
         }]
     };
 
     var dataQuarter = {
         labels: ["Q1", "Q2", "Q3", "Q4"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Số tiền',
             data: [1200, 1822, 1564, 1478],
-            backgroundColor: [
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)'
-            ]
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
         }]
     };
     var dataYear = {
         labels: ["2010", "2011", "2012", "2013", "2014","2015", "2016", "2017", "2018", "2019"],
         datasets: [{
-            label: '# of Votes',
+            label: 'Số tiền',
             data: [18200, 18722, 15604, 14780,18200, 18722, 15604, 14780, 15604, 14780],
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
+        }]
+    };
+
+    var dataTop = {
+        labels: ["SP1", "SP2", "SP3", "SP4", "SP5","SP6", "SP7", "SP8", "SP9", "SP10"],
+        datasets: [{
+            label: 'Số tiền',
+            data: [1820, 1760, 1720, 1678,1608, 1580, 1560, 1508, 1460, 1428],
+            backgroundColor: 'rgba(1, 87, 155, 0.85)'
+        }]
+    };
+
+    var dataTypeProduct = {
+        labels: ["Loại 1", "Loại 2", "Loại 3", "Loại 4"],
+        datasets: [{
+            label: 'Số sản phẩm',
+            data: [1820, 1945, 1214, 1678],
             backgroundColor: [
                 'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(1, 87, 155, 0.85)'
+                'rgba(255, 23, 68, 0.85)',
+                'rgba(0, 172, 193, 0.85)',
+                'rgba(255, 152, 0, 0.85)'
             ]
         }]
     };
+    // var dataTop = {
+    //     labels: ["SP1", "SP2", "SP3"],
+    //     datasets: [{
+    //         label: 'Loại 1',
+    //         data: [18200, null, 15604],
+    //         backgroundColor: 'rgba(1, 87, 155, 0.85)'
+            
+    //     },
+    //     {
+    //         label: 'Loại 2',
+    //         data: [null, 18722, null],
+    //         backgroundColor: 'rgba(173, 20, 87, 0.85)'
+            
+    //     }]
+    // };
     var multiLineData = {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
@@ -159,15 +130,61 @@ $(function() {
             point: {
                 radius: 0
             }
-        },
-        ticks: {
-            beginAtZero:true,
-            callback: function(value, index, values) {
-                    return value + '°';
-            }
         }
 
     };
+    var optionsTop = {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: name
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true,
+        },
+        title: {
+            display: true,
+            text: 'Top 10 sản phẩm tháng 9 năm 2012'
+          }
+    }
+    var optionsTypeProduct = {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        title: {
+            display: true,
+            text: name
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true,
+        },
+        title: {
+            display: true,
+            text: 'Tổng sản phẩm: 6657'
+          }
+    }
     var doughnutPieData = {
         datasets: [{
             data: [30, 40, 30],
@@ -406,6 +423,25 @@ $(function() {
             options: options
         });
     }
+    if ($("#barChartTop").length) {
+        var barChartCanvas = $("#barChartTop").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+        var barChart = new Chart(barChartCanvas, {
+            type: 'horizontalBar',
+            data: dataTop,
+            options: optionsTop
+        });
+    }
+    if ($("#barChartTypeProduct").length) {
+        var barChartCanvas = $("#barChartTypeProduct").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+        var barChart = new Chart(barChartCanvas, {
+            type: 'horizontalBar',
+            data: dataTypeProduct,
+            options: optionsTypeProduct
+        });
+    }
+    
     if ($("#lineChart").length) {
         var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
         var lineChart = new Chart(lineChartCanvas, {
