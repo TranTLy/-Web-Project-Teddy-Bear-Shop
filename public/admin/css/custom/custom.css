@@ -2,6 +2,9 @@
     padding-right: 0px;
     padding-left: 0px;
 }
+.none-padding-right {
+    padding-right: 0px;
+}
 .custom-card-header {
     padding: 0.75rem 2.5rem 0rem 2.5rem;
     background-color: rgba(255, 255, 255, 1);
@@ -22,4 +25,26 @@
 h6{
     padding-top: 8px;
     padding-right: 10px;
+}
+.modal-content .cus-modal-body {
+    padding : 20px 20px !important;
+}
+.modal-content .cus-modal-header {
+    padding : 20px 20px !important;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 800px;
+        margin: 30px auto;
+    }
+}
+.cus-p {
+    margin-bottom: 0px;
+    margin-right: 0px;
+    padding : 0px;
+}
+.margin-top-20px {
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
