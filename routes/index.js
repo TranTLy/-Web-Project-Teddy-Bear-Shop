@@ -64,12 +64,28 @@ router.post("/single", function(req, res, next) {
   //add a comment
   res.render("customer-views/single", { title: "Add a comment" });
 });
+router.get("/detail-receipt", function(req, res, next) {
+  res.render("customer-views/detail-receipt", { title: "Product" });
+});
 router.get("/signup", function(req, res, next) {
   res.render("customer-views/signup", { title: "Single" });
+});
+router.get("/forget-password", function(req, res, next) {
+  res.render("customer-views/forget-password", { title: "Single" });
+});
+router.get("/change-password", function(req, res, next) {
+  res.render("customer-views/change-password", { title: "Single" });
+});
+router.get("/update-infor", function(req, res, next) {
+  res.render("customer-views/update-infor", { title: "Single" });
+});
+router.get("/history", function(req, res, next) {
+  res.render("customer-views/history", { title: "Single" });
 });
 router.get("/404", function(req, res, next) {
   res.render("customer-views/single", { title: "Single" });
 });
+
 // router.post("/*", function(req, res, next) {
 //   res.render("404-not-found", { title: "Single" });
 // });

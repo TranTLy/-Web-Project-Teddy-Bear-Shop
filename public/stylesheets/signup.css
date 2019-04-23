@@ -1,4 +1,4 @@
-.form-group {
+.from-signup {
   width: 50%;
   margin: 30px auto;
 }
@@ -9,35 +9,70 @@
   text-align: center !important;
 }
 
-.label-input {
+.label-input-signup {
   display: inline-block;
   color: #26bb48;
   margin-left: 34px;
 }
-.label-input span {
+.label-input-signup span {
   color: red;
 }
 
-input {
-  padding: 25px 34px 25px 0px;
+.from-signup input {
+  padding: 25px 5px 25px 15px;
   margin: 20px 10px;
 }
 
-#btn-sign-up {
-  padding: 10px;
-  background-color: rgb(234, 29, 145);
+#btn-sign-up,
+#btn-submit-email,
+#btn-change-password {
+  padding: 10px 30px;
+  background-color: #26bb48;
   border: none;
   display: block;
   margin: auto;
   font-size: 1.2em;
   transition: all 0.5s cubic-bezier();
+  border-radius: 2px;
 }
 
-#btn-sign-up:hover {
+#btn-sign-up:hover,
+#btn-submit-email:hover,
+#btn-change-password:hover {
   background-color: #ffcb2d;
+  box-shadow: 2px 2px 2px rgb(160, 159, 159);
 }
 
 .alert {
   color: #ff4c2d;
   font-style: italic;
+}
+
+.login-others {
+  margin: 15px auto;
+}
+
+.login-others {
+  display: flex;
+  justify-content: center;
+}
+.login-others button {
+  margin: 20px 30px;
+  border-radius: 3px;
+  transition: color 0.5px cubic-bezier();
+  padding: 10px;
+  border: none;
+  color: #fff;
+}
+.login-others button:hover {
+  box-shadow: 3px 2px 2px rgb(172, 169, 169);
+}
+.login-others button i {
+  margin-right: 10px;
+}
+#login-fb {
+  background-color: #3b5998;
+}
+#login-gmail {
+  background-color: #ea4335;
 }
