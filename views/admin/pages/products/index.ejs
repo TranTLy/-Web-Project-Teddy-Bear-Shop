@@ -6,109 +6,51 @@
                 <div id="js-grid-products" class="pt-3 jsgrid" style="position: relative; height: 516px; width: 100%;">
                     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                         <table class="jsgrid-table">
-                            <tr class="jsgrid-header-row">
-                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 120px;">A sản phẩm
-                                </th>
-                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Id sản phẩm
-                                </th>
-                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Giá</th>
-                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-                                    style="width: 120px;">Loại sản phẩm</th>
-                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-                                    style="width: 120px;">Chiếc khấu</th>
-                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Link hình</th>
-                                <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center"
-                                    style="width: 50px;"><input
-                                        class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button"
-                                        title="Switch to inserting"></th>
-                            </tr>
-                            <tr class="jsgrid-filter-row">
-                                <td class="jsgrid-cell" style="width: 140px;"><input type="text"></td>
-                                <td class="jsgrid-cell" style="width: 140px;"><input type="text"></td>
-                                <td class="jsgrid-cell" style="width: 100px;"><input type="number"></td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width: 140px;">
-                                    <select>
+                            <div id="dialog-form" title="Details" style="display:none">
+                                <form id="categoryForm" >
+                                    <p><label>Tên: <input id="name" /></label></p>
+                                    <p><label>ID: <input id="id" /></label></p>
+                                    <p><label>Giá: <input id="price" /></label></p>
+                                    <p><label>Chiếc khấu:
+                                        <select id="discount">
                                         <option value="0"></option>
-                                        <option value="1">Loại sản phẩm 1</option>
-                                        <option value="2">Loại sản phẩm 2</option>
-                                        <option value="1">Loại sản phẩm 3</option>
-                                        <option value="2">Loại sản phẩm 4</option>
-                                    </select>
-                                </td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width: 140px;">
-                                    <select>
+                                        <option value="1">5%</option>
+                                        <option value="2">10%</option>
+                                        <option value="3">20%</option>
+                                        <option value="4">30%</option>
+                                        <option value="5">50%</option>
+                                        <option value="6">60%</option>
+                                    </select></label></p>
+                                    <p><label>Kích thước: 
+                                        <select id="size" >
                                         <option value="0"></option>
-                                        <option value="1">5% hoặc hơn</option>
-                                        <option value="1">10% hoặc hơn</option>
-                                        <option value="1">20% hoặc hơn</option>
-                                        <option value="1">30% hoặc hơn</option>
-                                        <option value="1">50% hoặc hơn</option>
-                                        <option value="1">60% hoặc hơn</option>
+                                        <option value="1">Nhỏ</option>
+                                        <option value="2">Trung bình</option>
+                                        <option value="3">Lớn</option>
+                                        <option value="4">Rất lớn</option>
+                                    </select></label></p>
+                                    <p><label>Màu sắc: 
+                                        <select id="color" >
+                                            <option value="0"></option>
+                                            <option value="1">Xám</option>
+                                            <option value="2">Xanh</option>
+                                            <option value="3">Đỏ</option>
+                                            <option value="4">Đen</option>
                                     </select>
-                                </td>
-                                <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
-                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
-                                    <input class="jsgrid-button jsgrid-search-button" type="button"
-                                        title="Search"><input class="jsgrid-button jsgrid-clear-filter-button"
-                                        type="button" title="Clear filter"></td>
-                            </tr>
-                            <tr class="jsgrid-insert-row" style="display: none;">
-                                <td class="jsgrid-cell" style="width: 140px;"><input type="text"></td>
-                                <td class="jsgrid-cell" style="width: 140px;"><input type="text"></td>
-                                <td class="jsgrid-cell" style="width: 100px;"><input type="number"></td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width: 140px;">
-                                    <select>
+                                </label></p>
+                                    <p><label>Loại: <select id="category" >
                                         <option value="0"></option>
-                                        <option value="1">Loại sản phẩm 1</option>
-                                        <option value="2">Loại sản phẩm 2</option>
-                                        <option value="1">Loại sản phẩm 3</option>
-                                        <option value="2">Loại sản phẩm 4</option>
-                                    </select>
-                                </td>
-                                <td class="jsgrid-cell jsgrid-align-center" style="width: 140px;">
-                                    <select>
-                                        <option value="0"></option>
-                                        <option value="1">Loại sản phẩm 1</option>
-                                        <option value="2">Loại sản phẩm 2</option>
-                                        <option value="1">Loại sản phẩm 3</option>
-                                        <option value="2">Loại sản phẩm 4</option>
-                                    </select>
-                                </td>
-                                <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
-                                </td>
-                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
-                                    <input class="jsgrid-button jsgrid-insert-button" type="button" title="Insert"></td>
-                            </tr>
+                                        <option value="1">category 1</option>
+                                        <option value="2">category 2</option>
+                                        <option value="3">category 3</option>
+                                        <option value="4">category 4</option>
+                                    </select></label></p>
+                                    <p><label>Mô tả: <input id="describe" /></label></p>
+                                    <p><label>Link hình: <input id="img" /></label></p>
+                                </form>
+                            </div>
                         </table>
                     </div>
-                    <!-- <div class="jsgrid-grid-body" style="height: 301.625px;">
-                        <table class="jsgrid-table">
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="jsgrid-pager-container">
-                        <div class="jsgrid-pager">Pages: <span
-                                class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a
-                                    href="javascript:void(0);">First</a></span> <span
-                                class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a
-                                    href="javascript:void(0);">Prev</a></span> <span
-                                class="jsgrid-pager-page jsgrid-pager-current-page">1</span><span
-                                class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span><span
-                                class="jsgrid-pager-page"><a href="javascript:void(0);">3</a></span><span
-                                class="jsgrid-pager-page"><a href="javascript:void(0);">4</a></span><span
-                                class="jsgrid-pager-page"><a href="javascript:void(0);">5</a></span><span
-                                class="jsgrid-pager-nav-button"><a href="javascript:void(0);">...</a></span> <span
-                                class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span> <span
-                                class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span>
-                            &nbsp;&nbsp; 1 of 7 </div>
-                    </div>
-                    <div class="jsgrid-load-shader"
-                        style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;">
-                    </div>
-                    <div class="jsgrid-load-panel"
-                        style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
-                    </div> -->
                 </div>
             </div>
         </div>

@@ -2,6 +2,69 @@
     'use strict';
     $(function () {
 
+        //function dialog form
+        var dialog = $("#dialog-form").dialog({
+            autoOpen: false,
+            width: 400,
+            modal: true,
+            closeOnEscape: true,
+            buttons: {
+                Lưu: function() {
+                    $("#categoryForm").submit()
+                },
+                Đóng: function() {
+                    $(this).dialog("close");
+                }
+            },
+            close: function() {
+                dialog.find("form")[0].reset();
+            }
+        });
+        
+        var submitHandler;
+        
+        dialog.find("form").submit(function(e) {
+            e.preventDefault();
+            submitHandler();
+        });
+        
+        var showDetailsDialog = function(dialogType, category) {
+            submitHandler = function(event) {
+                //if($("#categoryForm").valid()) {
+                saveClient(category, dialogType === "Add");
+                //}
+            };
+            $("#name").val(category.name);
+            $("#id").val(category.ID);
+            $("#price").val(category.price);
+            $("#discount").val(category.discount);
+            $("#size").val(category.size);
+            $("#color").val(category.color),
+            $("#category").val(category.category),
+            $("#describe").val(category.describe),
+            $("#img").val(category.img),
+
+           dialog.dialog("option", "title", dialogType + " thông tin").dialog("open");
+        };
+        
+        var saveClient = function(category, isNew) {
+            $.extend(category, {
+                name: $("#name").val(),
+                ID: $("#id").val(),
+               price: $("#price").val(),
+               discount: parseInt($("#discount").val(),10),
+               size: parseInt($("#size").val(),10),
+               color: parseInt($("#color").val(),10),
+               category: parseInt($("#category").val(),10),
+               describe: $("#describe").val(),
+               img: $("#img").val(),
+            });
+            console.dir(category);
+            $("#js-grid-products").jsGrid(isNew ? "insertItem" : "updateItem", category);
+        
+            dialog.dialog("close");
+        };
+//
         //basic config
         if ($("#js-grid").length) {
             $("#js-grid").jsGrid({
@@ -70,50 +133,62 @@
                 pageButtonCount: 5,
                 deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
                 data: db.products,
+               rowClick: function(args) {
+                    showDetailsDialog("Sửa", args.item);
+                },
                 fields: [{
-                    name: "Tên",
+                    title: "Tên",
+                    name: "name",
                     type: "text",
                     width: 120
+                    
                 },
                 {
+                    title: "ID",
                     name: "ID",
                     type: "text",
                     width: 100
                 },
                 {
-                    name: "Giá",
+                    title: "Giá",
+                    name: "price",
                     type: "number",
                     width: 100
                 },
                 {
-                    name: "Chiếc khấu",
+                    title: "Chiếc khấu",
+                    name: "discount",
                     type: "select",
                     items: db.products_discount,
                     valueField: "Id",
                     textField: "Name"
                 },
                 {
-                    name: "Kích thước",
+                    title: "Kích thước",
+                    name: "size",
                     type: "select",
                     items: db.products_size,
                     valueField: "Id",
                     textField: "Name"
                 },
                 {
-                    name: "Màu sắc",
+                    title: "Màu sắc",
+                    name: "size",
                     type: "select",
                     items: db.products_color,
                     valueField: "Id",
                     textField: "Name"
                 },
                 {
-                    name: "Mô tả",
+                    title: "Mô tả",
+                    name: "describe",
                     type: "textarea",
                     width: 60,
                     visible: false
                 },
                 {
-                    name: "Link hình",
+                    title: "Link hình",
+                    name: "img",
                     type: "text",
                     // itemTemplate: function (value) {
                     //     return $("<a>").attr("href", value).text(value);
@@ -123,14 +198,16 @@
                     filtering: true
                 },
                 {
-                    name: "Loại",
+                    title: "Loại",
+                    name: "category",
                     type: "select",
                     items: db.products_type,
                     valueField: "Id",
                     textField: "Name"
                 },
                 {
-                    type: "control"
+                    type: "control",
+                   editButton: false,
                 }
                 ]
                 // rowRenderer: function (item) {

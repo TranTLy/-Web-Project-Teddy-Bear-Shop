@@ -92,19 +92,19 @@
             Id: 0
         },
         {
-            Name: "Loại 1",
+            Name: "category 1",
             Id: 1
         },
         {
-            Name: "Loại 2",
+            Name: "category 2",
             Id: 2
         },
         {
-            Name: "Loại 3",
+            Name: "category 3",
             Id: 3
         },
         {
-            Name: "Loại 4",
+            Name: "category 4",
             Id: 4
         }
         ];
@@ -140,144 +140,144 @@
         ];
         db.products = [
             {
-                "Tên" : "Gấu Teddy",
+                "name" : "Gấu Teddy",
                 "ID" : "1568798201",
-                "Giá" : 150000,
-                "Loại" : 1,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 150000,
+                "category" : 1,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Todos",
+                "name" : "Gấu Todos",
                 "ID" : "1567878201",
-                "Giá" : 190000,
-                "Loại" : 4,
-                "Chiếc khấu" : 5,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 190000,
+                "category" : 4,
+                "discount" : 5,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Soft Todos",
+                "name" : "Gấu Soft Todos",
                 "ID" : "157478201",
-                "Giá" : 200000,
-                "Loại" : 1,
-                "Chiếc khấu" : 1,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 200000,
+                "category" : 1,
+                "discount" : 1,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Soft Teddy",
+                "name" : "Gấu Soft Teddy",
                 "ID" : "156781401",
-                "Giá" : 470000,
-                "Loại" : 3,
-                "Chiếc khấu" : 4,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 470000,
+                "category" : 3,
+                "discount" : 4,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Pink bear",
+                "name" : "Gấu Pink bear",
                 "ID" : "1747878201",
-                "Giá" : 390000,
-                "Loại" : 3,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 390000,
+                "category" : 3,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Grey Lucky",
+                "name" : "Gấu Grey Lucky",
                 "ID" : "1714235201",
-                "Giá" : 780000,
-                "Loại" : 2,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 780000,
+                "category" : 2,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Mềm Pikachu",
+                "name" : "Gấu Mềm Pikachu",
                 "ID" : "1814235201",
-                "Giá" : 505000,
-                "Loại" : 3,
-                "Chiếc khấu" : 4,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 505000,
+                "category" : 3,
+                "discount" : 4,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Teddy",
+                "name" : "Gấu Teddy",
                 "ID" : "1568798201",
-                "Giá" : 150000,
-                "Loại" : 1,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 150000,
+                "category" : 1,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Todos",
+                "name" : "Gấu Todos",
                 "ID" : "1567878201",
-                "Giá" : 190000,
-                "Loại" : 4,
-                "Chiếc khấu" : 5,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 190000,
+                "category" : 4,
+                "discount" : 5,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Soft Todos",
+                "name" : "Gấu Soft Todos",
                 "ID" : "157478201",
-                "Giá" : 200000,
-                "Loại" : 1,
-                "Chiếc khấu" : 1,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 200000,
+                "category" : 1,
+                "discount" : 1,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Soft Teddy",
+                "name" : "Gấu Soft Teddy",
                 "ID" : "156781401",
-                "Giá" : 470000,
-                "Loại" : 3,
-                "Chiếc khấu" : 4,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 470000,
+                "category" : 3,
+                "discount" : 4,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Pink bear",
+                "name" : "Gấu Pink bear",
                 "ID" : "1747878201",
-                "Giá" : 390000,
-                "Loại" : 3,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 390000,
+                "category" : 3,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Grey Lucky",
+                "name" : "Gấu Grey Lucky",
                 "ID" : "1714235201",
-                "Giá" : 780000,
-                "Loại" : 2,
-                "Chiếc khấu" : 2,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 780000,
+                "category" : 2,
+                "discount" : 2,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             },
             {
-                "Tên" : "Gấu Mềm Pikachu",
+                "name" : "Gấu Mềm Pikachu",
                 "ID" : "1814235201",
-                "Giá" : 505000,
-                "Loại" : 3,
-                "Chiếc khấu" : 4,
-                "Kích thước" : 1,
-                "Màu sắc" : 2,
-                "Link hình" : "https://bitly.vn/27in"
+                "price" : 505000,
+                "category" : 3,
+                "discount" : 4,
+                "size" : 1,
+                "color" : 2,
+                "img" : "https://bitly.vn/27in"
             }
         ]
         db.clients = [
