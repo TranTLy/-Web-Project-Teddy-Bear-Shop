@@ -11436,7 +11436,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Hiển thị từ 0 đến 0 của 0 dòng",
 	
 	
 			/**
@@ -11600,7 +11600,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "Vui lòng chờ ...",
 	
 	
 			/**
@@ -11621,7 +11621,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "Đang xử lý ...",
 	
 	
 			/**
@@ -11656,7 +11656,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Tìm kiếm:",
 	
 	
 			/**
@@ -11714,7 +11714,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "Không tìm thấy"
 		},
 	
 	
