@@ -221,6 +221,25 @@ nav.navbar.navbar-expand-lg.navbar-light {
   outline: none;
   margin-bottom: 18px;
 }
+#modal-login {
+  padding-bottom: 20px;
+}
+#link-signup,
+#link-forget-password {
+  text-align: right;
+  margin: 10px;
+  margin-right: 30px;
+}
+#link-signup a,
+#link-forget-password a {
+  color: #339af0;
+  font-weight: bold;
+}
+#link-signup a:hover,
+#link-forget-password a:hover {
+  color: #ff3b9f;
+}
+
 h5#exampleModalLabel {
   font-size: 24px;
   color: #000;
