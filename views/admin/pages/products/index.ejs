@@ -7,46 +7,71 @@
                     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                         <table class="jsgrid-table">
                             <div id="dialog-form" title="Details" style="display:none">
-                                <form id="categoryForm" >
-                                    <p><label>Tên: <input id="name" /></label></p>
-                                    <p><label>ID: <input id="id" /></label></p>
-                                    <p><label>Giá: <input id="price" /></label></p>
-                                    <p><label>Chiếc khấu:
-                                        <select id="discount">
-                                        <option value="0"></option>
-                                        <option value="1">5%</option>
-                                        <option value="2">10%</option>
-                                        <option value="3">20%</option>
-                                        <option value="4">30%</option>
-                                        <option value="5">50%</option>
-                                        <option value="6">60%</option>
-                                    </select></label></p>
-                                    <p><label>Kích thước: 
-                                        <select id="size" >
-                                        <option value="0"></option>
-                                        <option value="1">Nhỏ</option>
-                                        <option value="2">Trung bình</option>
-                                        <option value="3">Lớn</option>
-                                        <option value="4">Rất lớn</option>
-                                    </select></label></p>
-                                    <p><label>Màu sắc: 
-                                        <select id="color" >
+                                <form id="categoryForm">
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Tên:</label>
+                                        <input id="name" class="col-sm-8 p-0 m-0" />
+                                    </p>
+
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">ID: </label>
+                                        <input id="id" class="col-sm-8 p-0 m-0" />
+                                    </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Giá:</label>
+                                        <input id="price" class="col-sm-8 p-0 m-0" />
+                                    </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Chiếc khấu: </label>
+                                        <select id="discount" class="col-sm-8 p-0 m-0">
+                                            <option value="0"></option>
+                                            <option value="1">5%</option>
+                                            <option value="2">10%</option>
+                                            <option value="3">20%</option>
+                                            <option value="4">30%</option>
+                                            <option value="5">50%</option>
+                                            <option value="6">60%</option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Kích thước: </label>
+                                        <select id="size" class="col-sm-8 p-0 m-0">
+                                            <option value="0"></option>
+                                            <option value="1">Nhỏ</option>
+                                            <option value="2">Trung bình</option>
+                                            <option value="3">Lớn</option>
+                                            <option value="4">Rất lớn</option>
+                                        </select>
+                                    </p>
+                                    <p><label class="col-sm-4 p-0 m-0">Màu sắc: </label>
+                                        <select id="color" class="col-sm-8 p-0 m-0">
                                             <option value="0"></option>
                                             <option value="1">Xám</option>
                                             <option value="2">Xanh</option>
                                             <option value="3">Đỏ</option>
                                             <option value="4">Đen</option>
                                     </select>
-                                </label></p>
-                                    <p><label>Loại: <select id="category" >
+                              </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Loại:</label>
+                                            <select id="category"  class="col-sm-8 p-0 m-0" >
                                         <option value="0"></option>
                                         <option value="1">category 1</option>
                                         <option value="2">category 2</option>
                                         <option value="3">category 3</option>
                                         <option value="4">category 4</option>
-                                    </select></label></p>
-                                    <p><label>Mô tả: <input id="describe" /></label></p>
-                                    <p><label>Link hình: <input id="img" /></label></p>
+                                    </select>
+                            
+                            </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Mô tả:</label> 
+                                            <input id="describe" class="col-sm-8 p-0 m-0" />
+                                        </p>
+                                    <p>
+                                        <label class="col-sm-4 p-0 m-0">Link hình: </label>
+                                             <input id="img" class="col-sm-8 p-0 m-0"/>
+                                           
+                                        </p>
                                 </form>
                             </div>
                         </table>

@@ -5,7 +5,7 @@
         //function dialog form
         var dialog = $("#dialog-form").dialog({
             autoOpen: false,
-            width: 400,
+            width: 300,
             modal: true,
             closeOnEscape: true,
             buttons: {
