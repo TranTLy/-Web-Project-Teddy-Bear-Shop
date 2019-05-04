@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var shopping_controller = require("../controllers/shoppingControllers");
 
 // /* GET home page. */
 // router.get("/", function(req, res, next) {
@@ -19,9 +20,10 @@ router.get("/about", function(req, res, next) {
   res.render("customer-views/about", { title: "About" });
 });
 
-router.get("/checkout", function(req, res, next) {
-  res.render("customer-views/checkout", { title: "Shoping cart" });
-});
+// router.get("/checkout", function(req, res, next) {
+//   res.render("customer-views/checkout", { title: "Shoping cart" });
+// });
+router.get("/checkout", shopping_controller.checkout);
 router.post("/checkout", function(req, res, next) {
   res.render("customer-views/checkout", { title: "Shoping cart" });
 });
