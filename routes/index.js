@@ -1,100 +1,31 @@
 var express = require("express");
 var router = express.Router();
 var shopping_controller = require("../controllers/shoppingControllers");
+var account_controller = require("../controllers/accountController");
+var information_controller = require("../controllers/informationController");
 
-// /* GET home page. */
-// router.get("/", function(req, res, next) {
-//   res.render("index", { title: "Express" });
-// });
+router.get("/", information_controller.index);
+router.get("/index", information_controller.index);
+router.get("/about", information_controller.about);
+router.get("/contact", information_controller.contact);
+router.get("/service", information_controller.service);
+router.get("/404", information_controller.not_found_404);
 
-/* GET home page. */
-router.get("/", function(req, res, next) {
-  res.render("customer-views/index", { title: "Home" });
-});
-/* GET home page. */
-router.get("/index", function(req, res, next) {
-  res.render("customer-views/index", { title: "Home" });
-});
-
-router.get("/about", function(req, res, next) {
-  res.render("customer-views/about", { title: "About" });
-});
-
-// router.get("/checkout", function(req, res, next) {
-//   res.render("customer-views/checkout", { title: "Shoping cart" });
-// });
 router.get("/checkout", shopping_controller.checkout);
-router.post("/checkout", function(req, res, next) {
-  res.render("customer-views/checkout", { title: "Shoping cart" });
-});
-
-router.get("/contact", function(req, res, next) {
-  res.render("customer-views/contact", { title: "Contact" });
-});
-
-// router.get("/icon", function(req, res, next) {
-//   res.render("customer-views/icon", { title: "Icon" });
-// });
-
-router.get("/payment", function(req, res, next) {
-  res.render("customer-views/payment", { title: "Payment" });
-});
-
-router.post("/payment", function(req, res, next) {
-  res.render("customer-views/payment", { title: "Payment" });
-});
-
-router.get("/product", function(req, res, next) {
-  res.render("customer-views/product", { title: "Product" });
-});
-
-router.get("/service", function(req, res, next) {
-  res.render("customer-views/service", { title: "Service" });
-});
-
-router.get("/shop", function(req, res, next) {
-  res.render("customer-views/shop", { title: "Shop" });
-});
+router.post("/checkout", shopping_controller.checkout_post);
+router.get("/payment", shopping_controller.payment);
+router.post("/payment", shopping_controller.payment_post);
+router.get("/product", shopping_controller.product);
+router.get("/shop", shopping_controller.shop);
 //TODO: add id
-router.get("/single", function(req, res, next) {
-  //todo: get name product form id
-  const name = "Gấu teddy";
-  res.render("customer-views/single", { title: "Single", nameProduct: name });
-});
-//todo
-router.post("/single", function(req, res, next) {
-  //add a comment
-  res.render("customer-views/single", { title: "Add a comment" });
-});
-router.get("/detail-receipt", function(req, res, next) {
-  res.render("customer-views/detail-receipt", { title: "Product" });
-});
-router.get("/signup", function(req, res, next) {
-  res.render("customer-views/signup", { title: "Single" });
-});
-router.get("/forget-password", function(req, res, next) {
-  res.render("customer-views/forget-password", { title: "Single" });
-});
-router.get("/change-password", function(req, res, next) {
-  res.render("customer-views/change-password", { title: "Single" });
-});
-router.get("/update-infor", function(req, res, next) {
-  res.render("customer-views/update-infor", { title: "Single" });
-});
-router.get("/history", function(req, res, next) {
-  res.render("customer-views/history", { title: "Single" });
-});
-router.get("/404", function(req, res, next) {
-  res.render("customer-views/single", { title: "Single" });
-});
+router.get("/single", shopping_controller.single);
+router.post("/single", shopping_controller.single_post);
+router.get("/detail-receipt", shopping_controller.detail_receipt);
+router.get("/history", shopping_controller.history);
 
-// router.post("/*", function(req, res, next) {
-//   res.render("404-not-found", { title: "Single" });
-// });
+router.get("/signup", account_controller.signup);
+router.get("/forget-password", account_controller.forget_password);
+router.get("/change-password", account_controller.change_password);
+router.get("/update-infor", account_controller.update_infor);
 
-//Trần Phú Nguyện
-// router.get('/admin/dashboard', function (req, res, next) {
-//   res.render('admin/pages/dashboard/index', { title: 'Dashboard1' });
-// });
-//End Trần Phú Nguyện
 module.exports = router;
