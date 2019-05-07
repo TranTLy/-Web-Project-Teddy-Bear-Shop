@@ -1,327 +1,437 @@
 <div class="card">
-    <div class="card-body">
-        <h4 class="card-title">Bảng đơn đặt hàng</h4>
-        <div class="row">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table id="order-listing" class="table">
-                        <thead>
-                            <tr>
-                                <th>ID Hóa đơn</th>
-                                <th>Thời gian mua</th>
-                                <th>Tên khách hàng</th>
-                                <th>ID Khách hàng</th>
-                                <th>Địa điểm</th>
-                                <th>Tổng tiền (VND)</th>
-                                <th>Tình trạng</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="my_id">1423453452</td>
-                                <td class="my_date">2012/08/03</td>
-                                <td class="my_name">Trần Vỹ Hùng</td>
-                                <td class="my_id_customer">1778648998</td>
-                                <td class="my_city">Hà Nội</td>
-                                <td class="my_price">320000</td>
-                                <td>
-                                    <label class="badge badge-warning my_status">Bị hoãn</label>
-                                </td>
-                                <td>
-                                    <button id="vip" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#myModal" data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">2423453452</td>
-                                <td class="my_date">2015/04/01</td>
-                                <td class="my_name">Trần Đình Hóa</td>
-                                <td class="my_id_customer">1011208998</td>
-                                <td class="my_city">Hà Tĩnh</td>
-                                <td class="my_price">750000</td>
-                                <td>
-                                    <label class="badge badge-danger my_status">Bị hủy</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">3423453452</td>
-                                <td class="my_date">2010/11/21</td>
-                                <td class="my_name">Hồ Văn Liên</td>
-                                <td class="my_id_customer">1018798998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-success my_status">Thành công</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">4423453452</td>
-                                <td class="my_date">2016/01/12</td>
-                                <td lass="my_name">Trần Văn Thông</td>
-                                <td class="my_id_customer">1015415998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-success my_status">Thành công</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">5423453452</td>
-                                <td class="my_date">2017/12/28</td>
-                                <td class="my_name">Lê Văn Chiến</td>
-                                <td class="my_id_customer">1015420998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-success my_status">Thành công</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">6423453452</td>
-                                <td class="my_date">2000/10/30</td>
-                                <td class="my_name">Nguyễn Hữu An</td>
-                                <td class="my_id_customer">1089648998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-warning my_status">Bị hoãn</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">7423453452</td>
-                                <td class="my_date">2011/03/11</td>
-                                <td class="my_name">Đình Văn Phú</td>
-                                <td class="my_id_customer">1089648998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-success my_status">Thành công</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary " data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">8423453452</td>
-                                <td class="my_date">2015/06/25</td>
-                                <td class="my_name">Nguyễn Hữu Bình</td>
-                                <td class="my_id_customer">1074648998</td>
-                                <td class="my_city">Đà Nẵng</td>
-                                <td class="my_price">210000</td>
-                                <td>
-                                    <label class="badge badge-warning my_status">Bị hoãn</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
-                                        data-toggle="modal" data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">9423453452</td>
-                                <td class="my_date">2016/11/12</td>
-                                <td class="my_name">Trần Đỗ Hòa Nam</td>
-                                <td class="my_id_customer">1015998998</td>
-                                <td class="my_city">Hồ Chí Minh</td>
-                                <td class="my_price">630000</td>
-                                <td>
-                                    <label class="badge badge-success my_status">Thành công</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="my_id">9923453452</td>
-                                <td class="my_date">2003/12/26</td>
-                                <td class="my_name">Nguyễn Thị An</td>
-                                <td class="my_id_customer">1015785498</td>
-                                <td class="my_city">Đà Nẵng</td>
-                                <td class="my_price">230000</td>
-                                <td>
-                                    <label class="badge badge-danger my_status">Bị hủy</label>
-                                </td>
-                                <td>
-                                    <button class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#myModal">Xem</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="card-body">
+    <h4 class="card-title">Bảng đơn đặt hàng</h4>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table id="order-listing" class="table">
+            <thead>
+              <tr>
+                <th>ID Hóa đơn</th>
+                <th>Thời gian mua</th>
+                <th>Tên khách hàng</th>
+                <th>ID Khách hàng</th>
+                <th>Địa điểm</th>
+                <th>Tổng tiền (VND)</th>
+                <th>Tình trạng</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="my_id">1423453452</td>
+                <td class="my_date">2012/08/03</td>
+                <td class="my_name">Trần Vỹ Hùng</td>
+                <td class="my_id_customer">1778648998</td>
+                <td class="my_city">Hà Nội</td>
+                <td class="my_price">320000</td>
+                <td>
+                  <label class="badge badge-warning my_status">Bị hoãn</label>
+                </td>
+                <td>
+                  <button
+                    id="vip"
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">2423453452</td>
+                <td class="my_date">2015/04/01</td>
+                <td class="my_name">Trần Đình Hóa</td>
+                <td class="my_id_customer">1011208998</td>
+                <td class="my_city">Hà Tĩnh</td>
+                <td class="my_price">750000</td>
+                <td>
+                  <label class="badge badge-danger my_status">Bị hủy</label>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">3423453452</td>
+                <td class="my_date">2010/11/21</td>
+                <td class="my_name">Hồ Văn Liên</td>
+                <td class="my_id_customer">1018798998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-success my_status"
+                    >Thành công</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">4423453452</td>
+                <td class="my_date">2016/01/12</td>
+                <td lass="my_name">Trần Văn Thông</td>
+                <td class="my_id_customer">1015415998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-success my_status"
+                    >Thành công</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">5423453452</td>
+                <td class="my_date">2017/12/28</td>
+                <td class="my_name">Lê Văn Chiến</td>
+                <td class="my_id_customer">1015420998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-success my_status"
+                    >Thành công</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">6423453452</td>
+                <td class="my_date">2000/10/30</td>
+                <td class="my_name">Nguyễn Hữu An</td>
+                <td class="my_id_customer">1089648998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-warning my_status">Bị hoãn</label>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">7423453452</td>
+                <td class="my_date">2011/03/11</td>
+                <td class="my_name">Đình Văn Phú</td>
+                <td class="my_id_customer">1089648998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-success my_status"
+                    >Thành công</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary "
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">8423453452</td>
+                <td class="my_date">2015/06/25</td>
+                <td class="my_name">Nguyễn Hữu Bình</td>
+                <td class="my_id_customer">1074648998</td>
+                <td class="my_city">Đà Nẵng</td>
+                <td class="my_price">210000</td>
+                <td>
+                  <label class="badge badge-warning my_status">Bị hoãn</label>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">9423453452</td>
+                <td class="my_date">2016/11/12</td>
+                <td class="my_name">Trần Đỗ Hòa Nam</td>
+                <td class="my_id_customer">1015998998</td>
+                <td class="my_city">Hồ Chí Minh</td>
+                <td class="my_price">630000</td>
+                <td>
+                  <label class="badge badge-success my_status"
+                    >Thành công</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="my_id">9923453452</td>
+                <td class="my_date">2003/12/26</td>
+                <td class="my_name">Nguyễn Thị An</td>
+                <td class="my_id_customer">1015785498</td>
+                <td class="my_city">Đà Nẵng</td>
+                <td class="my_price">230000</td>
+                <td>
+                  <label class="badge badge-danger my_status">Bị hủy</label>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    Xem
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" style="width:80%;" role="document">
-        <div class="modal-content">
-            <div class="modal-header cus-modal-header">
-                <h4 class="modal-title" id="myModalLabel">Chi tiết đơn hàng</h4>
-            </div>
-            <div class="modal-body cus-modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-2" style="align-content:center;">
-                                    <img src="../images/a1.jpg" style="width:50px;" class="img-rounded"
-                                        alt="Cinque Terre">
-                                </div>
-                                <div class="col-sm-4">
-                                    <h6>Gấu Teddy</h6>
-                                </div>
-                                <div class="col-sm-3 none-padding">
-                                    <h6>120000 VNĐ</h6>
-                                </div>
-                                <div class="col-sm-3 none-padding">
-                                    <h6>5</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                    <div class="col-sm-2" style="align-content:center;">
-                                        <img src="../images/a4.jpg" style="width:50px;" class="img-rounded"
-                                            alt="Cinque Terre">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h6>Gấu Pro</h6>
-                                    </div>
-                                    <div class="col-sm-3 none-padding">
-                                        <h6>175000 VNĐ</h6>
-                                    </div>
-                                    <div class="col-sm-3 none-padding">
-                                        <h6>1</h6>
-                                    </div>
-                                </div>
-                                <div class="row" style="align-items:center;">
-                                        <div class="col-sm-2" style="align-content:center;">
-                                            <img src="../images/a3.jpg" style="width:50px;" class="img-rounded"
-                                                alt="Cinque Terre">
-                                        </div>
-                                        <div class="col-sm-4" style="align-items:center;">
-                                            <h6>Gấu Babe</h6>
-                                        </div>
-                                        <div class="col-sm-3 none-padding">
-                                            <h6>115000 VNĐ</h6>
-                                        </div>
-                                        <div class="col-sm-3 none-padding">
-                                            <h6>2</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                            <div class="col-sm-2" style="align-content:center;">
-                                                <img src="../images/a2.jpg" style="width:50px;" class="img-rounded"
-                                                    alt="Cinque Terre">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <h6>Gấu Tiny</h6>
-                                            </div>
-                                            <div class="col-sm-3 none-padding">
-                                                <h6>170000 VNĐ</h6>
-                                            </div>
-                                            <div class="col-sm-3 none-padding">
-                                                <h6>1</h6>
-                                            </div>
-                                        </div>
-                        </div>
-                        <div class="col-sm-6 border-left">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div style="display:flex; flex-director:row;">
-                                        <h6>ID</h6>
-                                        <h6 class="my_id"></h6>
-                                    </div>
-
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <div style="display:flex; flex-director:row;">
-                                        <h6>Trạng thái</h6>
-                                        <label class="badge my_status">Thành công</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="my_name"></p>
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <p class="my_date"></p>
-                                </div>
-                            </div>
-                            <div class="row border-bottom">
-                                <div class="col-sm-12 none-padding-right">
-                                    <p class="my_city"></p>
-                                </div>
-                            </div>
-                            <div class="row margin-top-20px">
-                                <div class="col-sm-12 none-padding-right">
-                                    <h5>Thông tin đơn hàng</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p>Tạm tính (4 sản phẩm)</p>
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <p class="my_price" style="text-align: end;"></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p>Phí giao hàng</p>
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <p style="text-align: end;">22000 VNĐ</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p>Giảm giá</p>
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <p style="text-align: end;">0 VNĐ</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p>Tổng cộng</p>
-                                </div>
-                                <div class="col-sm-6 none-padding">
-                                    <p class="my_price_total" style="text-align: end;"></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+>
+  <div class="modal-dialog" style="width:80%;" role="document">
+    <div class="modal-content">
+      <div class="modal-header cus-modal-header">
+        <h4 class="modal-title" id="myModalLabel">Chi tiết đơn hàng</h4>
+      </div>
+      <div class="modal-body cus-modal-body pt-0 mt-0 pb-0 mb-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-2" style="align-content:center;">
+                  <img
+                    src="../images/a1.jpg"
+                    style="width:50px;"
+                    class="img-rounded"
+                    alt="Cinque Terre"
+                  />
                 </div>
+                <div class="col-sm-4 d-flex">
+                  <h6 style="align-self: center;">Gấu Teddy</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">120000 VNĐ</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">5</h6>
+                </div>
+              </div>
+              <hr class="pt-0 pb-0 mt-1 mb-0" />
+              <div class="row">
+                <div class="col-sm-2" style="align-content:center;">
+                  <img
+                    src="../images/a4.jpg"
+                    style="width:50px;"
+                    class="img-rounded"
+                    alt="Cinque Terre"
+                  />
+                </div>
+                <div class="col-sm-4 d-flex">
+                  <h6 style="align-self: center;">Gấu Panda</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">170000 VNĐ</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">4</h6>
+                </div>
+              </div>
+              <hr class="pt-0 pb-0 mt-1 mb-0" />
+              <div class="row" style="align-items:center;">
+                <div class="col-sm-2" style="align-content:center;">
+                  <img
+                    src="../images/a3.jpg"
+                    style="width:50px;"
+                    class="img-rounded"
+                    alt="Cinque Terre"
+                  />
+                </div>
+                <div class="col-sm-4 d-flex">
+                  <h6 style="align-self: center;">Gấu Quobee</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">190000 VNĐ</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">8</h6>
+                </div>
+              </div>
+              <hr class="pt-0 pb-0 mt-1 mb-0" />
+              <div class="row">
+                <div class="col-sm-2" style="align-content:center;">
+                  <img
+                    src="../images/a2.jpg"
+                    style="width:50px;"
+                    class="img-rounded"
+                    alt="Cinque Terre"
+                  />
+                </div>
+                <div class="col-sm-4 d-flex">
+                  <h6 style="align-self: center;">Gấu bông</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">100000 VNĐ</h6>
+                </div>
+                <div class="col-sm-3 none-padding d-flex">
+                  <h6 style="align-self: center;">6</h6>
+                </div>
+              </div>
+              <hr class="pt-0 pb-0 mt-1 mb-0" />
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Đóng</button>
+            <div class="col-sm-6 border-left" style="padding-top: 10px">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div style="display:flex; flex-direction:row;">
+                    <h6>ID:</h6>
+                    <h6 class="my_id"></h6>
+                  </div>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <div
+                    style="display:flex; flex-direction:row; justify-content: space-between"
+                  >
+                    <h6>Trạng thái</h6>
+                    <div class="pt-1">
+                      <label class="badge my_status">Thành công</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p class="my_name"></p>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <p class="my_date"></p>
+                </div>
+              </div>
+              <div class="row border-bottom">
+                <div class="col-sm-12 none-padding-right">
+                  <p class="my_city"></p>
+                </div>
+              </div>
+              <div class="row margin-top-20px">
+                <div class="col-sm-12 none-padding-right">
+                  <h5>Thông tin đơn hàng</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Tạm tính (4 sản phẩm)</p>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <p class="my_price" style="text-align: end;"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Phí giao hàng</p>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <p style="text-align: end;">22000 VNĐ</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Giảm giá</p>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <p style="text-align: end;">0 VNĐ</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Tổng cộng</p>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <p class="my_price_total" style="text-align: end;"></p>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-dismiss="modal"
+          style="font-weight: bold"
+        >
+          Đóng
+        </button>
+      </div>
     </div>
+  </div>
 </div>
