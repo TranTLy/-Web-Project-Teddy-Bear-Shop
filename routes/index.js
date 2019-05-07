@@ -3,19 +3,21 @@ var router = express.Router();
 
 var dashboard_controller = require("../controllers/dashboardController");
 var users_controller = require("../controllers/usersController");
+var products_controller = require("../controllers/productsController");
+var bills_controller = require("../controllers/billsController");
 
 router.get('/',dashboard_controller.index);
+
 router.get('/dashboard',dashboard_controller.index);
 router.post('/dashboard',dashboard_controller.statistical);
 
 router.get('/users',users_controller.index);
 router.post('/users',users_controller.crud);
 
-router.get('/products', function (req, res, next) {
-  res.render('pages/products/index', { title: 'Product' });
-});
-router.get('/bills', function (req, res, next) {
-  res.render('pages/bills/index', { title: 'Bill' });
-});
+router.get('/products',products_controller.index);
+router.post('/products',products_controller.crud);
+
+router.get('/bills',bills_controller.index);
+router.post('/bills',bills_controller.search_sort);
 
 module.exports = router;
