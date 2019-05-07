@@ -156,7 +156,7 @@ $(function() {
         },
         title: {
             display: true,
-            text: 'Top 10 sản phẩm tháng 9 năm 2012'
+            text: 'Top 10 sản phẩm năm 2012'
           }
     }
     var optionsTypeProduct = {
