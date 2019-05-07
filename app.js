@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use(expressLayouts);
-app.set("layout", "admin/layout");
+app.set("layout", "layout");
 app.use("/admin", adminsRouter);
 
 // catch 404 and forward to error handler
