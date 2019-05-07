@@ -1,15 +1,16 @@
 var express = require("express");
 var router = express.Router();
 
-router.get('', function (req, res, next) {
-  res.render('pages/dashboard/index', { title: 'Dashboard' });
-});
-router.get('/dashboard', function (req, res, next) {
-  res.render('pages/dashboard/index', { title: 'Dashboard1' });
-});
-router.get('/users', function (req, res, next) {
-  res.render('pages/users/index', { title: 'User' });
-});
+var dashboard_controller = require("../controllers/dashboardController");
+var users_controller = require("../controllers/usersController");
+
+router.get('/',dashboard_controller.index);
+router.get('/dashboard',dashboard_controller.index);
+router.post('/dashboard',dashboard_controller.statistical);
+
+router.get('/users',users_controller.index);
+router.post('/users',users_controller.crud);
+
 router.get('/products', function (req, res, next) {
   res.render('pages/products/index', { title: 'Product' });
 });
