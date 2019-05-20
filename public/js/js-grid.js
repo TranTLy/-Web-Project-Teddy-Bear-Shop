@@ -73,6 +73,7 @@
       type: "get",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
+      autoload: true,
       success: function(types) {
         $("#js-grid-products").jsGrid({
           height: "500px",
@@ -174,6 +175,144 @@
           ]
         });
       }
+    });
+    $("#js-grid-typeproducts").jsGrid({
+      height: "500px",
+      width: "100%",
+      filtering: true,
+      editing: true,
+      inserting: true,
+      sorting: true,
+      paging: true,
+      autoload: true,
+      pageSize: 10,
+      pageButtonCount: 5,
+      deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
+      controller: {
+        loadData: function(filter) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "http://localhost:3000/products/getTypes",
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            data: filter,
+            dataType: "json"
+          }).done(function(items) {
+            d.resolve(items);
+          });
+          return d.promise();
+        }
+      },
+      fields: [
+        {
+          title: "ID",
+          name: "_id",
+          type: "text",
+          width: 50
+        },
+        {
+          title: "Tên loại sản phẩm",
+          name: "name",
+          type: "text",
+          width: 120
+        },
+
+        {
+          type: "control"
+        }
+      ]
+    });
+    $("#js-grid-producers").jsGrid({
+      height: "500px",
+      width: "100%",
+      filtering: true,
+      editing: true,
+      inserting: true,
+      sorting: true,
+      paging: true,
+      autoload: true,
+      pageSize: 10,
+      pageButtonCount: 5,
+      deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
+      controller: {
+        loadData: function(filter) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/producers/getProducers",
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            data: filter,
+            dataType: "json"
+          }).done(function(items) {
+            d.resolve(items);
+          });
+          return d.promise();
+        }
+      },
+      fields: [
+        {
+          title: "ID",
+          name: "_id",
+          type: "text",
+          width: 50
+        },
+        {
+          title: "Tên nhà cung cấp",
+          name: "name",
+          type: "text",
+          width: 120
+        },
+
+        {
+          type: "control"
+        }
+      ]
+    });
+    $("#js-grid-origins").jsGrid({
+      height: "500px",
+      width: "100%",
+      filtering: true,
+      editing: true,
+      inserting: true,
+      sorting: true,
+      paging: true,
+      autoload: true,
+      pageSize: 10,
+      pageButtonCount: 5,
+      deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
+      controller: {
+        loadData: function(filter) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/origins/getOrigins",
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            data: filter,
+            dataType: "json"
+          }).done(function(items) {
+            d.resolve(items);
+          });
+          return d.promise();
+        }
+      },
+      fields: [
+        {
+          title: "ID",
+          name: "_id",
+          type: "text",
+          width: 50
+        },
+        {
+          title: "Tên nơi xuất xứ",
+          name: "name",
+          type: "text",
+          width: 120
+        },
+
+        {
+          type: "control"
+        }
+      ]
     });
   });
 })(jQuery);
