@@ -1,17 +1,17 @@
 (function ($) {
     (function () {
-
+   // const { getProducts,getDiscount } = require("../../models/product.model");
         var db = {
 
-            // loadData: function(filter) {
-            //     return $.grep(this.clients, function(client) {
-            //         return (!filter.Name || client.Name.indexOf(filter.Name) > -1) &&
-            //             (filter.Age === undefined || client.Age === filter.Age) &&
-            //             (!filter.Address || client.Address.indexOf(filter.Address) > -1) &&
-            //             (!filter.Country || client.Country === filter.Country) &&
-            //             (filter.Married === undefined || client.Married === filter.Married);
-            //     });
-            // },
+            loadData: function(filter) {
+                return $.grep(this.clients, function(client) {
+                    return (!filter.Name || client.Name.indexOf(filter.Name) > -1) &&
+                        (filter.Age === undefined || client.Age === filter.Age) &&
+                        (!filter.Address || client.Address.indexOf(filter.Address) > -1) &&
+                        (!filter.Country || client.Country === filter.Country) &&
+                        (filter.Married === undefined || client.Married === filter.Married);
+                });
+            },
 
             insertItem: function (insertingClient) {
                 this.clients.push(insertingClient);
@@ -27,7 +27,7 @@
         };
 
         window.db = db;
-
+        
 
         db.countries = [{
             Name: "",
@@ -108,7 +108,7 @@
             Id: 4
         }
         ];
-        db.products_discount = discount;
+        db.products_discount;
         // db.products_discount = [{
         //     Name: "",
         //     Id: 0
@@ -494,7 +494,5 @@
             }
 
         ];
-
-
     }());
 })(jQuery);

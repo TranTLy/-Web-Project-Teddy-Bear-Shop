@@ -15,6 +15,8 @@ router.get('/users',users_controller.index);
 router.post('/users',users_controller.crud);
 
 router.get('/products',products_controller.index);
+router.get('/products/getTypes',products_controller.getTypes);
+router.get('/products/getProducts',products_controller.getProducts);
 router.post('/products',products_controller.crud);
 
 router.get('/bills',bills_controller.index);
