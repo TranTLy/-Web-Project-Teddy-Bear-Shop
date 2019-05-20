@@ -1,4 +1,4 @@
-const { getProducts,getTypes } = require("../models/product.model");
+const { getProducts,getTypes,insertProduct,updateProduct } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
   res.render("pages/products/index", { title: "Quản lý sản phẩm"});
@@ -17,3 +17,14 @@ exports.getProducts = async function(req,res,next) {
 exports.crud = function(req, res, next) {
   res.render("pages/products/index", { title: "Quản lý sản phẩm" });
 };
+
+exports.insert = function(req, res, next) {
+  let productInsert = req.body;
+  console.log("Dang insert!!",productInsert);
+  insertProduct(productInsert);
+};
+
+exports.update = function(req,res,next){
+  let product = req.body;
+  updateProduct(product);
+}

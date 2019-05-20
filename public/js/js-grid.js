@@ -101,7 +101,21 @@
                 d.resolve(items);
               });
               return d.promise();
-            }
+            },
+            insertItem: function(item) { 
+              console.log("insert",item);
+              let data = {...item,isDelete: false, isStandOut: false, currentPrice : item.price, isNew: true};
+              console.log("data",data);
+              $.ajax({
+                url: "http://localhost:3000/products/insert",
+                type: "post",
+                //contentType: "application/json; charset=utf-8",
+                data: data,
+                dataType: "json"
+              }).done(function(items) {
+                console.log("Insert Thành công!");
+              });
+             },
           },
           rowClick: function(args) {
             showDetailsDialog("Sửa", args.item);
