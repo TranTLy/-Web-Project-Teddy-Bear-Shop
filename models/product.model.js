@@ -37,10 +37,20 @@ const insertProduct = async function(insetProduct) {
     console.log("Theem thanh cong!");
   })
 }
-const updateProduct = async function(product){
-  const connect = await client.connect();
+const updateProduct = async function(id, product){
+  console.log("Update product");
+ // const products = getProducts();
+ // console.log("up product",products);
+ // const productbyId = products.filter((item) => item._id === id);
+ // console.log("up product by id", productbyId);
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  collection.updateOne(product,function(err,res){
+  console.log("id",new ObjectId(id));
+  console.log("bf",product);
+  delete product._id;
+  console.log("af",product);
+
+  collection.updateOne({"_id": ObjectId(id)},{$set: product},{upsert: true},function(err,res){
+    console.log("err",err);
     if(err) throw err;
     console.log("Update successfully");
   })

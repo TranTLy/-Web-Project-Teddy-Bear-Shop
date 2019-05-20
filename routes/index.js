@@ -19,7 +19,7 @@ router.get('/products/getTypes',products_controller.getTypes);
 router.get('/products/getProducts',products_controller.getProducts);
 router.post('/products',products_controller.crud);
 router.post('/products/insert',products_controller.insert);
-router.put('/products/update',products_controller.update);
+router.put('/products/:_id',products_controller.update);
 
 router.get('/bills',bills_controller.index);
 router.post('/bills',bills_controller.search_sort);

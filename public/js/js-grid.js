@@ -40,7 +40,7 @@
       $("#size").val(category.size);
       $("#color").val(category.color);
       $("#type").val(category.type);
-      $("#describe").val(category.describe);
+      $("#decription").val(category.decription);
       $("#imgs").val(category.imgs);
       dialog
         .dialog("option", "title", dialogType + " thông tin")
@@ -52,12 +52,12 @@
       $.extend(category, {
         name: $("#name").val(),
         _id: $("#_id").val(),
-        price: $("#price").val(),
-        discount: $("#discount").val(),
+        price: parseInt($("#price").val(),10),
+        discount: parseFloat($("#discount").val()),
         size: $("#size").val(),
         color: $("#color").val(),
         type: parseInt($("#type").val(), 10),
-        describe: $("#describe").val(),
+        decription: $("#decription").val(),
         imgs: $("#imgs").val()
       });
       console.dir(category);
@@ -104,19 +104,32 @@
               return d.promise();
             },
             insertItem: function(item) { 
-              console.log("insert",item);
-              let data = {...item,isDelete: false, isStandOut: false, currentPrice : item.price, isNew: true};
-              console.log("data",data);
+              console.log("insert asdfjlas;dfas",item);
+              let trueB = true;
+              console.log("insertto",typeof trueB);
+              //let data = {...item,isDelete: trueB, isStandOut: false, currentPrice : item.price, isNew: true};
+              // console.log("data",data);
               $.ajax({
                 url: "http://localhost:3000/products/insert",
                 type: "post",
                 //contentType: "application/json; charset=utf-8",
-                data: data,
+                data: item,
                 dataType: "json"
               }).done(function(items) {
                 console.log("Insert Thành công!");
               });
              },
+             updateItem: function(item){
+               console.log("update");
+               $.ajax({
+                 url: "http://localhost:3000/products/" + item._id,
+                 type: "put",
+                 data:item,
+                 dataType:'json'
+               }).done(function(items){
+                 console.log("Update successfully");           
+                });
+             }
           },
           rowClick: function(args) {
             showDetailsDialog("Sửa", args.item);
