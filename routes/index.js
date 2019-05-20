@@ -12,7 +12,7 @@ router.get('/dashboard',dashboard_controller.index);
 router.post('/dashboard',dashboard_controller.statistical);
 
 router.get('/users',users_controller.index);
-router.post('/users',users_controller.crud);
+router.get('/users/getUser',users_controller.getUsers);
 
 router.get('/products',products_controller.index);
 router.get('/products/getTypes',products_controller.getTypes);

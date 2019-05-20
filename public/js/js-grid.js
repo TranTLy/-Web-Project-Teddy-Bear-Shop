@@ -52,7 +52,7 @@
       $.extend(category, {
         name: $("#name").val(),
         _id: $("#_id").val(),
-        price: parseInt($("#price").val(),10),
+        price: parseInt($("#price").val(), 10),
         discount: parseFloat($("#discount").val()),
         size: $("#size").val(),
         color: $("#color").val(),
@@ -103,10 +103,10 @@
               });
               return d.promise();
             },
-            insertItem: function(item) { 
-              console.log("insert asdfjlas;dfas",item);
+            insertItem: function(item) {
+              console.log("insert asdfjlas;dfas", item);
               let trueB = true;
-              console.log("insertto",typeof trueB);
+              console.log("insertto", typeof trueB);
               //let data = {...item,isDelete: trueB, isStandOut: false, currentPrice : item.price, isNew: true};
               // console.log("data",data);
               $.ajax({
@@ -118,18 +118,18 @@
               }).done(function(items) {
                 console.log("Insert Thành công!");
               });
-             },
-             updateItem: function(item){
-               console.log("update");
-               $.ajax({
-                 url: "http://localhost:3000/products/" + item._id,
-                 type: "put",
-                 data:item,
-                 dataType:'json'
-               }).done(function(items){
-                 console.log("Update successfully");           
-                });
-             }
+            },
+            updateItem: function(item) {
+              console.log("update");
+              $.ajax({
+                url: "http://localhost:3000/products/" + item._id,
+                type: "put",
+                data: item,
+                dataType: "json"
+              }).done(function(items) {
+                console.log("Update successfully");
+              });
+            }
           },
           rowClick: function(args) {
             showDetailsDialog("Sửa", args.item);
@@ -202,5 +202,76 @@
         });
       }
     });
+    //basic config
+    if ($("#js-grid").length) {
+      $("#js-grid").jsGrid({
+        height: "500px",
+        width: "100%",
+        filtering: true,
+        inserting: true,
+        sorting: true,
+        paging: true,
+        autoload: true,
+        pageSize: 15,
+        pageButtonCount: 5,
+        deleteConfirm: "Bạn thực sự muốn xóa người dùng này?",
+        controller: {
+          loadData: function(filter) {
+            console.log("tems");
+
+            var d = $.Deferred();
+            $.ajax({
+              url: "http://localhost:3000/users/getUser",
+              type: "get",
+              contentType: "application/json; charset=utf-8",
+              data: filter,
+              dataType: "json"
+            }).done(function(items) {
+              console.log("tems",items);
+              d.resolve(items);
+            });
+            return d.promise();
+          }
+        },
+        fields: [
+          {
+            title: "Họ và tên",
+            name: "name",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Gmail",
+            name: "gmail",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Số điện thoại",
+            name: "phoneNumber",
+            type: "text",
+            width: 120
+          },
+          {
+            title: "Giới tính",
+            name: "gender",
+            type: "select",
+            items: db.genders,
+            valueField: "Id",
+            textField: "Name"
+          },
+          {
+            title: "Tuổi",
+            name: "age",
+            type: "number",
+            width: 80
+          },
+          {
+            type: "control",
+            editButton: false
+          }
+        ]
+      });
+    }
   });
 })(jQuery);
