@@ -34,30 +34,31 @@
         //}
       };
       $("#name").val(category.name);
-      $("#id").val(category.ID);
+      $("#_id").val(category._id);
       $("#price").val(category.price);
       $("#discount").val(category.discount);
       $("#size").val(category.size);
-      $("#color").val(category.color),
-        $("#category").val(category.category),
-        $("#describe").val(category.describe),
-        $("#img").val(category.img),
-        dialog
-          .dialog("option", "title", dialogType + " thông tin")
-          .dialog("open");
+      $("#color").val(category.color);
+      $("#type").val(category.type);
+      $("#describe").val(category.describe);
+      $("#imgs").val(category.imgs);
+      dialog
+        .dialog("option", "title", dialogType + " thông tin")
+        .dialog("open");
+      console.log("type", type);
     };
 
     var saveClient = function(category, isNew) {
       $.extend(category, {
         name: $("#name").val(),
-        ID: $("#id").val(),
+        _id: $("#_id").val(),
         price: $("#price").val(),
-        discount: parseInt($("#discount").val(), 10),
-        size: parseInt($("#size").val(), 10),
-        color: parseInt($("#color").val(), 10),
-        category: parseInt($("#category").val(), 10),
+        discount: $("#discount").val(),
+        size: $("#size").val(),
+        color: $("#color").val(),
+        type: parseInt($("#type").val(), 10),
         describe: $("#describe").val(),
-        img: $("#img").val()
+        imgs: $("#imgs").val()
       });
       console.dir(category);
       $("#js-grid-products").jsGrid(

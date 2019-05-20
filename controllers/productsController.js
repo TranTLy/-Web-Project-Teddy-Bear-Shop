@@ -1,7 +1,8 @@
 const { getProducts,getTypes } = require("../models/product.model");
 
-exports.index = function(req, res, next) {
-  res.render("pages/products/index", { title: "Quản lý sản phẩm"});
+exports.index = async function(req, res, next) {
+  const dbTypes = await getTypes();
+  res.render("pages/products/index", { title: "Quản lý sản phẩm",Types: dbTypes});
 };
 
 exports.getTypes = async function(req,res,next) {
