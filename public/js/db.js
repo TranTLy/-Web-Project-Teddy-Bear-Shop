@@ -108,36 +108,37 @@
             Id: 4
         }
         ];
-
-        db.products_discount = [{
-            Name: "",
-            Id: 0
-        },
-        {
-            Name: "5%",
-            Id: 1
-        },
-        {
-            Name: "10%",
-            Id: 2
-        },
-        {
-            Name: "20%",
-            Id: 3
-        },
-        {
-            Name: "30%",
-            Id: 4
-        },
-        {
-            Name: "50%",
-            Id: 5
-        },
-        {
-            Name: "60%",
-            Id: 6
-        }
-        ];
+        db.products_discount = discount;
+        // db.products_discount = [{
+        //     Name: "",
+        //     Id: 0
+        // },
+        // {
+        //     Name: "5%",
+        //     Id: 1
+        // },
+        // {
+        //     Name: "10%",
+        //     Id: 2
+        // },
+        // {
+        //     Name: "20%",
+        //     Id: 3
+        // },
+        // {
+        //     Name: "30%",
+        //     Id: 4
+        // },
+        // {
+        //     Name: "50%",
+        //     Id: 5
+        // },
+        // {
+        //     Name: "60%",
+        //     Id: 6
+        // }
+        // ];
+       // db.products = products;
         db.products = [
             {
                 "name" : "Gấu Teddy",
