@@ -29,8 +29,8 @@
         window.db = db;
         
 
-        db.countries = [{
-            Name: "",
+        db.genders = [{
+            Name: "Nữ",
             Id: 0
         },
         {
@@ -38,7 +38,7 @@
             Id: 1
         },
         {
-            Name: "Nữ",
+            Name: "Khác",
             Id: 2
         }
         ];
