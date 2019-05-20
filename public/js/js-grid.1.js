@@ -39,7 +39,7 @@
       $("#discount").val(category.discount);
       $("#size").val(category.size);
       $("#color").val(category.color),
-        $("#category").val(category.category),
+        $("#type").val(category.category),
         $("#describe").val(category.describe),
         $("#img").val(category.img),
         dialog
