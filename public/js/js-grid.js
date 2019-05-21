@@ -68,13 +68,14 @@
 
       dialog.dialog("close");
     };
+
     $.ajax({
-      url: "http://localhost:3000/products/getTypes",
+      url: "/products/getTypes",
       type: "get",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      autoload: true,
       success: function(types) {
+        $("#loading").hide();
         $("#js-grid-products").jsGrid({
           height: "500px",
           width: "100%",
@@ -91,7 +92,7 @@
             loadData: function(filter) {
               var d = $.Deferred();
               $.ajax({
-                url: "http://localhost:3000/products/getProducts",
+                url: "/products/getProducts",
                 type: "get",
                 contentType: "application/json; charset=utf-8",
                 data: filter,
@@ -108,27 +109,38 @@
               console.log("insert asdfjlas;dfas", item);
               let trueB = true;
               console.log("insertto", typeof trueB);
-              //let data = {...item,isDelete: trueB, isStandOut: false, currentPrice : item.price, isNew: true};
               // console.log("data",data);
               $.ajax({
-                url: "http://localhost:3000/products/insert",
+                url: "/products/insert",
                 type: "post",
-                //contentType: "application/json; charset=utf-8",
                 data: item,
                 dataType: "json"
-              }).done(function(items) {
-                console.log("Insert Thành công!");
-              });
+              })
+                .done(function(result) {
+                  if (result.isSuccess) {
+                    d.resolve(result.type);
+                    console.log(result.msg);
+                  } else {
+                    d.reject();
+                    console(result.msg);
+                  }
+                })
+                .fail(function(err) {
+                  d.reject();
+                  alert(err);
+                });
+              return d.promise();
             },
             updateItem: function(item) {
               console.log("update");
               $.ajax({
-                url: "http://localhost:3000/products/" + item._id,
+                url: "/products/" + item._id,
                 type: "put",
                 data: item,
-                dataType: "json"
-              }).done(function(items) {
-                console.log("Update successfully");
+                dataType: "json",
+                success: function(result) {
+                  console.log("com", result);
+                }
               });
             }
           },
@@ -201,6 +213,10 @@
             }
           ]
         });
+      },
+      error: function(error) {
+        $("#loading").hide();
+        console.log("ERR", error);
       }
     });
     $("#js-grid-typeproducts").jsGrid({
@@ -219,14 +235,91 @@
         loadData: function(filter) {
           var d = $.Deferred();
           $.ajax({
-            url: "http://localhost:3000/products/getTypes",
+            url: "/types/get",
             type: "get",
             contentType: "application/json; charset=utf-8",
-            data: filter,
             dataType: "json"
-          }).done(function(items) {
-            d.resolve(items);
-          });
+          })
+            .done(function(items) {
+              d.resolve(items);
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
+          return d.promise();
+        },
+        insertItem: function(item) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/types",
+            type: "post",
+            data: item,
+            dataType: "json"
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(result.type);
+                console.log(result.msg);
+              } else {
+                d.reject();
+                console(result.msg);
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
+          return d.promise();
+        },
+        updateItem: function(item) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/types/" + item._id,
+            type: "put",
+            dataType: "json",
+            data: item
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(item);
+                console.log(result.msg);
+              } else {
+                alert(result.msg);
+                d.reject();
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              console.log("err", err);
+            });
+          return d.promise();
+        },
+        deleteItem: function(item) {
+          var d = $.Deferred();
+          console.log("Delete", item._id);
+          if (typeof item._id === "undefined") {
+            alert("Vui lòng chờ load id!\nPhải có id mới có thể xóa!");
+          } else {
+            $.ajax({
+              url: "/types/" + item._id,
+              type: "delete",
+              dataType: "json"
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  alert(result.msg);
+                  d.resolve();
+                } else {
+                  d.reject();
+                  alert(result.msg);
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                alert(err);
+              });
+          }
           return d.promise();
         }
       },
@@ -235,61 +328,17 @@
           title: "ID",
           name: "_id",
           type: "text",
-          width: 50
+          width: 50,
+          editing: false,
+          inserting: false
         },
         {
           title: "Tên loại sản phẩm",
           name: "name",
           type: "text",
-          width: 120
+          width: 120,
+          validate: "required"
         },
-
-        {
-          type: "control"
-        }
-      ]
-    });
-    $("#js-grid-producers").jsGrid({
-      height: "500px",
-      width: "100%",
-      filtering: true,
-      editing: true,
-      inserting: true,
-      sorting: true,
-      paging: true,
-      autoload: true,
-      pageSize: 10,
-      pageButtonCount: 5,
-      deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
-      controller: {
-        loadData: function(filter) {
-          var d = $.Deferred();
-          $.ajax({
-            url: "/producers/getProducers",
-            type: "get",
-            contentType: "application/json; charset=utf-8",
-            data: filter,
-            dataType: "json"
-          }).done(function(items) {
-            d.resolve(items);
-          });
-          return d.promise();
-        }
-      },
-      fields: [
-        {
-          title: "ID",
-          name: "_id",
-          type: "text",
-          width: 50
-        },
-        {
-          title: "Tên nhà cung cấp",
-          name: "name",
-          type: "text",
-          width: 120
-        },
-
         {
           type: "control"
         }
@@ -311,58 +360,291 @@
         loadData: function(filter) {
           var d = $.Deferred();
           $.ajax({
-            url: "/origins/getOrigins",
+            url: "/origins/get",
             type: "get",
             contentType: "application/json; charset=utf-8",
             data: filter,
             dataType: "json"
-          }).done(function(items) {
-            d.resolve(items);
-          });
+          })
+            .done(function(items) {
+              d.resolve(items);
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
           return d.promise();
         },
         insertItem: function(item) {
+          var d = $.Deferred();
           $.ajax({
             url: "/origins",
             type: "post",
-            //contentType: "application/json; charset=utf-8",
             data: item,
             dataType: "json"
-          }).done(function(items) {
-            console.log("Insert Thành công!");
-          });
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(result.origin);
+                console.log(result.msg);
+              } else {
+                d.reject();
+                console(result.msg);
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
+          return d.promise();
         },
-      deleteItem: function(item){
-        $.ajax({
-          url: "/origins/" + item._id,
-          type: "delete",
-          //contentType: "application/json; charset=utf-8",
-          dataType: "json"
-        }).done(function(items) {
-          console.log("Xoa Thành công!");
-        });
-      }
-    },
+        updateItem: function(item) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/origins/" + item._id,
+            type: "put",
+            dataType: "json",
+            data: item
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(item);
+                console.log(result.msg);
+              } else {
+                alert(result.msg);
+                d.reject();
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              console.log("err", err);
+            });
+          return d.promise();
+        },
+        deleteItem: function(item) {
+          var d = $.Deferred();
+          if (typeof item._id === "undefined") {
+            alert("Vui lòng chờ load id!\nPhải có id mới có thể xóa!");
+          } else {
+            $.ajax({
+              url: "/origins/" + item._id,
+              type: "delete",
+              dataType: "json"
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  alert(result.msg);
+                  d.resolve();
+                } else {
+                  d.reject();
+                  alert(result.msg);
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                alert(err);
+              });
+            return d.promise();
+          }
+        }
+      },
       fields: [
         {
           title: "ID",
           name: "_id",
           type: "text",
           width: 50,
-          visible: false
+          editing: false,
+          inserting: false
         },
         {
           title: "Tên nơi xuất xứ",
           name: "name",
           type: "text",
-          width: 120
+          width: 120,
+          validate: "required"
         },
-
         {
           type: "control"
         }
       ]
     });
+
+    $("#js-grid-producers").jsGrid({
+      height: "500px",
+      width: "100%",
+      filtering: true,
+      editing: true,
+      inserting: true,
+      sorting: true,
+      paging: true,
+      autoload: true,
+      pageSize: 10,
+      pageButtonCount: 5,
+      deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
+      controller: {
+        loadData: function(filter) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/producers/get",
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            data: filter,
+            dataType: "json"
+          })
+            .done(function(items) {
+              d.resolve(items);
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
+          return d.promise();
+        },
+        insertItem: function(item) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/producers",
+            type: "post",
+            data: item,
+            dataType: "json"
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(result.producer);
+                console.log(result.msg);
+              } else {
+                d.reject();
+                console(result.msg);
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              alert(err);
+            });
+          return d.promise();
+        },
+        updateItem: function(item) {
+          var d = $.Deferred();
+          $.ajax({
+            url: "/producers/" + item._id,
+            type: "put",
+            dataType: "json",
+            data: item
+          })
+            .done(function(result) {
+              if (result.isSuccess) {
+                d.resolve(item);
+                console.log(result.msg);
+              } else {
+                alert(result.msg);
+                d.reject();
+              }
+            })
+            .fail(function(err) {
+              d.reject();
+              console.log("err", err);
+            });
+          return d.promise();
+        },
+        deleteItem: function(item) {
+          var d = $.Deferred();
+          if (typeof item._id === "undefined") {
+            alert("Vui lòng chờ load id!\nPhải có id mới có thể xóa!");
+          } else {
+            $.ajax({
+              url: "/producers/" + item._id,
+              type: "delete",
+              dataType: "json"
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  alert(result.msg);
+                  d.resolve();
+                } else {
+                  d.reject();
+                  alert(result.msg);
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                alert(err);
+              });
+            return d.promise();
+          }
+        }
+      },
+      fields: [
+        {
+          title: "ID",
+          name: "_id",
+          type: "text",
+          width: 50,
+          editing: false,
+          inserting: false
+        },
+        {
+          title: "Tên nhà sản xuất",
+          name: "name",
+          type: "text",
+          width: 120,
+          validate: "required"
+        },
+        {
+          type: "control"
+        }
+      ]
+    });
+
+    // $("#js-grid-producers").jsGrid({
+    //   height: "500px",
+    //   width: "100%",
+    //   filtering: true,
+    //   editing: true,
+    //   inserting: true,
+    //   sorting: true,
+    //   paging: true,
+    //   autoload: true,
+    //   pageSize: 10,
+    //   pageButtonCount: 5,
+    //   deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
+    //   controller: {
+    //     loadData: function(filter) {
+    //       var d = $.Deferred();
+    //       $.ajax({
+    //         url: "/producers/getProducers",
+    //         type: "get",
+    //         contentType: "application/json; charset=utf-8",
+    //         data: filter,
+    //         dataType: "json"
+    //       }).done(function(items) {
+    //         d.resolve(items);
+    //       });
+    //       return d.promise();
+    //     }
+    //   },
+    //   fields: [
+    //     {
+    //       title: "ID",
+    //       name: "_id",
+    //       type: "text",
+    //       width: 50,
+    //       editing: false,
+    //       inserting: false
+    //     },
+    //     {
+    //       title: "Tên nhà cung cấp",
+    //       name: "name",
+    //       type: "text",
+    //       width: 120,
+    //       validate: "required"
+    //     },
+
+    //     {
+    //       type: "control"
+    //     }
+    //   ]
+    // });
 
     //basic config
     if ($("#js-grid").length) {
@@ -383,7 +665,7 @@
 
             var d = $.Deferred();
             $.ajax({
-              url: "http://localhost:3000/users/getUser",
+              url: "/users/getUser",
               type: "get",
               contentType: "application/json; charset=utf-8",
               data: filter,

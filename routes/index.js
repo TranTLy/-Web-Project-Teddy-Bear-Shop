@@ -18,21 +18,28 @@ router.get('/users',users_controller.index);
 router.get('/users/getUser',users_controller.getUsers);
 
 router.get('/products',products_controller.index);
-router.get('/products/getTypes',products_controller.getTypes);
-router.get('/products/getProducts',products_controller.getProducts);
-router.post('/products',products_controller.crud);
-router.post('/products/insert',products_controller.insert);
+router.get('/products/get',products_controller.get);
+router.post('/products',products_controller.create);
+router.put('/products/:_id',products_controller.update);
 router.put('/products/:_id',products_controller.update);
 
 router.get('/types',types_controller.index);
-
-router.get('/producers',producers_controller.index);
-router.get('/producers/getProducers',producers_controller.getProducers);
+router.get('/types/get',types_controller.get);
+router.post('/types',types_controller.create);
+router.delete('/types/:_id',types_controller.delete);
+router.put('/types/:_id',types_controller.update);
 
 router.get('/origins',origins_controller.index);
-router.get('/origins/getOrigins',origins_controller.getOrigins);
+router.get('/origins/get',origins_controller.get);
 router.post('/origins',origins_controller.create);
 router.delete('/origins/:_id',origins_controller.delete);
+router.put('/origins/:_id',origins_controller.update);
+
+router.get('/producers',producers_controller.index);
+router.get('/producers/get',producers_controller.get);
+router.post('/producers',producers_controller.create);
+router.delete('/producers/:_id',producers_controller.delete);
+router.put('/producers/:_id',producers_controller.update);
 
 router.get('/bills',bills_controller.index);
 router.post('/bills',bills_controller.search_sort);
