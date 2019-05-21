@@ -320,6 +320,17 @@
             d.resolve(items);
           });
           return d.promise();
+        },
+        insertItem: function(item) {
+          $.ajax({
+            url: "/origins",
+            type: "post",
+            //contentType: "application/json; charset=utf-8",
+            data: item,
+            dataType: "json"
+          }).done(function(items) {
+            console.log("Insert Thành công!");
+          });
         }
       },
       fields: [
@@ -327,7 +338,8 @@
           title: "ID",
           name: "_id",
           type: "text",
-          width: 50
+          width: 50,
+          visible: false
         },
         {
           title: "Tên nơi xuất xứ",
@@ -341,6 +353,7 @@
         }
       ]
     });
+
     //basic config
     if ($("#js-grid").length) {
       $("#js-grid").jsGrid({
@@ -366,7 +379,7 @@
               data: filter,
               dataType: "json"
             }).done(function(items) {
-              console.log("tems",items);
+              console.log("tems", items);
               d.resolve(items);
             });
             return d.promise();

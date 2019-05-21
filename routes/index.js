@@ -31,6 +31,7 @@ router.get('/producers/getProducers',producers_controller.getProducers);
 
 router.get('/origins',origins_controller.index);
 router.get('/origins/getOrigins',origins_controller.getOrigins);
+router.post('/origins',origins_controller.create);
 
 router.get('/bills',bills_controller.index);
 router.post('/bills',bills_controller.search_sort);

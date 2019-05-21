@@ -28,10 +28,15 @@ exports.crud = function(req, res, next) {
 };
 
 exports.insert = function(req, res, next) {
+  let product = {
+    ...req.body,
+    isDeleted: false,
+    isStandOut: false,
+    isNew: true,
+    rating: 0
+  };
 
-  let product = {...req.body,isDeleted: false,isStandOut: false,isNew: true, rating : 0};
-
-  product.discount = parseFloat(product.discount/100);
+  product.discount = parseFloat(product.discount / 100);
   product.price = parseInt(product.price);
   product.type = parseInt(product.type);
 
