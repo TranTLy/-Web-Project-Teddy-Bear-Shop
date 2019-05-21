@@ -331,8 +331,18 @@
           }).done(function(items) {
             console.log("Insert Thành công!");
           });
-        }
-      },
+        },
+      deleteItem: function(item){
+        $.ajax({
+          url: "/origins/" + item._id,
+          type: "delete",
+          //contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        }).done(function(items) {
+          console.log("Xoa Thành công!");
+        });
+      }
+    },
       fields: [
         {
           title: "ID",
