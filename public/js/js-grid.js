@@ -40,6 +40,8 @@
       $("#size").val(category.size);
       $("#color").val(category.color);
       $("#type").val(category.type);
+      $("#producer").val(category.producer);
+      $("#origin").val(category.origin);
       $("#decription").val(category.decription);
       $("#imgs").val(category.imgs);
       dialog
@@ -56,7 +58,9 @@
         discount: parseFloat($("#discount").val()),
         size: $("#size").val(),
         color: $("#color").val(),
-        type: parseInt($("#type").val(), 10),
+        type: $("#type").val(),
+        producer: $("#producer").val(),
+        origin: $("#origin").val(),
         decription: $("#decription").val(),
         imgs: $("#imgs").val()
       });
@@ -70,7 +74,7 @@
     };
 
     $.ajax({
-      url: "/products/getTypes",
+      url: "/types/get",
       type: "get",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -92,38 +96,14 @@
             loadData: function(filter) {
               var d = $.Deferred();
               $.ajax({
-                url: "/products/getProducts",
+                url: "/products/get",
                 type: "get",
                 contentType: "application/json; charset=utf-8",
                 data: filter,
                 dataType: "json"
-              }).done(function(items) {
-                items = $.grep(items, function(item) {
-                  return item.isDeleted === false;
-                });
-                d.resolve(items);
-              });
-              return d.promise();
-            },
-            insertItem: function(item) {
-              console.log("insert asdfjlas;dfas", item);
-              let trueB = true;
-              console.log("insertto", typeof trueB);
-              // console.log("data",data);
-              $.ajax({
-                url: "/products/insert",
-                type: "post",
-                data: item,
-                dataType: "json"
               })
-                .done(function(result) {
-                  if (result.isSuccess) {
-                    d.resolve(result.type);
-                    console.log(result.msg);
-                  } else {
-                    d.reject();
-                    console(result.msg);
-                  }
+                .done(function(items) {
+                  d.resolve(items);
                 })
                 .fail(function(err) {
                   d.reject();
@@ -131,20 +111,76 @@
                 });
               return d.promise();
             },
-            updateItem: function(item) {
-              console.log("update");
-              $.ajax({
-                url: "/products/" + item._id,
-                type: "put",
-                data: item,
-                dataType: "json",
-                success: function(result) {
-                  console.log("com", result);
-                }
-              });
+            deleteItem: function(item) {
+              var d = $.Deferred();
+              console.log("Delete", item._id);
+              if (typeof item._id === "undefined") {
+                alert("Vui lòng chờ load id!\nPhải có id mới có thể xóa!");
+              } else {
+                $.ajax({
+                  url: "/products/" + item._id,
+                  type: "delete",
+                  dataType: "json"
+                })
+                  .done(function(result) {
+                    if (result.isSuccess) {
+                      alert(result.msg);
+                      d.resolve();
+                    } else {
+                      d.reject();
+                      alert(result.msg);
+                    }
+                  })
+                  .fail(function(err) {
+                    d.reject();
+                    alert(err);
+                  });
+              }
+              return d.promise();
             }
           },
+          // ,
+          // insertItem: function(item) {
+          //   console.log("insert asdfjlas;dfas", item);
+          //   let trueB = true;
+          //   console.log("insertto", typeof trueB);
+          //   // console.log("data",data);
+          //   $.ajax({
+          //     url: "/products/insert",
+          //     type: "post",
+          //     data: item,
+          //     dataType: "json"
+          //   })
+          //     .done(function(result) {
+          //       if (result.isSuccess) {
+          //         d.resolve(result.type);
+          //         console.log(result.msg);
+          //       } else {
+          //         d.reject();
+          //         console(result.msg);
+          //       }
+          //     })
+          //     .fail(function(err) {
+          //       d.reject();
+          //       alert(err);
+          //     });
+          //   return d.promise();
+          updateItem: function(item) {
+            console.log("update 1111");
+            var d = $.Deferred();
+            $.ajax({
+              url: "/products/" + item._id,
+              type: "put",
+              data: item,
+              dataType: "json",
+              success: function(result) {
+                d.resolve(item);
+                console.log("com", result);
+              }
+            });
+          },
           rowClick: function(args) {
+            console.log("args",args.item)
             showDetailsDialog("Sửa", args.item);
           },
           fields: [
@@ -152,43 +188,51 @@
               title: "Tên",
               name: "name",
               type: "text",
-              width: 120
+              width: 120,
+              validate: "required"
             },
             {
               title: "ID",
               name: "_id",
               type: "text",
-              width: 100
+              width: 100,
+              inserting: false,
+              editing: false
             },
             {
               title: "Giá",
               name: "price",
               type: "number",
-              width: 100
+              width: 100,
+              validate: "required"
             },
             {
               title: "Chiếc khấu",
               name: "discount",
               type: "number",
-              width: 80
+              width: 80,
+              validate: "required"
             },
             {
               title: "Kích thước",
               name: "size",
               type: "text",
-              width: 80
+              width: 80,
+              validate: "required"
             },
             {
               title: "Màu sắc",
               name: "color",
               type: "text",
-              width: 100
+              width: 100,
+              validate: "required"
             },
             {
               title: "Mô tả",
               name: "decription",
               type: "textarea",
               width: 60,
+              validate: "required",
               visible: false
             },
             {
@@ -196,8 +240,27 @@
               name: "imgs",
               type: "text",
               width: 100,
-              visible: false,
-              filtering: true
+              filtering: true,
+              validate: "required",
+              visible: false
+            },
+            {
+              title: "Nhà sản xuất",
+              name: "producer",
+              type: "text",
+              width: 100,
+              filtering: true,
+              validate: "required",
+              visible: false
+            },
+            {
+              title: "Xuất xứ",
+              name: "origin",
+              type: "text",
+              width: 100,
+              filtering: true,
+              validate: "required",
+              visible: false
             },
             {
               title: "Loại",
@@ -344,6 +407,7 @@
         }
       ]
     });
+
     $("#js-grid-origins").jsGrid({
       height: "500px",
       width: "100%",
@@ -596,57 +660,6 @@
       ]
     });
 
-    // $("#js-grid-producers").jsGrid({
-    //   height: "500px",
-    //   width: "100%",
-    //   filtering: true,
-    //   editing: true,
-    //   inserting: true,
-    //   sorting: true,
-    //   paging: true,
-    //   autoload: true,
-    //   pageSize: 10,
-    //   pageButtonCount: 5,
-    //   deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
-    //   controller: {
-    //     loadData: function(filter) {
-    //       var d = $.Deferred();
-    //       $.ajax({
-    //         url: "/producers/getProducers",
-    //         type: "get",
-    //         contentType: "application/json; charset=utf-8",
-    //         data: filter,
-    //         dataType: "json"
-    //       }).done(function(items) {
-    //         d.resolve(items);
-    //       });
-    //       return d.promise();
-    //     }
-    //   },
-    //   fields: [
-    //     {
-    //       title: "ID",
-    //       name: "_id",
-    //       type: "text",
-    //       width: 50,
-    //       editing: false,
-    //       inserting: false
-    //     },
-    //     {
-    //       title: "Tên nhà cung cấp",
-    //       name: "name",
-    //       type: "text",
-    //       width: 120,
-    //       validate: "required"
-    //     },
-
-    //     {
-    //       type: "control"
-    //     }
-    //   ]
-    // });
-
-    //basic config
     if ($("#js-grid").length) {
       $("#js-grid").jsGrid({
         height: "500px",

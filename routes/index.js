@@ -20,7 +20,7 @@ router.get('/users/getUser',users_controller.getUsers);
 router.get('/products',products_controller.index);
 router.get('/products/get',products_controller.get);
 router.post('/products',products_controller.create);
-router.put('/products/:_id',products_controller.update);
+router.delete('/products/:_id',products_controller.delete);
 router.put('/products/:_id',products_controller.update);
 
 router.get('/types',types_controller.index);

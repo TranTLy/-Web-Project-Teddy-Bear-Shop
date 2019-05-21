@@ -64,6 +64,13 @@ const updateProduct = async function(id, product) {
   );
 };
 
+const deleteProduct = async function(id) {
+  const connect = await client.connect();
+  const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
+
+  return await collection.deleteOne({ _id: ObjectId(id) });
+};
+
 const isExistTypeInProducts = async function(idType) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
@@ -95,6 +102,7 @@ exports.getProducts = getProducts;
 exports.getTypes = getTypes;
 exports.insertProduct = insertProduct;
 exports.updateProduct = updateProduct;
+exports.deleteProduct = deleteProduct;
 exports.isExistTypeInProducts = isExistTypeInProducts;
 exports.isExistOriginInProducts = isExistOriginInProducts;
 exports.isExistProducerInProducts = isExistProducerInProducts;
