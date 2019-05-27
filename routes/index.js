@@ -51,4 +51,8 @@ router.get("/register", function(req, res) {
 router.get("/login", function(req, res) {
   res.render("pages/login/index", { title: "Đăng nhập" });
 });
+
+router.get("/detail", function(req, res) {
+  res.render("pages/detailaccount/index", { title: "Thông tin chi tiết" });
+});
 module.exports = router;
