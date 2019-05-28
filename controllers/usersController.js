@@ -1,10 +1,10 @@
-const {
-  getUsers,
-} = require("../models/user.model");
+const User = require("../models/user");
 
 exports.getUsers = async function(req, res, next) {
   console.log("getUser load");
-  const dbUsers = await getUsers();
+  const dbUsers = await User.find({}, (err, result) => {
+		return result;
+	});
   res.send(dbUsers);
 };
 

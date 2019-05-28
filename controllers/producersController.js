@@ -20,7 +20,6 @@ exports.create = async function(req, res, next) {
   const producer = req.body;
   const promistResult = createProducer(producer);
   promistResult.then(value => {
-    console.log("love", value);
     if (value.result.ok === 1) {
       producer._id = value.insertedId;
       res.send({ isSuccess: true, msg: "Tạo thành công!", producer: producer });
@@ -28,7 +27,6 @@ exports.create = async function(req, res, next) {
       res.send({ isSuccess: false, msg: "Tạo thất bại!" });
     }
   });
-  createProducer(req.body);
 };
 
 exports.delete = async function(req, res, next) {

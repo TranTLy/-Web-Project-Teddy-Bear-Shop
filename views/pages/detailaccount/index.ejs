@@ -14,76 +14,50 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="bmd-label-floating">Tên đăng nhập</label>
-                        <input type="text" class="form-control type-text" />
+                        <p style="font-weight:500;"><%=user.name%></p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="bmd-label-floating">Email</label>
-                        <input type="email" class="form-control" />
+                        <p style="font-weight:500;"><%=user.email%></p>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label class="bmd-label-floating">Fist Name</label>
-                        <input type="text" class="form-control type-text" />
+                        <label class="bmd-label-floating">Ngày sinh</label>
+                        <!-- <p><%=user.birthday%></p> -->
+                        <p style="font-weight:500;">12/04/1998</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Số điện thoại</label>
+                        <p style="font-weight:500;"><%=user.phoneNumber%></p>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="bmd-label-floating ">Adress</label>
-                        <input
-                          type="text"
-                          class="form-control type-text-detail"
-                        />
-                      </div>
+                        <label>Giới thiệu</label>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="bmd-label-floating type-text">City</label>
-                        <input type="text" class="form-control" />
+                      <div class="col-md-12">
+                          <p style="font-weight:500;">Tôi thích xem phim, đặc biệt là các thể loại hành động và kinh dị.
+                             Bởi khi xem những phim đấy tôi cảm thấy mình trở nên mạnh mẽ hơn. 
+                            </p>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="bmd-label-floating type-text"
-                          >Country</label
-                        >
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="bmd-label-floating type-text"
-                          >Postal Code</label
-                        >
-                        <input type="text" class="form-control" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>About Me</label>
-                        <div class="form-group">
-                          <label class="bmd-label-floating">
-                            Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo.</label
-                          >
-                          <textarea class="form-control" rows="5"></textarea>
+                    <div class="row mt-5">
+                        <div class="col-md-12 d-flex justify-content-center">
+                          <a href="/users">
+                            <button type="button" class="btn btn-primary">Quay lại</button>
+                          </a>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary pull-right">
-                    Chỉnh sửa
-                  </button>
                   <div class="clearfix"></div>
                 </form>
               </div>

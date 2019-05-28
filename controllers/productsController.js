@@ -1,16 +1,13 @@
 const {
+  createProduct,
   getProducts,
   getTypes,
   insertProduct,
   updateProduct,
   deleteProduct
 } = require("../models/product.model");
-const {
-  getOrigins
-} = require("../models/origin.model")
-const {
-  getProducers
-} = require("../models/producer.model")
+const { getOrigins } = require("../models/origin.model");
+const { getProducers } = require("../models/producer.model");
 var ObjectId = require("mongodb").ObjectID;
 exports.index = async function(req, res, next) {
   const dbTypes = await getTypes();
@@ -19,8 +16,8 @@ exports.index = async function(req, res, next) {
   res.render("pages/products/index", {
     title: "Quản lý sản phẩm",
     Types: dbTypes,
-    Producers : dbProducers,
-    Origins : dbOrigins
+    Producers: dbProducers,
+    Origins: dbOrigins
   });
 };
 
@@ -37,33 +34,35 @@ exports.get = async function(req, res, next) {
 exports.crud = function(req, res, next) {
   res.render("pages/products/index", { title: "Quản lý sản phẩm" });
 };
-
-exports.create = function(req, res, next) {
-  let product = {
-    ...req.body,
-    isDeleted: false,
-    isStandOut: false,
-    isNew: true,
-    rating: 0
-  };
-
-  product.discount = parseFloat(product.discount / 100);
-  product.price = parseInt(product.price);
-  product.type = parseInt(product.type);
-
-  // product.isDeleted = false;
-  // product.isStandOut = false;
-  // product.isNew = true;
-  // product.currentPrice= 10;
-
-  console.log("Dang insert!!", product);
-  insertProduct(product);
+exports.create = async function(req, res, next) {
+  const product = req.body;
+  const promistResult = createProduct(product);
+  promistResult.then(value => {
+    if (value.result.ok === 1) {
+      product._id = value.insertedId;
+      console.log("Thành công!", product);
+      res.send({ isSuccess: true, msg: "Tạo thành công!", product: product });
+    } else {
+      console.log("Thất bại!");
+      res.send({ isSuccess: false, msg: "Tạo thất bại!" });
+    }
+  });
 };
 
-exports.update = function(req, res, next) {
+// exports.create = function(req, res, next) {
 
+//   // product.isDeleted = false;
+//   // product.isStandOut = false;
+//   // product.isNew = true;
+//   // product.currentPrice= 10;
+
+//   console.log("Dang insert!!", product);
+//   insertProduct(product);
+// };
+
+exports.update = function(req, res, next) {
   let product = req.body;
-  console.log("update exp",product);
+  console.log("update exp", product);
   product.discount = parseFloat(product.discount);
   product.price = parseInt(product.price);
   product.origin = new ObjectId(product.origin);
@@ -74,8 +73,17 @@ exports.update = function(req, res, next) {
   product.isDeleted = JSON.parse(product.isDeleted);
   product.isStandOut = JSON.parse(product.isStandOut);
   product.isNew = JSON.parse(product.isNew);
-  updateProduct(req.params._id, product);
-  res.send({isSuccess : true});
+
+  const promistResult = updateProduct(req.params._id, product);
+  promistResult.then(value => {
+    if (value.result.ok === 1) {
+      res.send({ isSuccess: true, msg: "Cập nhật thành công!" });
+      console.log("Cập nhật thành công!")
+    } else {
+      res.send({ isSuccess: false, msg: "Cập nhật thất bại!" });
+      console.log("Cập nhật thất bại!")
+    }
+  });
 };
 
 exports.delete = async function(req, res, next) {
@@ -90,4 +98,3 @@ exports.delete = async function(req, res, next) {
     }
   });
 };
-  

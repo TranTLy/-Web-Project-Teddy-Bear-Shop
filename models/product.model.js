@@ -38,29 +38,38 @@ const insertProduct = async function(insetProduct) {
   });
 };
 
+const createProduct = async function(product) {
+  const connect = await client.connect();
+  const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
+  console.log("Đang thêm!");
 
+  product.discount = parseFloat(product.discount);
+  product.price = parseInt(product.price);
+  product.origin = new ObjectId(product.origin);
+  product.producer = new ObjectId(product.producer);
+  product.type = new ObjectId(product.type);
+  product.rating = parseInt(product.rating);
+  (product.isDeleted = false),
+    (product.isStandOut = false),
+    (product.isNew = true),
+    (product.rating = 0);
+
+  console.log("product", product);
+  const obID = new ObjectId();
+  product._id = obID;
+
+  return await collection.insertOne(product);
+};
 
 const updateProduct = async function(id, product) {
   console.log("Update product");
-  // const products = getProducts();
-  // console.log("up product",products);
-  // const productbyId = products.filter((item) => item._id === id);
-  // console.log("up product by id", productbyId);
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  console.log("id", new ObjectId(id));
-  console.log("bf", product);
   delete product._id;
-  console.log("af", product);
 
-  collection.updateOne(
+  return await collection.updateOne(
     { _id: ObjectId(id) },
     { $set: product },
-    { upsert: true },
-    function(err, res) {
-      console.log("err", err);
-      if (err) throw err;
-      console.log("Update successfully");
-    }
+    { upsert: true }
   );
 };
 
@@ -74,8 +83,8 @@ const deleteProduct = async function(id) {
 const isExistTypeInProducts = async function(idType) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  const result =  await collection.findOne({type : ObjectId(idType)});
-  if(result != null) {
+  const result = await collection.findOne({ type: ObjectId(idType) });
+  if (result != null) {
     return true;
   } else return false;
 };
@@ -83,8 +92,8 @@ const isExistTypeInProducts = async function(idType) {
 const isExistOriginInProducts = async function(idOrigin) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  const result =  await collection.findOne({origin : ObjectId(idOrigin)});
-  if(result != null) {
+  const result = await collection.findOne({ origin: ObjectId(idOrigin) });
+  if (result != null) {
     return true;
   } else return false;
 };
@@ -92,15 +101,15 @@ const isExistOriginInProducts = async function(idOrigin) {
 const isExistProducerInProducts = async function(idOrigin) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  const result =  await collection.findOne({producer : ObjectId(idOrigin)});
-  if(result != null) {
+  const result = await collection.findOne({ producer: ObjectId(idOrigin) });
+  if (result != null) {
     return true;
   } else return false;
 };
 
 exports.getProducts = getProducts;
 exports.getTypes = getTypes;
-exports.insertProduct = insertProduct;
+exports.createProduct = createProduct;
 exports.updateProduct = updateProduct;
 exports.deleteProduct = deleteProduct;
 exports.isExistTypeInProducts = isExistTypeInProducts;

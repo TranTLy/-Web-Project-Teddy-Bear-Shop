@@ -8,6 +8,7 @@ var bills_controller = require("../controllers/billsController");
 var types_controller = require("../controllers/typesController");
 var producers_controller = require("../controllers/producersController");
 var origins_controller = require("../controllers/originsController");
+var detail_controller = require("../controllers/detailController");
 
 router.get("/", dashboard_controller.index);
 
@@ -52,7 +53,5 @@ router.get("/login", function(req, res) {
   res.render("pages/login/index", { title: "Đăng nhập" });
 });
 
-router.get("/detail", function(req, res) {
-  res.render("pages/detailaccount/index", { title: "Thông tin chi tiết" });
-});
+router.get("/detail", detail_controller.get);
 module.exports = router;

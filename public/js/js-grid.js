@@ -1,10 +1,25 @@
 (function($) {
   "use strict";
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+
   $(function() {
     //function dialog form
     var dialog = $("#dialog-form").dialog({
       autoOpen: false,
-      width: 300,
+      width: 800,
       modal: true,
       closeOnEscape: true,
       buttons: {
@@ -18,7 +33,7 @@
       close: function() {
         dialog.find("form")[0].reset();
       }
-    });
+    },'option', 'position', 'center');
 
     var submitHandler;
 
@@ -30,11 +45,13 @@
     var showDetailsDialog = function(dialogType, category) {
       submitHandler = function(event) {
         //if($("#categoryForm").valid()) {
-        saveClient(category, dialogType === "Add");
+        saveClient(category, dialogType === "Thêm");
         //}
       };
       $("#name").val(category.name);
-      $("#_id").val(category._id);
+      if (dialogType === "Sửa") {
+        $("#_id").val(category._id);
+      }
       $("#price").val(category.price);
       $("#discount").val(category.discount);
       $("#size").val(category.size);
@@ -47,23 +64,38 @@
       dialog
         .dialog("option", "title", dialogType + " thông tin")
         .dialog("open");
-      console.log("type", type);
     };
 
     var saveClient = function(category, isNew) {
-      $.extend(category, {
-        name: $("#name").val(),
-        _id: $("#_id").val(),
-        price: parseInt($("#price").val(), 10),
-        discount: parseFloat($("#discount").val()),
-        size: $("#size").val(),
-        color: $("#color").val(),
-        type: $("#type").val(),
-        producer: $("#producer").val(),
-        origin: $("#origin").val(),
-        decription: $("#decription").val(),
-        imgs: $("#imgs").val()
-      });
+      if (isNew) {
+        $.extend(category, {
+          name: $("#name").val(),
+          price: parseInt($("#price").val(), 10),
+          discount: parseFloat($("#discount").val()),
+          size: $("#size").val(),
+          color: $("#color").val(),
+          type: $("#type").val(),
+          producer: $("#producer").val(),
+          origin: $("#origin").val(),
+          decription: $("#decription").val(),
+          imgs: $("#imgs").val()
+        });
+      } else {
+        $.extend(category, {
+          name: $("#name").val(),
+          _id: $("#_id").val(),
+          price: parseInt($("#price").val(), 10),
+          discount: parseFloat($("#discount").val()),
+          size: $("#size").val(),
+          color: $("#color").val(),
+          type: $("#type").val(),
+          producer: $("#producer").val(),
+          origin: $("#origin").val(),
+          decription: $("#decription").val(),
+          imgs: $("#imgs").val()
+        });
+      }
+
       console.dir(category);
       $("#js-grid-products").jsGrid(
         isNew ? "insertItem" : "updateItem",
@@ -85,9 +117,9 @@
           width: "100%",
           filtering: true,
           editing: true,
-          inserting: true,
           sorting: true,
           paging: true,
+          noDataContent: "Không tìm thấy!",
           autoload: true,
           pageSize: 10,
           pageButtonCount: 5,
@@ -137,50 +169,60 @@
                   });
               }
               return d.promise();
+            },
+            insertItem: function(item) {
+              console.log("insert asdfjlas;dfas", item);
+              var d = $.Deferred();
+              $.ajax({
+                url: "/products",
+                type: "post",
+                data: item,
+                dataType: "json"
+              })
+                .done(function(result) {
+                  if (result.isSuccess) {
+                    d.resolve(result.product);
+                    console.log(result.msg);
+                    console.log(result.product);
+                  } else {
+                    d.reject();
+                  }
+                  alert(result.msg);
+                  console.log(result.msg);
+                })
+                .fail(function(err) {
+                  d.reject();
+                  alert(err);
+                });
+              return d.promise();
+            },
+            updateItem: function(item) {
+              var d = $.Deferred();
+              $.ajax({
+                url: "/products/" + item._id,
+                type: "put",
+                dataType: "json",
+                data: item
+              })
+                .done(function(result) {
+                  if (result.isSuccess) {
+                    d.resolve(item);
+                    console.log(result.msg);
+                    console.log(result.result);
+                  } else {
+                    alert(result.msg);
+                    d.reject();
+                  }
+                })
+                .fail(function(err) {
+                  d.reject();
+                  console.log("err", err);
+                });
+              return d.promise();
             }
           },
-          // ,
-          // insertItem: function(item) {
-          //   console.log("insert asdfjlas;dfas", item);
-          //   let trueB = true;
-          //   console.log("insertto", typeof trueB);
-          //   // console.log("data",data);
-          //   $.ajax({
-          //     url: "/products/insert",
-          //     type: "post",
-          //     data: item,
-          //     dataType: "json"
-          //   })
-          //     .done(function(result) {
-          //       if (result.isSuccess) {
-          //         d.resolve(result.type);
-          //         console.log(result.msg);
-          //       } else {
-          //         d.reject();
-          //         console(result.msg);
-          //       }
-          //     })
-          //     .fail(function(err) {
-          //       d.reject();
-          //       alert(err);
-          //     });
-          //   return d.promise();
-          updateItem: function(item) {
-            console.log("update 1111");
-            var d = $.Deferred();
-            $.ajax({
-              url: "/products/" + item._id,
-              type: "put",
-              data: item,
-              dataType: "json",
-              success: function(result) {
-                d.resolve(item);
-                console.log("com", result);
-              }
-            });
-          },
           rowClick: function(args) {
-            console.log("args",args.item)
+            console.log("args", args.item);
             showDetailsDialog("Sửa", args.item);
           },
           fields: [
@@ -272,7 +314,15 @@
             },
             {
               type: "control",
-              editButton: false
+              modeSwitchButton: false,
+              editButton: false,
+              headerTemplate: function() {
+                return $("<a>")
+                  .append("<i class='mdi mdi-plus menu-icon'></i>")
+                  .on("click", function() {
+                    showDetailsDialog("Thêm", {});
+                  });
+              }
             }
           ]
         });
@@ -282,6 +332,7 @@
         console.log("ERR", error);
       }
     });
+
     $("#js-grid-typeproducts").jsGrid({
       height: "500px",
       width: "100%",
@@ -660,8 +711,8 @@
       ]
     });
 
-    if ($("#js-grid").length) {
-      $("#js-grid").jsGrid({
+    if ($("#js-grid-user").length) {
+      $("#js-grid-user").jsGrid({
         height: "500px",
         width: "100%",
         filtering: true,
@@ -690,6 +741,9 @@
             return d.promise();
           }
         },
+        rowClick: function(args) {
+          window.location.href = "/detail?_id=" + args.item._id;
+        },
         fields: [
           {
             title: "Họ và tên",
@@ -699,7 +753,7 @@
           },
           {
             title: "Gmail",
-            name: "gmail",
+            name: "email",
             type: "text",
             width: 180
           },
@@ -709,23 +763,17 @@
             type: "text",
             width: 120
           },
+
           {
-            title: "Giới tính",
-            name: "gender",
-            type: "select",
-            items: db.genders,
-            valueField: "Id",
-            textField: "Name"
-          },
-          {
-            title: "Tuổi",
-            name: "age",
-            type: "number",
+            title: "Ngày sinh",
+            name: "birthday",
+            type: "text",
             width: 80
           },
           {
             type: "control",
-            editButton: false
+            editButton: false,
+            deleteButton: true
           }
         ]
       });
