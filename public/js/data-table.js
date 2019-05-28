@@ -1,64 +1,69 @@
-(function ($) {
-  'use strict';
-  $(function () {
-    $('#order-listing').DataTable({
-      "aLengthMenu": [
-        [5, 10, 15, -1],
-        [5, 10, 15, "Tất cả"]
-      ],
-      "iDisplayLength": 10,
-      "language": {
+(function($) {
+  "use strict";
+  $(function() {
+    $("#order-listing").DataTable({
+      aLengthMenu: [[5, 10, 15, -1], [5, 10, 15, "Tất cả"]],
+      iDisplayLength: 10,
+      language: {
         search: ""
       }
     });
-
+    $("body").removeClass(".modal-backdrop");
     function Person(name, age, position) {
       this._name = name;
       this._age = age;
       this._position = position;
 
-      this.name = function () {
+      this.name = function() {
         return this._name;
       };
 
-      this.age = function () {
+      this.age = function() {
         return this._age;
       };
 
-      this.position = function () {
+      this.position = function() {
         return this._position;
       };
     }
 
-
-    $(document).ready(function () {
-      var table = $('#example').DataTable({
+    $(document).ready(function() {
+      var table = $("#example").DataTable({
         columns: [
-          { data: null, render: 'name' },
-          { data: null, render: 'age' },
-          { data: null, render: 'position' }
+          { data: null, render: "name" },
+          { data: null, render: "age" },
+          { data: null, render: "position" }
         ]
       });
 
-      table.row.add(new Person('Airi Satou', 33, 'Accountant'));
-      table.row.add(new Person('Angelica Ramos', 47, 'Chief Executive Officer (CEO)'));
-      table.row.add(new Person('Ashton Cox', 66, 'Junior Technical Author'));
+      table.row.add(new Person("Airi Satou", 33, "Accountant"));
+      table.row.add(
+        new Person("Angelica Ramos", 47, "Chief Executive Officer (CEO)")
+      );
+      table.row.add(new Person("Ashton Cox", 66, "Junior Technical Author"));
       table.draw();
     });
-    $('#order-listing').each(function () {
+    $("#order-listing").each(function() {
       var datatable = $(this);
       // SEARCH - Add the placeholder for Search and Turn this into in-line form control
-      var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
-      search_input.attr('placeholder', 'Tìm kiếm');
-      search_input.removeClass('form-control-sm');
+      var search_input = datatable
+        .closest(".dataTables_wrapper")
+        .find("div[id$=_filter] input");
+      search_input.attr("placeholder", "Tìm kiếm");
+      search_input.removeClass("form-control-sm");
       // LENGTH - Inline-Form control
-      var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
-      length_sel.removeClass('form-control-sm');
+      var length_sel = datatable
+        .closest(".dataTables_wrapper")
+        .find("div[id$=_length] select");
+      length_sel.removeClass("form-control-sm");
     });
   });
 
   // //Me
-  $('#myModal').on('show.bs.modal', function (e) {
+  $("body").removeClass(".modal-backdrop");
+  $("#myModal").on("show.bs.modal", function(e) {
+    $("body").removeClass(".modal-backdrop");
+    // $(".modal-backdrop").remove();
     var _button = $(e.relatedTarget);
 
     // console.log(_button, _button.parents("tr"));
@@ -99,14 +104,29 @@
     }
     // console.log(_invoiceAmt, _chequeAmt);
 
-    $(this).find(".my_id").text(my_id);
-    $(this).find(".my_date").text(my_date);
-    $(this).find(".my_name").text(my_name);
-    $(this).find(".my_id_customer").text("ID khách hàng: " + my_id_customer);
-    $(this).find(".my_city").text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + my_city);
-    $(this).find(".my_price").text(my_price - 22000 + " VNĐ");
-    $(this).find(".my_price_total").text(my_price + " VNĐ");
-    $(this).find(".my_status").text(my_status);
-
+    $(this)
+      .find(".my_id")
+      .text(my_id);
+    $(this)
+      .find(".my_date")
+      .text(my_date);
+    $(this)
+      .find(".my_name")
+      .text(my_name);
+    $(this)
+      .find(".my_id_customer")
+      .text("ID khách hàng: " + my_id_customer);
+    $(this)
+      .find(".my_city")
+      .text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + my_city);
+    $(this)
+      .find(".my_price")
+      .text(my_price - 22000 + " VNĐ");
+    $(this)
+      .find(".my_price_total")
+      .text(my_price + " VNĐ");
+    $(this)
+      .find(".my_status")
+      .text(my_status);
   });
 })(jQuery);
