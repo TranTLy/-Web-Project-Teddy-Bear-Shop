@@ -7,23 +7,14 @@ var UserSchema = new Schema(
 		name: {
 			type: String
 		},
-		birthday: {
-			type: Date
-		},
 		email: {
 			type: String
 		},
 		password: {
 			type: String
-		},
-		phoneNumber: {
-			type: String
-		},
-		gender: {
-			type: String
 		}
 	},
-	{ collection: 'customers' }
+	{ collection: 'admins' }
 );
 
 module.exports = mongoose.model('User', UserSchema);

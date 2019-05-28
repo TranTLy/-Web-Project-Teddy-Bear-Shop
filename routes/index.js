@@ -9,6 +9,7 @@ var types_controller = require("../controllers/typesController");
 var producers_controller = require("../controllers/producersController");
 var origins_controller = require("../controllers/originsController");
 var detail_controller = require("../controllers/detailController");
+var account_controller = require('../controllers/accountController');
 
 router.get("/", dashboard_controller.index);
 
@@ -45,13 +46,23 @@ router.put("/producers/:_id", producers_controller.update);
 router.get("/bills", bills_controller.index);
 router.post("/bills", bills_controller.search_sort);
 
-router.get("/register", function(req, res) {
-  res.render("pages/register/index", { title: "Đăng ký" });
-});
+// router.get("/register", function(req, res) {
+//   res.render("pages/register/index", { title: "Đăng ký" });
+// });
 
-router.get("/login", function(req, res) {
-  res.render("pages/login/index", { title: "Đăng nhập" });
-});
+// router.get("/login", function(req, res) {
+//   res.render("pages/login/index", { title: "Đăng nhập" });
+// });
+
+router.post('/login', account_controller.post_signin);
+router.get('/login', account_controller.signin);
+router.get('/register', account_controller.signup);
+router.post('/register', account_controller.post_signup);
+// router.post('/signin', account_controller.signup);
+router.get('/forget-password', account_controller.forget_password);
+router.get('/change-password', account_controller.change_password);
+router.get('/update-infor', account_controller.update_infor);
+
 
 router.get("/detail", detail_controller.get);
 module.exports = router;
