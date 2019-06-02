@@ -17,7 +17,7 @@
                 <div class="brand-logo">
                   <img src="../../../../images/logo-dark.svg" alt="logo" />
                 </div>
-                <form action="/login" method="POST" class="pt-1">
+                <form action="/" method="POST" class="pt-1">
                   <div class="form-group">
                     <label for="exampleInputEmail">Email</label>
                     <div class="input-group">
@@ -34,6 +34,7 @@
                         id="email"
                         name="email"
                         placeholder="Email"
+                        onblur="checkEmail()"
                       />
                     </div>
                   </div>
@@ -103,5 +104,10 @@
       <!-- page-body-wrapper ends -->
     </div>
     <% include ../../elements/scripts %>
+    <script>
+function checkEmail(){
+  $jaxa
+}
+    </script>
   </body>
 </html>

@@ -42,12 +42,16 @@ exports.post_signin = async function(req, res) {
       if (err) throw err;
       if (!user) {
         //user isn't exist
+        // alert("Tên đăng nhập hoặc mật khẩu sai.");
+        // res.redirect("/");
         res
           .status(401)
           .send({ success: false, msg: "Tên đăng nhập hoặc mật khẩu sai." });
       } else {
         if (!Bcrypt.compareSync(req.body.password, user.password)) {
           //wrong password
+          // alert("Tên đăng nhập hoặc mật khẩu sai.");
+          // res.redirect("/");
           return res
             .status(400)
             .send({ message: "Tên đăng nhập hoặc mật khẩu không đúng" });
@@ -56,11 +60,12 @@ exports.post_signin = async function(req, res) {
           expiresIn: 86400 // 1 day
         });
         // return the information including token as JSON
-        res.json({
-          success: true,
-          token: "JWT " + token,
-          message: "Đăng nhập thành công"
-        });
+        // res.json({
+        //   success: true,
+        //   token: "JWT " + token,
+        //   message: "Đăng nhập thành công"
+        // });
+        res.redirect("/dashboard");
       }
     });
   } catch (err) {

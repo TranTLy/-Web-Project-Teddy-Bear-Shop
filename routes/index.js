@@ -9,10 +9,19 @@ var types_controller = require("../controllers/typesController");
 var producers_controller = require("../controllers/producersController");
 var origins_controller = require("../controllers/originsController");
 var detail_controller = require("../controllers/detailController");
-var account_controller = require('../controllers/accountController');
+var account_controller = require("../controllers/accountController");
 
-router.get("/", dashboard_controller.index);
+router.get("/", account_controller.signin);
+router.post("/", account_controller.post_signin);
+// router.get('/login', account_controller.signin);
+router.get("/register", account_controller.signup);
+router.post("/register", account_controller.post_signup);
+// router.post('/signin', account_controller.signup);
+router.get("/forget-password", account_controller.forget_password);
+router.get("/change-password", account_controller.change_password);
+router.get("/update-infor", account_controller.update_infor);
 
+router.get("/detail", detail_controller.get);
 router.get("/dashboard", dashboard_controller.index);
 router.post("/dashboard", dashboard_controller.statistical);
 
@@ -54,15 +63,4 @@ router.post("/bills", bills_controller.search_sort);
 //   res.render("pages/login/index", { title: "Đăng nhập" });
 // });
 
-router.post('/login', account_controller.post_signin);
-router.get('/login', account_controller.signin);
-router.get('/register', account_controller.signup);
-router.post('/register', account_controller.post_signup);
-// router.post('/signin', account_controller.signup);
-router.get('/forget-password', account_controller.forget_password);
-router.get('/change-password', account_controller.change_password);
-router.get('/update-infor', account_controller.update_infor);
-
-
-router.get("/detail", detail_controller.get);
 module.exports = router;
