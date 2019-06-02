@@ -14,12 +14,17 @@ var jwt = require("jsonwebtoken");
 // });
 exports.signup = function(req, res) {
   res.render("pages/register/index", {
-	title: "Đăng ký",
-	isSuccess : true
+    title: "Đăng ký",
+    isSuccess: true,
+    layout: false
   });
 };
 exports.signin = function(req, res) {
-  res.render("pages/login/index", { title: "Đăng nhập",isRegister : false });
+  res.render("pages/login/index", {
+    title: "Đăng nhập",
+    isRegister: false,
+    layout: false
+  });
 };
 exports.forget_password = function(req, res) {
   res.render("customer-views/forget-password", { title: "Quên mật khẩu" });
@@ -67,8 +72,8 @@ exports.post_signup = async function(req, res) {
   User.findOne({ email: req.body.email }, (err, results) => {
     if (results != null) {
       res.render("pages/register/index", {
-		title: "Đăng ký thất bại",
-		isSuccess : false,
+        title: "Đăng ký thất bại",
+        isSuccess: false,
         message: `Email ${
           req.body.email
         } đã tồn tại. Vui lòng dùng email này để đăng nhập hoặc đăng ký tài khoản bằng email khác.`
@@ -78,13 +83,13 @@ exports.post_signup = async function(req, res) {
       const user = new User({
         name: req.body.name,
         password: req.body.password,
-        email: req.body.email,
+        email: req.body.email
       });
 
       var result = user.save();
       res.render("pages/login/index", {
-		title: "Đăng nhập",
-		isSuccess : true,
+        title: "Đăng nhập",
+        isSuccess: true,
         message: "Đăng ký thành công",
         name: req.body.name
         // birthday: req.body.birthday,
