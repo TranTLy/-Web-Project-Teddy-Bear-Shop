@@ -29,12 +29,11 @@
                         </span>
                       </div>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control form-control-lg border-left-0 type-text"
                         id="email"
                         name="email"
                         placeholder="Email"
-                        onblur="checkEmail()"
                       />
                     </div>
                   </div>
@@ -66,7 +65,9 @@
                         Lưu tài khoản
                       </label>
                     </div>
-                    <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
+                    <a href="/forgot-password" class="auth-link text-black"
+                      >Quên mật khẩu?</a
+                    >
                   </div>
                   <div class="my-3">
                     <div>
@@ -105,9 +106,9 @@
     </div>
     <% include ../../elements/scripts %>
     <script>
-function checkEmail(){
-  $jaxa
-}
+      function checkEmail() {
+        $jaxa;
+      }
     </script>
   </body>
 </html>

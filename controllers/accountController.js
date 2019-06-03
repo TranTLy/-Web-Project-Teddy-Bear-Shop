@@ -2,8 +2,13 @@ const User = require("../models/user");
 var passport = require("passport");
 var Bcrypt = require("bcryptjs");
 var config = require("../config/database");
-require("../config/passport")(passport);
+// require("../config/passport")(passport);
 var jwt = require("jsonwebtoken");
+// const async = require("async");
+// const crypto = require("crypto");
+// const email = process.env.MAILER_EMAIL_ID || "auth_email_address@gmail.com";
+// const pass = process.env.MAILER_PASSWORD || "auth_email_pass";
+// const nodemailer = require("nodemailer");
 
 // router.get("/register", function(req, res) {
 //   res.render("pages/register/index", { title: "Đăng ký" });
@@ -12,6 +17,23 @@ var jwt = require("jsonwebtoken");
 // router.get("/login", function(req, res) {
 //   res.render("pages/login/index", { title: "Đăng nhập" });
 // });
+
+// const smtpTransport = nodemailer.createTransport({
+//   service: process.env.MAILER_SERVICE_PROVIDER || "Gmail",
+//   auth: {
+//     user: email,
+//     pass: pass
+//   }
+// });
+
+// const handlebarsOptions = {
+//   viewEngine: "handlebars",
+//   viewPath: path.resolve("./api/templates/"),
+//   extName: ".html"
+// };
+
+// smtpTransport.use("compile", hbs(handlebarsOptions));
+
 exports.signup = function(req, res) {
   res.render("pages/register/index", {
     title: "Đăng ký",
@@ -27,7 +49,32 @@ exports.signin = function(req, res) {
   });
 };
 exports.forget_password = function(req, res) {
-  res.render("customer-views/forget-password", { title: "Quên mật khẩu" });
+  async.waterfall([
+    function(done) {
+      User.findOne({
+        email: req.body.email
+      }).exec(function(err, user) {
+        if (user) {
+          done(err, user);
+        } else {
+          done("User không tìm thấy");
+        }
+      });
+    },
+    function(user, done) {
+      crypto.randomBytes(20, function(err, buffer) {
+        let token = buffer.toString("hex");
+        done(err, user, token);
+      });
+    },
+    function(user, token, done) {
+      User.findByIdAndUpdate({ _id: user._id }, {});
+    }
+  ]);
+  res.render("pages/forgotpassword/index", {
+    title: "Quên mật khẩu",
+    layout: false
+  });
 };
 exports.change_password = function(req, res) {
   res.render("customer-views/change-password", { title: "Đổi mật khẩu" });
