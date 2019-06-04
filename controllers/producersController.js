@@ -8,7 +8,12 @@ const {
 const { isExistProducerInProducts } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
-  res.render("pages/producers/index", { title: "Quản lý nhà sản xuất sản phẩm" });
+  if (req.isAuthenticated()) {
+    res.render("pages/producers/index", {
+      title: "Quản lý nhà sản xuất sản phẩm"
+    });
+  }
+  return res.redirect("/");
 };
 
 exports.get = async function(req, res, next) {

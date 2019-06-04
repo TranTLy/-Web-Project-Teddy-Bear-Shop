@@ -10,7 +10,6 @@ var mongoose = require("mongoose"),
   ejs = require("ejs"),
   nodemailer = require("nodemailer"),
   smtpTransport = require("nodemailer-smtp-transport");
-// pathtemplate = require("../templates");
 var transporter = nodemailer.createTransport({
   host: "smtp.mailtrap.io",
   port: 587,
@@ -19,44 +18,25 @@ var transporter = nodemailer.createTransport({
     pass: "cca596af4effa5"
   }
 });
-exports.register = function(req, res) {
-  User.findOne({ email: req.body.email }, (err, results) => {
-    if (results != null) {
-      res.render("pages/register/index", {
-        title: "Đăng ký thất bại",
-        isSuccess: false,
-        message: `Email ${req.body.email} đã tồn tại.`,
-        layout: false
-      });
-    } else {
-      var newUser = new User(req.body);
-      newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
-      newUser.save(function(err, User) {
-        if (err) {
-          res.render("pages/register/index", {
-            title: "Đăng ký thất bại",
-            isSuccess: false,
-            message: "Có lỗi xảy ra trong quá trình đăng ký",
-            layout: false
-          });
-        } else {
-          User.hash_password = undefined;
-          res.redirect("/dashboard");
-        }
-      });
-    }
-  });
+
+var cookieExtractor = function(req) {
+  var token = null;
+  if (req && req.cookies) {
+    token = req.cookies["jwt"];
+  }
+  return token;
 };
 
 exports.login_template = function(req, res) {
-  console.log("authen", req.isAuthenticated());
   if (req.isAuthenticated()) {
     res.redirect("/dashboard");
   }
   return res.render("pages/login/index", {
     title: "Đăng nhập",
-    layout: false
+    layout: false,
+    message: req.flash("loginMessage")
   });
+
 };
 
 exports.register_template = function(req, res) {
@@ -82,37 +62,7 @@ exports.reset_password_template = function(req, res) {
   });
 };
 
-exports.sign_in = function(req, res) {
-  // User.findOne(
-  //   {
-  //     email: req.body.email
-  //   },
-  //   function(err, User) {
-  //     if (err) throw err;
-  //     if (!User || !bcrypt.comparePassword(req.body.password)) {
-  //       return res.status(401).json({
-  //         message: "Authentication failed. Invalid User or password."
-  //       });
-  //     }
-  //     return res.json({
-  //       token: jwt.sign(
-  //         {
-  //           email: User.email,
-  //           fullName: User.fullName,
-  //           _id: User._id
-  //         },
-  //         "RESTFULAPIs"
-  //       )
-  //     });
-  //   }
-  // );
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/register"
-  });
-};
-
-exports.loginRequired = (req, res, next) => {
+exports.login = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err || !user) {
       return res.status(400).json({
@@ -125,10 +75,44 @@ exports.loginRequired = (req, res, next) => {
         res.send(err);
       }
       const token = jwt.sign({ user }, "secret");
-      console.log("name", user.name);
-      return res.render("pages/dashboard/index", { name: user.name });
+      return res.redirect("/dashboard");
     });
   })(req, res);
+};
+
+exports.register = function(req, res) {
+  User.findOne({ email: req.body.email }, (err, results) => {
+    if (results != null) {
+      res.render("pages/register/index", {
+        title: "Đăng ký thất bại",
+        isSuccess: false,
+        message: `Email ${req.body.email} đã tồn tại.`,
+        layout: false
+      });
+    } else {
+      var newUser = new User(req.body);
+      newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
+      newUser.save(function(err, user) {
+        if (err) {
+          res.render("pages/register/index", {
+            title: "Đăng ký thất bại",
+            isSuccess: false,
+            message: "Có lỗi xảy ra trong quá trình đăng ký",
+            layout: false
+          });
+        } else {
+          User.hash_password = undefined;
+          req.login(user, err => {
+            if (err) {
+              res.send(err);
+            }
+            const token = jwt.sign({ user }, "secret");
+            return res.redirect("/dashboard");
+          });
+        }
+      });
+    }
+  });
 };
 
 exports.forgot_password = function(req, res) {
@@ -248,4 +232,14 @@ exports.reset_password = function(req, res, next) {
       });
     }
   });
+};
+
+exports.logout = function(req, res) {
+  req.logout();
+  res.redirect("/");
+};
+
+exports.isLoggedIn = function(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect("/");
 };

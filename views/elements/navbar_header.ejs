@@ -6,6 +6,7 @@
     <a class="navbar-brand brand-logo" href="/dashboard"
       ><img src="../images/logo.svg" alt="logo"
     /></a>
+
     <button
       class="navbar-toggler align-self-center"
       type="button"
@@ -18,13 +19,10 @@
     class="navbar-menu-wrapper d-flex align-items-center justify-content-end"
   >
   <div class="d-flex justify-content-end mr-2">
-      <% if (name != null) { %>
-          <%= name %>
-        <% } %>
     <button
       type="button"
       class="btn btn-outline-primary btn-fw mr-2"
-      onclick="window.location.href='/login'"
+      onclick="window.location.href='/logout'"
     >
       Đăng xuất
     </button>

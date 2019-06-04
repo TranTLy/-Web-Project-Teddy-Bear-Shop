@@ -8,7 +8,7 @@ const config = require("./config/database");
 var passport = require("passport");
 const session = require("express-session");
 var cors = require("cors");
-
+const flash = require("flash");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -36,8 +36,10 @@ app.use(
     resave: true
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use(expressLayouts);
 

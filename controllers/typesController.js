@@ -8,7 +8,10 @@ const {
 const { isExistTypeInProducts } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
-  res.render("pages/types/index", { title: "Quản lý loại sản phẩm" });
+  if (req.isAuthenticated()) {
+    res.render("pages/types/index", { title: "Quản lý loại sản phẩm" });
+  }
+  return res.redirect("/");
 };
 
 exports.get = async function(req, res, next) {
@@ -20,10 +23,10 @@ exports.create = async function(req, res, next) {
   const type = req.body;
   const promistResult = createType(type);
   promistResult.then(value => {
-    console.log("love",value);
+    console.log("love", value);
     if (value.result.ok === 1) {
       type._id = value.insertedId;
-      res.send({ isSuccess: true, msg: "Tạo thành công!" ,type : type});
+      res.send({ isSuccess: true, msg: "Tạo thành công!", type: type });
     } else {
       res.send({ isSuccess: false, msg: "Tạo thất bại!" });
     }
@@ -40,7 +43,7 @@ exports.delete = async function(req, res, next) {
       msg: "Không thể xóa type do có ràng buộc với bản product!"
     });
   } else {
-        const promistResult = deleteType(id);
+    const promistResult = deleteType(id);
     promistResult.then(value => {
       if (value.result.ok === 1) {
         res.send({ isSuccess: true, msg: "Xóa thành công!" });

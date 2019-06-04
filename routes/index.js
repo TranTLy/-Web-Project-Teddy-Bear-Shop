@@ -13,11 +13,12 @@ var account_controller = require("../controllers/accountController");
 var accountadmin_controller = require("../controllers/accountadminController");
 
 router.get("/", accountadmin_controller.login_template);
-router.post("/", accountadmin_controller.loginRequired);
-// router.get('/login', account_controller.signin);
+router.post("/", accountadmin_controller.login);
+
 router.get("/register", accountadmin_controller.register_template);
 router.post("/register", accountadmin_controller.register);
-// router.post('/signin', account_controller.signup);
+
+router.get("/logout", accountadmin_controller.logout);
 router.get(
   "/forgot-password",
   accountadmin_controller.forgot_password_template
@@ -29,7 +30,11 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 // router.get("/update-infor", account_controller.update_infor);
 
 router.get("/detail", detail_controller.get);
-router.get("/dashboard", dashboard_controller.index);
+router.get(
+  "/dashboard",
+  accountadmin_controller.isLoggedIn,
+  dashboard_controller.index
+);
 router.post("/dashboard", dashboard_controller.statistical);
 
 router.get("/users", users_controller.index);

@@ -84,12 +84,10 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-  console.log("serializaUser");
   done(null, user.email);
 });
 
 passport.deserializeUser(async function(email, done) {
-  console.log("deserializeUser");
   await User.findOne({ email }, function(err, user) {
     done(err, user);
   });

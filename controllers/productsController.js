@@ -13,12 +13,15 @@ exports.index = async function(req, res, next) {
   const dbTypes = await getTypes();
   const dbProducers = await getProducers();
   const dbOrigins = await getOrigins();
-  res.render("pages/products/index", {
-    title: "Quản lý sản phẩm",
-    Types: dbTypes,
-    Producers: dbProducers,
-    Origins: dbOrigins
-  });
+  if (req.isAuthenticated()) {
+    res.render("pages/products/index", {
+      title: "Quản lý sản phẩm",
+      Types: dbTypes,
+      Producers: dbProducers,
+      Origins: dbOrigins
+    });
+  }
+  return res.redirect("/");
 };
 
 exports.getTypes = async function(req, res, next) {
@@ -78,10 +81,10 @@ exports.update = function(req, res, next) {
   promistResult.then(value => {
     if (value.result.ok === 1) {
       res.send({ isSuccess: true, msg: "Cập nhật thành công!" });
-      console.log("Cập nhật thành công!")
+      console.log("Cập nhật thành công!");
     } else {
       res.send({ isSuccess: false, msg: "Cập nhật thất bại!" });
-      console.log("Cập nhật thất bại!")
+      console.log("Cập nhật thất bại!");
     }
   });
 };
