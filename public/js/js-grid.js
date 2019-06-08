@@ -1,5 +1,5 @@
 (function($) {
-  "use strict";
+  ("use strict");
   window.addEventListener(
     "load",
     function() {
@@ -54,6 +54,39 @@
       e.preventDefault();
       submitHandler();
     });
+    var types = null;
+    var producers = null;
+    var origins = null;
+
+    $.ajax({
+      url: "/types/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("TYPES",result)
+      types = result;
+    });
+
+    $.ajax({
+      url: "/producers/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("producers",result)
+      producers = result;
+    });
+
+    $.ajax({
+      url: "/origins/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("origins",result)
+      origins = result;
+    });
 
     var showDetailsDialog = function(dialogType, category) {
       submitHandler = function(event) {
@@ -61,6 +94,42 @@
         saveClient(category, dialogType === "Thêm");
         //}
       };
+      // const cache = $("#cache").data;
+      // console.log("Cache", cache);
+      // console.log("CAche", cache.get("types"));
+      if(types != null) {
+        $("#type").empty();
+        $("#type").append(() => {
+          let result = ""
+          types.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+
+      if(producers != null) {
+        $("#producer").empty();
+        $("#producer").append(() => {
+          let result = ""
+          producers.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+
+      if(origins != null) {
+        $("#origin").empty();
+        $("#origin").append(() => {
+          let result = ""
+          origins.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+      
       $("#name").val(category.name);
       if (dialogType === "Sửa") {
         $("#_id").val(category._id);
@@ -117,7 +186,6 @@
 
       dialog.dialog("close");
     };
-
     $.ajax({
       url: "/types/get",
       type: "get",
@@ -139,6 +207,7 @@
           deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
           controller: {
             loadData: function(filter) {
+              console.log("Đang tìm", filter);
               var d = $.Deferred();
               $.ajax({
                 url: "/products/get",
@@ -169,8 +238,9 @@
                 })
                   .done(function(result) {
                     if (result.isSuccess) {
-                      alert(result.msg);
-                      d.resolve();
+                      // alert(result.msg);
+                      d.reject();
+                      //d.resolve();
                     } else {
                       d.reject();
                       alert(result.msg);
@@ -723,6 +793,128 @@
         }
       ]
     });
+
+    if ($("#js-grid-customer").length) {
+      $("#js-grid-customer").jsGrid({
+        height: "500px",
+        width: "100%",
+        filtering: true,
+        sorting: true,
+        paging: true,
+        autoload: true,
+        pageSize: 10,
+        pageButtonCount: 5,
+        deleteConfirm: "Bạn thực sự muốn xóa người dùng này?",
+        controller: {
+          loadData: function(filter) {
+            var d = $.Deferred();
+            $.ajax({
+              url: "/customers/getUser",
+              type: "get",
+              contentType: "application/json; charset=utf-8",
+              data: filter,
+              dataType: "json"
+            }).done(function(items) {
+              console.log("tems", items);
+              d.resolve(items);
+            });
+            return d.promise();
+          },
+          updateItem: function(item) {
+            console.log("Đang update", item);
+            var d = $.Deferred();
+            $.ajax({
+              url: "/customers/" + item._id,
+              type: "put",
+              dataType: "json",
+              data: item
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  d.resolve(item);
+                  console.log(result.msg);
+                  console.log(result.result);
+                  // alert(result.msg);
+                } else {
+                  alert(result.msg);
+                  d.reject();
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                console.log("err", err);
+              });
+            return d.promise();
+          }
+        },
+
+        rowClick: function(args) {
+          window.location.href = "/detail_customer?_id=" + args.item._id;
+        },
+        fields: [
+          {
+            title: "Họ và tên",
+            name: "name",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Gmail",
+            name: "email",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Số điện thoại",
+            name: "phoneNumber",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Ngày sinh",
+            name: "birthdayStr",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Trạng thái",
+            name: "is_block",
+            type: "text",
+            width: 180
+          },
+          {
+            type: "control",
+            itemTemplate: function(value, item) {
+              if (item.is_block === "Hoạt động") {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi-account-minus menu-icon" type="button" title="Block">'
+                ).on("click", function(e) {
+                  console.log("Updatehhd", item);
+                  item.is_block = "Bị khóa";
+                  e.stopPropagation();
+                  if (e.target.title == "Block") {
+                    $("#js-grid-customer").jsGrid("updateItem", item);
+                  }
+                });
+                return editDeleteBtn; //
+              } else {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi mdi-account-check menu-icon" type="button" title="UnBlock">'
+                ).on("click", function(e) {
+                  item.is_block = "Hoạt động";
+                  e.stopPropagation();
+                  if (e.target.title == "UnBlock") {
+                    console.log("Updatebk", item);
+                    $("#js-grid-customer").jsGrid("updateItem", item);
+                  }
+                });
+                return editDeleteBtn; //
+              }
+            }
+          }
+        ]
+      });
+    }
 
     if ($("#js-grid-user").length) {
       $("#js-grid-user").jsGrid({

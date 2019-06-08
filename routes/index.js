@@ -3,12 +3,14 @@ const router = express.Router();
 
 const dashboard_controller = require("../controllers/dashboardController");
 const users_controller = require("../controllers/usersController");
+const customers_controller = require("../controllers/customersController");
 const products_controller = require("../controllers/productsController");
 const bills_controller = require("../controllers/billsController");
 const types_controller = require("../controllers/typesController");
 const producers_controller = require("../controllers/producersController");
 const origins_controller = require("../controllers/originsController");
 const detail_controller = require("../controllers/detailController");
+const detail_customer_controller = require("../controllers/detailCustomerController");
 const admin_controller = require("../controllers/adminController");
 const accountadmin_controller = require("../controllers/accountadminController");
 const passport = require("passport");
@@ -30,6 +32,9 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 // router.get("/update-infor", account_controller.update_infor);
 
 router.get("/detail", detail_controller.get);
+router.get("/detail_customer", detail_customer_controller.get);
+
+
 router.get("/admin", admin_controller.get);
 
 router.get("/change-password", admin_controller.change_password_template);
@@ -51,6 +56,9 @@ router.get("/users/checkpassword", users_controller.checkpassword);
 router.get("/users/check-email-login", users_controller.checkemaillogin);
 router.get("/users/check-pass-login", users_controller.checkpasswordlogin);
 router.post("/users/edit-username", users_controller.edit_username);
+
+router.put("/customers/:_id", customers_controller.update);
+router.get("/customers/getUser", customers_controller.getUsers);
 
 router.get("/products", products_controller.index);
 router.get("/products/get", products_controller.get);

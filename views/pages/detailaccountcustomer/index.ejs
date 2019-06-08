@@ -11,18 +11,31 @@
               <div class="card-body">
                 <form>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label class="bmd-label-floating">Tên đăng nhập</label>
                         <p style="font-weight:500;"><%=userDetail.name%></p>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label class="bmd-label-floating">Email</label>
                         <p style="font-weight:500;"><%=userDetail.email%></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Số điện thoại</label>
+                            <p style="font-weight:500;"><%=userDetail.phoneNumber%></p>
+                          </div>
+                        </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Ngày sinh</label>
+                        <!-- <p><%=userDetail.birthday%></p> -->
+                        <p style="font-weight:500;"><%=moment(userDetail.birthday).format('HH:mm DD/MM/YYYY') %></p>
                       </div>
                     </div>
                   </div>
@@ -36,13 +49,6 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="bmd-label-floating">Được tạo lúc</label>
-                        <!-- <p><%=userDetail.birthday%></p> -->
-                        <p style="font-weight:500;"><%=moment(userDetail.created).format('HH:mm DD/MM/YYYY') %></p>
-                      </div>
-                    </div>
                   </div>
                   <div class="row mt-5">
                     <div class="col-md-12 d-flex justify-content-center">

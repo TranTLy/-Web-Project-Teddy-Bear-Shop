@@ -8,17 +8,14 @@ const {
 } = require("../models/product.model");
 const { getOrigins } = require("../models/origin.model");
 const { getProducers } = require("../models/producer.model");
+const ListProductInBillSchema = require("../models/listProductInBill");
+
 var ObjectId = require("mongodb").ObjectID;
 exports.index = async function(req, res, next) {
-  const dbTypes = await getTypes();
-  const dbProducers = await getProducers();
-  const dbOrigins = await getOrigins();
   if (req.isAuthenticated()) {
+    console.log("Render","Đã render");
     res.render("pages/products/index", {
       title: "Quản lý sản phẩm",
-      Types: dbTypes,
-      Producers: dbProducers,
-      Origins: dbOrigins
     });
   }
   return res.redirect("/");
@@ -30,7 +27,25 @@ exports.getTypes = async function(req, res, next) {
 };
 
 exports.get = async function(req, res, next) {
-  const dbProducts = await getProducts();
+  const filter = req.query;
+  console.log("FILTER", filter);
+  if (filter.hasOwnProperty("price")) {
+    if (filter.price === "") delete filter.price;
+    else filter.price = parseInt(filter.price);
+  }
+  if (filter.hasOwnProperty("discount")) {
+    if (filter.discount === "") delete filter.discount;
+    else filter.discount = parseFloat(filter.discount);
+  }
+  if (filter.name === "") delete filter.name;
+  if (filter._id === "") delete filter._id;
+  else filter._id = ObjectId(filter._id);
+  if (filter.size === "") delete filter.size;
+  if (filter.color === "") delete filter.color;
+  if (filter.type === "") delete filter.type;
+  else filter.type = ObjectId(filter.type);
+  console.log("FILTERAFTER", filter);
+  const dbProducts = await getProducts(filter);
   res.send(dbProducts);
 };
 
@@ -51,17 +66,6 @@ exports.create = async function(req, res, next) {
     }
   });
 };
-
-// exports.create = function(req, res, next) {
-
-//   // product.isDeleted = false;
-//   // product.isStandOut = false;
-//   // product.isNew = true;
-//   // product.currentPrice= 10;
-
-//   console.log("Dang insert!!", product);
-//   insertProduct(product);
-// };
 
 exports.update = function(req, res, next) {
   let product = req.body;
@@ -91,13 +95,22 @@ exports.update = function(req, res, next) {
 
 exports.delete = async function(req, res, next) {
   const id = req.params._id;
-  console.log("Dang delete!", id);
-  const promistResult = deleteProduct(id);
-  promistResult.then(value => {
-    if (value.result.ok === 1) {
-      res.send({ isSuccess: true, msg: "Xóa thành công!" });
-    } else {
-      res.send({ isSuccess: false, msg: "Xóa thất bại!" });
-    }
+  const product = await ListProductInBillSchema.findOne({
+    "products.id_product": ObjectId(id)
   });
+  if (product != null) {
+    const promistResult = deleteProduct(id);
+    promistResult.then(value => {
+      if (value.result.ok === 1) {
+        res.send({ isSuccess: true, msg: "Xóa thành công!" });
+      } else {
+        res.send({ isSuccess: false, msg: "Xóa thất bại!" });
+      }
+    });
+  } else {
+    res.send({
+      isSuccess: false,
+      msg: "Không thể xóa sản phẩm vì có tham chiếu tới hóa đơn!"
+    });
+  }
 };

@@ -1,29 +1,31 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var SchemaTypes = mongoose.Schema.Types;
 
 var CustomerSchema = new Schema(
-	{
-		name: {
-			type: String
-		},
-		birthday: {
-			type: Date
-		},
-		email: {
-			type: String
-		},
-		password: {
-			type: String
-		},
-		phoneNumber: {
-			type: String
-		},
-		gender: {
-			type: String
-		}
-	},
-	{ collection: 'customers' }
+  {
+    name: {
+      type: String
+    },
+    birthday: {
+      type: Date
+    },
+    birthdayStr: {
+      type: String,
+      default: ""
+    },
+    email: {
+      type: String
+    },
+    phoneNumber: {
+      type: String
+    },
+    is_block: {
+      type: String,
+      default: "Hoạt động"
+    }
+  },
+  { collection: "customers" }
 );
 
-module.exports = mongoose.model('Customer', CustomerSchema);
+module.exports = mongoose.model("Customer", CustomerSchema);

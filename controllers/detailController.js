@@ -1,5 +1,6 @@
-const User = require("../models/user");
+const User = require("../models/admin.model");
 var ObjectId = require("mongodb").ObjectID;
+var moment = require("moment");
 
 exports.get = async function(req, res, next) {
   const id = req.query._id;
@@ -8,15 +9,10 @@ exports.get = async function(req, res, next) {
     return result;
   });
 
-  console.log("bbbb", user);
-  // console.log("haha111111",id);
-  // const dbUsers = await User.find({}, (err, result) => {
-  // 	return result;
-  // });
-
   res.render("pages/detailaccount/index", {
     title: "Thông tin chi tiết",
-    user: user
+    userDetail: user,
+    moment: moment
   });
 };
 
