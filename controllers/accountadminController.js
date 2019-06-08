@@ -11,21 +11,12 @@ var mongoose = require("mongoose"),
   nodemailer = require("nodemailer"),
   smtpTransport = require("nodemailer-smtp-transport");
 var transporter = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 587,
+  service: "Gmail",
   auth: {
-    user: "277f9a8e7fd614",
-    pass: "cca596af4effa5"
+    user: "tranphunguyen111@gmail.com",
+    pass: "nguyen5398"
   }
 });
-
-var cookieExtractor = function(req) {
-  var token = null;
-  if (req && req.cookies) {
-    token = req.cookies["jwt"];
-  }
-  return token;
-};
 
 exports.login_template = function(req, res) {
   if (req.isAuthenticated()) {
@@ -57,7 +48,9 @@ exports.forgot_password_template = function(req, res) {
 exports.reset_password_template = function(req, res) {
   return res.render("pages/resetpassword/index", {
     title: "Thay đổi mật khẩu",
-    layout: false
+    layout: false,
+    message: null,
+    token: req.query.token || ""
   });
 };
 
@@ -140,42 +133,44 @@ exports.forgot_password = function(req, res) {
         });
       },
       function(account, token, done) {
-        User.findByIdAndUpdate({ _id: account._id }, account, {
-          upsert: true,
-          new: true
-        }).exec(function(err, new_account) {
+        User.findByIdAndUpdate(
+          { _id: account._id },
+          {
+            reset_password_token: token,
+            reset_password_expires: Date.now() + 86400000
+          },
+          {
+            upsert: true,
+            new: true
+          }
+        ).exec(function(err, new_account) {
           done(err, token, new_account);
         });
       },
       function(token, account, done) {
-        let url = "https://localhost:3000/reset-password?token=" + token;
-        ejs.renderFile(
-          __dirname + "/forgot-password-email.ejs",
-          { name: account.name, url: url },
-          function(err, data) {
-            var mainOptions = {
-              // from: "2264cc7f3a-e1d8c5@inbox.mailtrap.io",
-              to: account.email,
-              subject: "Password help has arrived!",
-              html: data
-            };
-            if (err) {
-              console.log(err);
-            } else {
-              transporter.sendMail(mainOptions, function(err) {
-                console.log("main Otiopn", mainOptions.html);
-                if (!err) {
-                  console.log("main Otiopnsdfsdf", mainOptions.subject);
-                  return res.json({
-                    message: "Kindly check your email for further instructions"
-                  });
-                } else {
-                  return done(err);
-                }
-              });
-            }
+        const url =
+          "https://" + req.headers.host + "/reset-password?token=" + token;
+        var mainOptions = {
+          from: "tranphunguyen111@gmail.com",
+          to: account.email,
+          subject: "Thay đổi mật khẩu",
+          html:
+            "<div><h3>Xin chào " +
+            account.name +
+            "</h3><p> Nhấn vào link " +
+            url +
+            " để tạo lại mật khẩu</p>"
+        };
+        transporter.sendMail(mainOptions, function(err) {
+          if (!err) {
+            console.log("main Otiopnsdfsdf", mainOptions.subject);
+            return res.json({
+              message: "Mời bạn kiểm tra mail để tạo mật khẩu mới!!"
+            });
+          } else {
+            return done(err);
           }
-        );
+        });
       }
     ],
     function(err) {
@@ -188,64 +183,39 @@ exports.forgot_password = function(req, res) {
  * Reset password
  */
 exports.reset_password = function(req, res, next) {
+  console.log("token", req.body.token);
   User.findOne({
     reset_password_token: req.body.token,
     reset_password_expires: {
       $gt: Date.now()
     }
-  }).exec(function(err, User) {
-    if (!err && User) {
-      if (req.body.newPassword === req.body.verifyPassword) {
-        User.hash_password = bcrypt.hashSync(req.body.newPassword, 10);
-        User.reset_password_token = undefined;
-        User.reset_password_expires = undefined;
-        User.save(function(err) {
-          if (err) {
-            return res.status(422).send({
-              message: err
-            });
-          } else {
-            var data = {
-              to: User.email,
-              from: email,
-              template: "reset-password-email",
-              subject: "Password Reset Confirmation",
-              context: {
-                name: User.fullName.split(" ")[0]
-              }
-            };
-
-            smtpTransport.sendMail(data, function(err) {
-              if (!err) {
-                return res.json({ message: "Password reset" });
-              } else {
-                return done(err);
-              }
-            });
-          }
-        });
-      } else {
-        return res.status(422).send({
-          message: "Passwords do not match"
-        });
-      }
+  }).exec(function(err, user) {
+    if (!err && user) {
+      // user.password = bcrypt.hashSync(req.body.repassword, 10);
+      // user.reset_password_token = undefined;
+      // user.reset_password_expires = undefined;
+      const objUser = {
+        password: bcrypt.hashSync(req.body.repassword, 10),
+        reset_password_token: undefined,
+        reset_password_expires: undefined
+      };
+      User.findByIdAndUpdate(user._id, objUser, (err, user) => {
+        if (err) {
+          return res.status(422).send({
+            message: err
+          });
+        } else {
+          res.render("pages/infor/index", {
+            message:
+              "Thay đổi mật khẩu thành công, mời bạn đăng nhập để tiếp tục",
+            layout: false
+          });
+        }
+      });
     } else {
       return res.status(400).send({
         message: "Password reset token is invalid or has expired."
       });
-    }
-  });
-};
-
-exports.change_password = function(req, res) {
-  User.findOne({ reset_password_token: req.cookies.token }, (err, user) => {
-    if (err) return res.send(err);
-    if (!user)
-      return res.send({
-        isSuccess: false,
-        message: "User không tồn tại"
-      });
-    if (user) {
     }
   });
 };

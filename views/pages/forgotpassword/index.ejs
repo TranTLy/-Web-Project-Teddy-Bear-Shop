@@ -29,12 +29,17 @@
                         </span>
                       </div>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control form-control-lg border-left-0 type-text"
                         id="email"
                         name="email"
                         placeholder="Email"
+                        required
+                        onkeyup="checkEmail(this.value)"
                       />
+                      <div class="valid-email invalid-feedback">
+                        Bạn nhập email chưa đúng!!.
+                      </div>
                     </div>
                   </div>
 
@@ -58,6 +63,29 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <script>
+      function checkEmail(email) {
+        $.ajax({
+          url: "/users/check-email-login?email=" + email,
+          type: "get",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        })
+          .done(function(check) {
+            if (!check.check) {
+              console.log("check", check.check);
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "block";
+              document.getElementById("email").focus();
+            } else {
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "none";
+              document.getElementById("password").disabled = false;
+            }
+          })
+          .fail(function(err) {});
+      }
+    </script>
     <% include ../../elements/scripts %>
   </body>
 </html>
