@@ -1,5 +1,5 @@
 (function($) {
-  "use strict";
+  ("use strict");
   window.addEventListener(
     "load",
     function() {
@@ -54,6 +54,39 @@
       e.preventDefault();
       submitHandler();
     });
+    var types = null;
+    var producers = null;
+    var origins = null;
+
+    $.ajax({
+      url: "/types/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("TYPES",result)
+      types = result;
+    });
+
+    $.ajax({
+      url: "/producers/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("producers",result)
+      producers = result;
+    });
+
+    $.ajax({
+      url: "/origins/get",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      console.log("origins",result)
+      origins = result;
+    });
 
     var showDetailsDialog = function(dialogType, category) {
       submitHandler = function(event) {
@@ -61,6 +94,42 @@
         saveClient(category, dialogType === "Thêm");
         //}
       };
+      // const cache = $("#cache").data;
+      // console.log("Cache", cache);
+      // console.log("CAche", cache.get("types"));
+      if(types != null) {
+        $("#type").empty();
+        $("#type").append(() => {
+          let result = ""
+          types.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+
+      if(producers != null) {
+        $("#producer").empty();
+        $("#producer").append(() => {
+          let result = ""
+          producers.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+
+      if(origins != null) {
+        $("#origin").empty();
+        $("#origin").append(() => {
+          let result = ""
+          origins.map(value => {
+            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
+          })
+          return result
+        })
+      }
+      
       $("#name").val(category.name);
       if (dialogType === "Sửa") {
         $("#_id").val(category._id);
@@ -117,7 +186,6 @@
 
       dialog.dialog("close");
     };
-
     $.ajax({
       url: "/types/get",
       type: "get",
@@ -149,7 +217,7 @@
                 dataType: "json"
               })
                 .done(function(items) {
-                    d.resolve(items);
+                  d.resolve(items);
                 })
                 .fail(function(err) {
                   d.reject();
@@ -170,8 +238,9 @@
                 })
                   .done(function(result) {
                     if (result.isSuccess) {
-                      alert(result.msg);
-                      d.resolve();
+                      // alert(result.msg);
+                      d.reject();
+                      //d.resolve();
                     } else {
                       d.reject();
                       alert(result.msg);

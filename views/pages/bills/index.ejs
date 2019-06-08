@@ -29,13 +29,13 @@
                 <td class="discount" style="display: none"><%=(item.discount * item.total).toFixed(2)%> USD</td>
                 <td class="price"style="display: none"><%=(parseFloat(item.total) + (item.discount * item.total)).toFixed(2)%> USD</td>
                 <td>
-                  <% if(item.status === "Thành công") {%>
+                  <% if(item.status === "Đã giao") {%>
                   <label class="badge badge-success status"><%=item.status%></label>
                   <% }%>
-                  <% if(item.status === "Bị hoãn") {%>
+                  <% if(item.status === "Đang giao") {%>
                   <label class="badge badge-warning status"><%=item.status%></label>
                   <% }%>
-                  <% if(item.status === "Bị hủy") {%>
+                  <% if(item.status === "Chưa giao") {%>
                   <label class="badge badge-danger status"><%=item.status%></label>
                   <% }%>
                 </td>
@@ -79,7 +79,7 @@
                   <div style="display:flex; flex-direction:row; justify-content: space-between">
                     <h6>Trạng thái</h6>
                     <div class="pt-1">
-                      <label class="badge status">Thành công</label>
+                      <label class="badge status">Đã giao</label>
                     </div>
                   </div>
                 </div>

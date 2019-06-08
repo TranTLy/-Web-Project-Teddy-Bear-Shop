@@ -81,7 +81,7 @@
     var status = _row.find(".status").text();
     var price = _row.find(".price").text();
     var badge = $(this).find(".status");
-    if (status === "Thành công") {
+    if (status === "Đã giao") {
       if (badge.hasClass("badge-danger")) {
         badge.removeClass("badge-danger");
       }
@@ -89,7 +89,7 @@
         badge.removeClass("badge-warning");
       }
       badge.addClass("badge-success");
-    } else if (status === "Bị hủy") {
+    } else if (status === "Chưa giao") {
       if (badge.hasClass("badge-success")) {
         badge.removeClass("badge-success");
       }
