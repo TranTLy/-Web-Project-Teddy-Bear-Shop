@@ -1,7 +1,7 @@
 var JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
 const LocalStrategy = require("passport-local").Strategy;
-var User = require("../models/user");
+var User = require("../models/admin.model");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 //   var opts = {};

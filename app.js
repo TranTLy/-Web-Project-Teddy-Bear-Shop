@@ -42,7 +42,14 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(expressLayouts);
+app.use(function(req, res, next) {
+  // set locals, only providing error in development
 
+  res.locals.name = req.cookies.name;
+  // console.log("name", req.cookies.name);
+  next();
+  // render the error page
+});
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 // app.use("/dashboard", passport.authenticate("jwt", { session: false }), user);
@@ -65,6 +72,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 

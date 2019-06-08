@@ -3,7 +3,7 @@
 var mongoose = require("mongoose"),
   jwt = require("jsonwebtoken"),
   bcrypt = require("bcrypt"),
-  User = require("../models/user"),
+  User = require("../models/admin.model"),
   passport = require("passport"),
   async = require("async"),
   crypto = require("crypto"),
@@ -36,7 +36,6 @@ exports.login_template = function(req, res) {
     layout: false,
     message: req.flash("loginMessage")
   });
-
 };
 
 exports.register_template = function(req, res) {
@@ -74,7 +73,8 @@ exports.login = (req, res, next) => {
       if (err) {
         res.send(err);
       }
-      const token = jwt.sign({ user }, "secret");
+      // const token = jwt.sign({ user }, "secret");
+      res.cookie = res.cookie("name", user.name);
       return res.redirect("/dashboard");
     });
   })(req, res);
@@ -91,7 +91,7 @@ exports.register = function(req, res) {
       });
     } else {
       var newUser = new User(req.body);
-      newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
+      newUser.password = bcrypt.hashSync(req.body.password, 10);
       newUser.save(function(err, user) {
         if (err) {
           res.render("pages/register/index", {
@@ -106,7 +106,8 @@ exports.register = function(req, res) {
             if (err) {
               res.send(err);
             }
-            const token = jwt.sign({ user }, "secret");
+            // const token = jwt.sign({ user }, "secret");
+            res.cookie("name", user.name);
             return res.redirect("/dashboard");
           });
         }
@@ -240,6 +241,9 @@ exports.logout = function(req, res) {
 };
 
 exports.isLoggedIn = function(req, res, next) {
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated()) {
+    res.clearCookie("name");
+    return next();
+  }
   res.redirect("/");
 };

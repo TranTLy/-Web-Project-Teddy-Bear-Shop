@@ -11,7 +11,7 @@ var origins_controller = require("../controllers/originsController");
 var detail_controller = require("../controllers/detailController");
 var account_controller = require("../controllers/accountController");
 var accountadmin_controller = require("../controllers/accountadminController");
-
+const passport = require("passport");
 router.get("/", accountadmin_controller.login_template);
 router.post("/", accountadmin_controller.login);
 
