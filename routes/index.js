@@ -43,8 +43,9 @@ router.post("/producers", producers_controller.create);
 router.delete("/producers/:_id", producers_controller.delete);
 router.put("/producers/:_id", producers_controller.update);
 
-router.get("/bills", bills_controller.index);
-router.post("/bills", bills_controller.search_sort);
+router.get("/bills", bills_controller.get);
+router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
+// router.post("/bills", bills_controller.search_sort);
 
 // router.get("/register", function(req, res) {
 //   res.render("pages/register/index", { title: "Đăng ký" });

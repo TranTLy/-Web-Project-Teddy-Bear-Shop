@@ -8,6 +8,7 @@
         search: ""
       }
     });
+    
     $("body").removeClass(".modal-backdrop");
     function Person(name, age, position) {
       this._name = name;
@@ -62,6 +63,7 @@
   // //Me
   $("body").removeClass(".modal-backdrop");
   $("#myModal").on("show.bs.modal", function(e) {
+    $("#myModal").find("#list-product").empty();
     $("body").removeClass(".modal-backdrop");
     // $(".modal-backdrop").remove();
     var _button = $(e.relatedTarget);
@@ -69,15 +71,17 @@
     // console.log(_button, _button.parents("tr"));
     var _row = _button.parents("tr");
 
-    var my_id = _row.find(".my_id").text();
-    var my_date = _row.find(".my_date").text();
-    var my_name = _row.find(".my_name").text();
-    var my_id_customer = _row.find(".my_id_customer").text();
-    var my_city = _row.find(".my_city").text();
-    var my_price = _row.find(".my_price").text();
-    var my_status = _row.find(".my_status").text();
-    var badge = $(this).find(".my_status");
-    if (my_status === "Thành công") {
+    var id = _row.find(".id").text();
+    var date = _row.find(".date").text();
+    var name = _row.find(".name_customer").text();
+    var id_customer = _row.find(".id_customer").text();
+    var city = _row.find(".city").text();
+    var total = _row.find(".total").text();
+    var discount = _row.find(".discount").text();
+    var status = _row.find(".status").text();
+    var price = _row.find(".price").text();
+    var badge = $(this).find(".status");
+    if (status === "Thành công") {
       if (badge.hasClass("badge-danger")) {
         badge.removeClass("badge-danger");
       }
@@ -85,7 +89,7 @@
         badge.removeClass("badge-warning");
       }
       badge.addClass("badge-success");
-    } else if (my_status === "Bị hủy") {
+    } else if (status === "Bị hủy") {
       if (badge.hasClass("badge-success")) {
         badge.removeClass("badge-success");
       }
@@ -103,30 +107,68 @@
       badge.addClass("badge-warning");
     }
     // console.log(_invoiceAmt, _chequeAmt);
-
+    $.ajax({
+      url: "/bills/getlistproducts?_id=" + id,
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"})
+      .done(function(items) {
+        items.map((item) => {
+          // <div class="col-sm-2" style="align-content:center;">
+          //         <img src="../images/a1.jpg" style="width:50px;" class="img-rounded" alt="Cinque Terre" />
+          //       </div>
+          $("#myModal").find("#list-product")
+          .append(()=> {
+            return "<div class=\"row\">" + 
+            "<div class=\"col-sm-2\" style=\"align-content:center;\">" +
+            "<img src=\"" + item.imgs + "\" style=\"width:50px;\" class=\"img-rounded\" alt=\"Cinque Terre\" />"+
+            "</div>"+
+            "<div class=\"col-sm-4 d-flex\">" +
+            "<h6 class=\"name-product\" style=\"align-self: center;\">" + item.name + "</h6>" +
+            "</div>"+
+            "<div class=\"col-sm-3 none-padding d-flex\">" +
+            "<h6 class=\"price-product\" style=\"align-self: center;\">" + item.price + "</h6>" +
+            "</div>"+
+            "<div class=\"col-sm-3 none-padding d-flex\">" +
+            "<h6 class=\"amount-product\" style=\"align-self: center;\">"+ item.amount +"</h6>"+
+            "</div>" +
+            "</div>" +
+            "<hr class=\"pt-0 pb-0 mt-1 mb-0\" />";
+          });
+        console.log("List",items);
+        });
+        
+      })
+      .fail(function(err) {
+        alert(err);
+      });
+    
     $(this)
-      .find(".my_id")
-      .text(my_id);
+      .find(".id")
+      .text(id);
     $(this)
-      .find(".my_date")
-      .text(my_date);
+      .find(".date")
+      .text(date);
     $(this)
-      .find(".my_name")
-      .text(my_name);
+      .find(".name")
+      .text(name);
     $(this)
-      .find(".my_id_customer")
-      .text("ID khách hàng: " + my_id_customer);
+      .find(".id_customer")
+      .text("ID khách hàng: " + id_customer);
     $(this)
-      .find(".my_city")
-      .text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + my_city);
+      .find(".city")
+      .text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + city);
     $(this)
-      .find(".my_price")
-      .text(my_price - 22000 + " VNĐ");
+      .find(".price")
+      .text(price);
     $(this)
-      .find(".my_price_total")
-      .text(my_price + " VNĐ");
+      .find(".discount")
+      .text(discount);
     $(this)
-      .find(".my_status")
-      .text(my_status);
+      .find(".price_total")
+      .text(total);
+    $(this)
+      .find(".status")
+      .text(status);
   });
 })(jQuery);
