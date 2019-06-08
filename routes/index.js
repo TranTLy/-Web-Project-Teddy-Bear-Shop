@@ -1,16 +1,17 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var dashboard_controller = require("../controllers/dashboardController");
-var users_controller = require("../controllers/usersController");
-var products_controller = require("../controllers/productsController");
-var bills_controller = require("../controllers/billsController");
-var types_controller = require("../controllers/typesController");
-var producers_controller = require("../controllers/producersController");
-var origins_controller = require("../controllers/originsController");
-var detail_controller = require("../controllers/detailController");
-var account_controller = require("../controllers/accountController");
-var accountadmin_controller = require("../controllers/accountadminController");
+const dashboard_controller = require("../controllers/dashboardController");
+const users_controller = require("../controllers/usersController");
+const products_controller = require("../controllers/productsController");
+const bills_controller = require("../controllers/billsController");
+const types_controller = require("../controllers/typesController");
+const producers_controller = require("../controllers/producersController");
+const origins_controller = require("../controllers/originsController");
+const detail_controller = require("../controllers/detailController");
+const admin_controller = require("../controllers/adminController");
+const account_controller = require("../controllers/accountController");
+const accountadmin_controller = require("../controllers/accountadminController");
 const passport = require("passport");
 router.get("/", accountadmin_controller.login_template);
 router.post("/", accountadmin_controller.login);
@@ -30,6 +31,7 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 // router.get("/update-infor", account_controller.update_infor);
 
 router.get("/detail", detail_controller.get);
+router.get("/admin", admin_controller.get);
 router.get(
   "/dashboard",
   accountadmin_controller.isLoggedIn,

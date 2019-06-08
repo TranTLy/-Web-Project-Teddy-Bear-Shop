@@ -45,7 +45,7 @@ app.use(expressLayouts);
 app.use(function(req, res, next) {
   // set locals, only providing error in development
 
-  res.locals.name = req.cookies.name;
+  res.locals.user = req.cookies.user;
   // console.log("name", req.cookies.name);
   next();
   // render the error page

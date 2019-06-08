@@ -1,19 +1,14 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
-      <div class="nav-link d-flex">
-        <div class="profile-image">
-          <img src="../images/faces/face28.png" alt="image" />
-        </div>
-        <div class="profile-name">
-          <% if(name) {%>
-          <p class="name"><%= name %></p>
-          <%} %>
-          <p class="designation">
-            Người quản trị
-          </p>
-        </div>
-      </div>
+        <li class="nav-item">
+            <% if(user) {%>
+            <a class="nav-link" href="/admin?_id=<%=user._id %>">
+              <i class="mdi mdi-account-circle menu-icon"></i>
+                <span class="menu-title"><%= user.name %></span>
+            </a>
+            <%} %>
+          </li>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/dashboard">

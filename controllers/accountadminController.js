@@ -73,8 +73,9 @@ exports.login = (req, res, next) => {
       if (err) {
         res.send(err);
       }
-      // const token = jwt.sign({ user }, "secret");
-      res.cookie = res.cookie("name", user.name);
+      const token = jwt.sign({ user }, "secret");
+      res.cookie("token", token);
+      res.cookie = res.cookie("user", user);
       return res.redirect("/dashboard");
     });
   })(req, res);
@@ -101,13 +102,14 @@ exports.register = function(req, res) {
             layout: false
           });
         } else {
-          User.hash_password = undefined;
+          // User.hash_password = undefined;
           req.login(user, err => {
             if (err) {
               res.send(err);
             }
-            // const token = jwt.sign({ user }, "secret");
-            res.cookie("name", user.name);
+            const token = jwt.sign({ user }, "secret", { expiresIn: 1440 });
+            res.cookie("token", token);
+            res.cookie("user", user);
             return res.redirect("/dashboard");
           });
         }
@@ -235,14 +237,28 @@ exports.reset_password = function(req, res, next) {
   });
 };
 
+exports.change_password = function(req, res) {
+  User.findOne({ reset_password_token: req.cookies.token }, (err, user) => {
+    if (err) return res.send(err);
+    if (!user)
+      return res.send({
+        isSuccess: false,
+        message: "User không tồn tại"
+      });
+    if (user) {
+    }
+  });
+};
+
 exports.logout = function(req, res) {
   req.logout();
+  res.clearCookie("user");
+  res.clearCookie("token");
   res.redirect("/");
 };
 
 exports.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
-    res.clearCookie("name");
     return next();
   }
   res.redirect("/");
