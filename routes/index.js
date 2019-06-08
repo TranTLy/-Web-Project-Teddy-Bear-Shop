@@ -3,14 +3,15 @@ const router = express.Router();
 
 const dashboard_controller = require("../controllers/dashboardController");
 const users_controller = require("../controllers/usersController");
+const customers_controller = require("../controllers/customersController");
 const products_controller = require("../controllers/productsController");
 const bills_controller = require("../controllers/billsController");
 const types_controller = require("../controllers/typesController");
 const producers_controller = require("../controllers/producersController");
 const origins_controller = require("../controllers/originsController");
 const detail_controller = require("../controllers/detailController");
+const detail_customer_controller = require("../controllers/detailCustomerController");
 const admin_controller = require("../controllers/adminController");
-const account_controller = require("../controllers/accountController");
 const accountadmin_controller = require("../controllers/accountadminController");
 const passport = require("passport");
 router.get("/", accountadmin_controller.login_template);
@@ -31,6 +32,9 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 // router.get("/update-infor", account_controller.update_infor);
 
 router.get("/detail", detail_controller.get);
+router.get("/detail_customer", detail_customer_controller.get);
+
+
 router.get("/admin", admin_controller.get);
 router.get(
   "/dashboard",
@@ -42,6 +46,9 @@ router.post("/dashboard", dashboard_controller.statistical);
 router.get("/users", users_controller.index);
 router.put("/users/:_id", users_controller.update);
 router.get("/users/getUser", users_controller.getUsers);
+
+router.put("/customers/:_id", customers_controller.update);
+router.get("/customers/getUser", customers_controller.getUsers);
 
 router.get("/products", products_controller.index);
 router.get("/products/get", products_controller.get);

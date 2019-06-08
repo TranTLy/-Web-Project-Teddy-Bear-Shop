@@ -30,7 +30,25 @@ exports.getTypes = async function(req, res, next) {
 };
 
 exports.get = async function(req, res, next) {
-  const dbProducts = await getProducts();
+  const filter = req.query;
+  console.log("FILTER", filter);
+  if(filter.hasOwnProperty('price')) {
+    if(filter.price === '' ) delete filter.price
+    else filter.price = parseInt(filter.price)
+  } 
+  if(filter.hasOwnProperty('discount')) {
+    if(filter.discount === '') delete filter.discount
+    else filter.discount = parseFloat(filter.discount);
+  }
+  if(filter.name === '') delete filter.name;
+  if(filter._id === '') delete filter._id
+  else filter._id = ObjectId(filter._id);
+  if(filter.size === '') delete filter.size;
+  if(filter.color === '') delete filter.color;
+  if(filter.type === '')  delete filter.type
+  else filter.type = ObjectId(filter.type);
+  console.log("FILTERAFTER", filter);
+  const dbProducts = await getProducts(filter);
   res.send(dbProducts);
 };
 

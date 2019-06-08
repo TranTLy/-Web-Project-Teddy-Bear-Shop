@@ -139,6 +139,7 @@
           deleteConfirm: "Bạn thực sự muốn xóa sản phẩm này?",
           controller: {
             loadData: function(filter) {
+              console.log("Đang tìm", filter);
               var d = $.Deferred();
               $.ajax({
                 url: "/products/get",
@@ -148,7 +149,7 @@
                 dataType: "json"
               })
                 .done(function(items) {
-                  d.resolve(items);
+                    d.resolve(items);
                 })
                 .fail(function(err) {
                   d.reject();
@@ -723,6 +724,128 @@
         }
       ]
     });
+
+    if ($("#js-grid-customer").length) {
+      $("#js-grid-customer").jsGrid({
+        height: "500px",
+        width: "100%",
+        filtering: true,
+        sorting: true,
+        paging: true,
+        autoload: true,
+        pageSize: 10,
+        pageButtonCount: 5,
+        deleteConfirm: "Bạn thực sự muốn xóa người dùng này?",
+        controller: {
+          loadData: function(filter) {
+            var d = $.Deferred();
+            $.ajax({
+              url: "/customers/getUser",
+              type: "get",
+              contentType: "application/json; charset=utf-8",
+              data: filter,
+              dataType: "json"
+            }).done(function(items) {
+              console.log("tems", items);
+              d.resolve(items);
+            });
+            return d.promise();
+          },
+          updateItem: function(item) {
+            console.log("Đang update", item);
+            var d = $.Deferred();
+            $.ajax({
+              url: "/customers/" + item._id,
+              type: "put",
+              dataType: "json",
+              data: item
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  d.resolve(item);
+                  console.log(result.msg);
+                  console.log(result.result);
+                  // alert(result.msg);
+                } else {
+                  alert(result.msg);
+                  d.reject();
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                console.log("err", err);
+              });
+            return d.promise();
+          }
+        },
+
+        rowClick: function(args) {
+          window.location.href = "/detail_customer?_id=" + args.item._id;
+        },
+        fields: [
+          {
+            title: "Họ và tên",
+            name: "name",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Gmail",
+            name: "email",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Số điện thoại",
+            name: "phoneNumber",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Ngày sinh",
+            name: "birthdayStr",
+            type: "text",
+            width: 180
+          },
+          {
+            title: "Trạng thái",
+            name: "is_block",
+            type: "text",
+            width: 180
+          },
+          {
+            type: "control",
+            itemTemplate: function(value, item) {
+              if (item.is_block === "Hoạt động") {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi-account-minus menu-icon" type="button" title="Block">'
+                ).on("click", function(e) {
+                  console.log("Updatehhd", item);
+                  item.is_block = "Bị khóa";
+                  e.stopPropagation();
+                  if (e.target.title == "Block") {
+                    $("#js-grid-customer").jsGrid("updateItem", item);
+                  }
+                });
+                return editDeleteBtn; //
+              } else {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi mdi-account-check menu-icon" type="button" title="UnBlock">'
+                ).on("click", function(e) {
+                  item.is_block = "Hoạt động";
+                  e.stopPropagation();
+                  if (e.target.title == "UnBlock") {
+                    console.log("Updatebk", item);
+                    $("#js-grid-customer").jsGrid("updateItem", item);
+                  }
+                });
+                return editDeleteBtn; //
+              }
+            }
+          }
+        ]
+      });
+    }
 
     if ($("#js-grid-user").length) {
       $("#js-grid-user").jsGrid({

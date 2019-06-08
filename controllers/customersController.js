@@ -1,10 +1,16 @@
-const User = require("../models/admin.model");
-
+const User = require("../models/customer");
+var moment = require("moment");
 exports.getUsers = async function(req, res, next) {
-  console.log("getUser load");
-  const dbUsers = await User.find({}, (err, result) => {
+  let dbUsers = await User.find({}, (err, result) => {
     return result;
   });
+  console.log("getcustomer", dbUsers)
+  dbUsers.map(user => {
+    user.birthdayStr = moment(user.birthday).format('HH:mm DD/MM/YYYY')
+    console.log("getcustomer", user)
+    return user
+  })
+  console.log("getcustomeraf", dbUsers)
   res.send(dbUsers);
 };
 
@@ -30,12 +36,9 @@ exports.update = function(req, res, next) {
   });
 };
 
-exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.render("pages/users/index", { title: "Quản lý người dùng" });
-  }
-  return res.redirect("/");
-};
-exports.crud = function(req, res, next) {
-  res.render("pages/users/index", { title: "Quản lý người dùng" });
-};
+// exports.index = function(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     res.render("pages/users/index", { title: "Quản lý người dùng" });
+//   }
+//   return res.redirect("/");
+// };

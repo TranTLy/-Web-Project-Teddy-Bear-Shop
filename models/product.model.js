@@ -13,11 +13,11 @@ const BARBIE_TYPE = 2;
 const CAR_TYPE = 3;
 const OTHER_TYPE = 4;
 
-const getProducts = async function() {
+const getProducts = async function(filter) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
   // connect.close();
-  return await collection.find({}).toArray();
+  return await collection.find(filter).toArray();
 };
 
 const getTypes = async function() {
