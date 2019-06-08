@@ -237,12 +237,12 @@ exports.reset_password = function(req, res, next) {
 
 exports.logout = function(req, res) {
   req.logout();
+  res.clearCookie("name");
   res.redirect("/");
 };
 
 exports.isLoggedIn = function(req, res, next) {
   if (req.isAuthenticated()) {
-    res.clearCookie("name");
     return next();
   }
   res.redirect("/");

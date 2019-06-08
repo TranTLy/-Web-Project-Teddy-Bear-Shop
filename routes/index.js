@@ -38,6 +38,7 @@ router.get(
 router.post("/dashboard", dashboard_controller.statistical);
 
 router.get("/users", users_controller.index);
+router.put("/users/:_id", users_controller.update);
 router.get("/users/getUser", users_controller.getUsers);
 
 router.get("/products", products_controller.index);

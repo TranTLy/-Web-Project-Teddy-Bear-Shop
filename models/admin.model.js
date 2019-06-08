@@ -9,8 +9,8 @@ const AdminSchema = new Schema({
     type: String
   },
   is_block: {
-    type: Boolean,
-    default: false
+    type: String,
+    default: "Hoạt động"
   },
   created: {
     type: Date,
