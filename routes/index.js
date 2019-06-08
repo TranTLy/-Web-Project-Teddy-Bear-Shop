@@ -9,11 +9,32 @@ var types_controller = require("../controllers/typesController");
 var producers_controller = require("../controllers/producersController");
 var origins_controller = require("../controllers/originsController");
 var detail_controller = require("../controllers/detailController");
-var account_controller = require('../controllers/accountController');
+var account_controller = require("../controllers/accountController");
+var accountadmin_controller = require("../controllers/accountadminController");
 
-router.get("/", dashboard_controller.index);
+router.get("/", accountadmin_controller.login_template);
+router.post("/", accountadmin_controller.login);
 
-router.get("/dashboard", dashboard_controller.index);
+router.get("/register", accountadmin_controller.register_template);
+router.post("/register", accountadmin_controller.register);
+
+router.get("/logout", accountadmin_controller.logout);
+router.get(
+  "/forgot-password",
+  accountadmin_controller.forgot_password_template
+);
+router.post("/forgot-password", accountadmin_controller.forgot_password);
+router.get("/reset-password", accountadmin_controller.reset_password_template);
+router.post("/reset-password", accountadmin_controller.reset_password);
+// router.get("/change-password", accountadmin_controller.change_password);
+// router.get("/update-infor", account_controller.update_infor);
+
+router.get("/detail", detail_controller.get);
+router.get(
+  "/dashboard",
+  accountadmin_controller.isLoggedIn,
+  dashboard_controller.index
+);
 router.post("/dashboard", dashboard_controller.statistical);
 
 router.get("/users", users_controller.index);
@@ -55,15 +76,4 @@ router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
 //   res.render("pages/login/index", { title: "Đăng nhập" });
 // });
 
-router.post('/login', account_controller.post_signin);
-router.get('/login', account_controller.signin);
-router.get('/register', account_controller.signup);
-router.post('/register', account_controller.post_signup);
-// router.post('/signin', account_controller.signup);
-router.get('/forget-password', account_controller.forget_password);
-router.get('/change-password', account_controller.change_password);
-router.get('/update-infor', account_controller.update_infor);
-
-
-router.get("/detail", detail_controller.get);
 module.exports = router;

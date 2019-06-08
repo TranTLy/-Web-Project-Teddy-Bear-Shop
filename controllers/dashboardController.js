@@ -1,6 +1,6 @@
-exports.index = function(req, res,next) {
+exports.index = function(req, res, next) {
   res.render("pages/dashboard/index", { title: "Bảng tin" });
 };
-exports.statistical = function(req,res,next) {
+exports.statistical = function(req, res, next) {
   res.render("pages/dashboard/index", { title: "Bảng tin" });
-}
+};

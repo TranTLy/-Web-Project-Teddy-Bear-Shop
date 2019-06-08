@@ -13,11 +13,14 @@
             <div
               class="col-lg-6 d-flex align-items-center justify-content-center"
             >
+              <% if (message.length > 0) { %>
+              <div class="alert alert-danger"><%= message %></div>
+              <% } %>
               <div class="auth-form-transparent text-left p-3">
                 <div class="brand-logo">
                   <img src="../../../../images/logo-dark.svg" alt="logo" />
                 </div>
-                <form action="/login" method="POST" class="pt-1">
+                <form action="/" method="POST" class="pt-1">
                   <div class="form-group">
                     <label for="exampleInputEmail">Email</label>
                     <div class="input-group">
@@ -29,7 +32,7 @@
                         </span>
                       </div>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control form-control-lg border-left-0 type-text"
                         id="email"
                         name="email"
@@ -65,7 +68,9 @@
                         Lưu tài khoản
                       </label>
                     </div>
-                    <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
+                    <a href="/forgot-password" class="auth-link text-black"
+                      >Quên mật khẩu?</a
+                    >
                   </div>
                   <div class="my-3">
                     <div>
@@ -103,5 +108,10 @@
       <!-- page-body-wrapper ends -->
     </div>
     <% include ../../elements/scripts %>
+    <script>
+      function checkEmail() {
+        $jaxa;
+      }
+    </script>
   </body>
 </html>

@@ -1,3 +1,8 @@
+exports.index = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.render("pages/bills/index", { title: "QUản lý đặt hàng" });
+  }
+  return res.redirect("/");
 var ObjectId = require("mongodb").ObjectID;
 const Bill = require("../models/bill");
 const ListProductInBill = require("../models/listProductInBill");
@@ -24,6 +29,8 @@ exports.get = async function(req, res) {
     moment: moment
   });
 };
+exports.search_sort = function(req, res, next) {
+  res.render("pages/bills/index", { title: "Quản lý đặt hàng" });
 
 exports.getProductsByIdBill = async function(req, res) {
   const id = req.query._id;

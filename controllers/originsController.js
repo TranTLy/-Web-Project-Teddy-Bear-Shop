@@ -8,7 +8,12 @@ const {
 const { isExistOriginInProducts } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
-  res.render("pages/origins/index", { title: "Quản lý nơi xuất xứ sản phẩm" });
+  if (req.isAuthenticated()) {
+    res.render("pages/origins/index", {
+      title: "Quản lý nơi xuất xứ sản phẩm"
+    });
+  }
+  return res.redirect("/");
 };
 
 exports.get = async function(req, res, next) {
