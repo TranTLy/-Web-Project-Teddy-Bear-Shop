@@ -1,39 +1,52 @@
 (function($) {
   "use strict";
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
+  window.addEventListener(
+    "load",
+    function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName("needs-validation");
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener(
+          "submit",
+          function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    },
+    false
+  );
 
   $(function() {
     //function dialog form
-    var dialog = $("#dialog-form").dialog({
-      autoOpen: false,
-      width: 800,
-      modal: true,
-      closeOnEscape: true,
-      buttons: {
-        Lưu: function() {
-          $("#categoryForm").submit();
+    var dialog = $("#dialog-form").dialog(
+      {
+        autoOpen: false,
+        width: 800,
+        modal: true,
+        closeOnEscape: true,
+        buttons: {
+          Lưu: function() {
+            $("#categoryForm").submit();
+          },
+          Đóng: function() {
+            $(this).dialog("close");
+          }
         },
-        Đóng: function() {
-          $(this).dialog("close");
+        close: function() {
+          dialog.find("form")[0].reset();
         }
       },
-      close: function() {
-        dialog.find("form")[0].reset();
-      }
-    },'option', 'position', 'center');
+      "option",
+      "position",
+      "center"
+    );
 
     var submitHandler;
 
@@ -716,11 +729,10 @@
         height: "500px",
         width: "100%",
         filtering: true,
-        inserting: true,
         sorting: true,
         paging: true,
         autoload: true,
-        pageSize: 15,
+        pageSize: 10,
         pageButtonCount: 5,
         deleteConfirm: "Bạn thực sự muốn xóa người dùng này?",
         controller: {
@@ -736,11 +748,39 @@
               dataType: "json"
             }).done(function(items) {
               console.log("tems", items);
+
               d.resolve(items);
             });
             return d.promise();
+          },
+          updateItem: function(item) {
+            console.log("Đang update", item);
+            var d = $.Deferred();
+            $.ajax({
+              url: "/users/" + item._id,
+              type: "put",
+              dataType: "json",
+              data: item
+            })
+              .done(function(result) {
+                if (result.isSuccess) {
+                  d.resolve(item);
+                  console.log(result.msg);
+                  console.log(result.result);
+                  // alert(result.msg);
+                } else {
+                  alert(result.msg);
+                  d.reject();
+                }
+              })
+              .fail(function(err) {
+                d.reject();
+                console.log("err", err);
+              });
+            return d.promise();
           }
         },
+
         rowClick: function(args) {
           window.location.href = "/detail?_id=" + args.item._id;
         },
@@ -758,22 +798,41 @@
             width: 180
           },
           {
-            title: "Số điện thoại",
-            name: "phoneNumber",
-            type: "text",
-            width: 120
-          },
-
-          {
-            title: "Ngày sinh",
-            name: "birthday",
-            type: "text",
-            width: 80
+            title: "Trạng thái",
+            name: "is_block",
+            type: "boo",
+            width: 180
           },
           {
             type: "control",
-            editButton: false,
-            deleteButton: true
+            itemTemplate: function(value, item) {
+              if (item.is_block === "Hoạt động") {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi-account-minus menu-icon" type="button" title="Block">'
+                ).on("click", function(e) {
+                  item.is_block = "Bị khóa";
+                  e.stopPropagation();
+                  if (e.target.title == "Block") {
+                    $("#js-grid-user").jsGrid("updateItem", item);
+                  }
+                });
+                return editDeleteBtn; //
+              } else {
+                var editDeleteBtn = $(
+                  '<i class="mdi mdi mdi-account-check menu-icon" type="button" title="UnBlock">'
+                ).on("click", function(e) {
+                  if (e.target.title == "UnBlock") {
+                    e.stopPropagation();
+                    item.is_block = "Hoạt động";
+                    e.stopPropagation();
+                    if (e.target.title == "UnBlock") {
+                      $("#js-grid-user").jsGrid("updateItem", item);
+                    }
+                  }
+                });
+                return editDeleteBtn; //
+              }
+            }
           }
         ]
       });

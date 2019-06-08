@@ -22,7 +22,7 @@ exports.get = async function(req, res, next) {
 };
 
 exports.create = async function(req, res, next) {
-  const producer = req.body;
+  const producer = req.body;z
   const promistResult = createProducer(producer);
   promistResult.then(value => {
     if (value.result.ok === 1) {
