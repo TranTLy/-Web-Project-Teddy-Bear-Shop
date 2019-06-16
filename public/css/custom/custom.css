@@ -50,7 +50,7 @@ h6 {
   font-weight: initial;
 }
 
-.modal {
+.modal-loading {
   overflow: hidden;
   display: block;
   position: absolute;

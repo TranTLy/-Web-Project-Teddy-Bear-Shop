@@ -137,7 +137,7 @@
     var city = _row.find(".city").text();
     var total = _row.find(".total").text();
     var discount = _row.find(".discount").text();
-    var status = _row.find(".status").text();
+    var status = _row.find(".status_select").attr("data-old")
     var price = _row.find(".price").text();
     var badge = $(this).find(".status");
     if (status === "Đã giao") {

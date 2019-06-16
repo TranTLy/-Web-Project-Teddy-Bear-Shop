@@ -26,13 +26,13 @@
                 <td class="id" style="word-wrap: break-word; max-width: 100px;"><%=item._id%></td>
                 <td style="display: none">
                   <% if(item.status === "Đã giao") {%>
-                  <label class="badge badge-success status"><%=item.status%></label>
+                  <label class="badge badge-success"><%=item.status%></label>
                   <% }%>
                   <% if(item.status === "Đang giao") {%>
-                  <label class="badge badge-warstatus_selectning status"><%=item.status%></label>
+                  <label class="badge badge-warstatus_selectning"><%=item.status%></label>
                   <% }%>
                   <% if(item.status === "Chưa giao") {%>
-                  <label class="badge badge-danger status"><%=item.status%></label>
+                  <label class="badge badge-danger"><%=item.status%></label>
                   <% }%>
                 </td>
                 <td class="date"><%=moment(item.date).format('HH:mm DD/MM/YYYY') %></td>
@@ -67,8 +67,6 @@
                         <option selected>Chưa giao</option>
                       </select>
                       <% }%>
-
-
                     </div>
                   </form>
                 </td>

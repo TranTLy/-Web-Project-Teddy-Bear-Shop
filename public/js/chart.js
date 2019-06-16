@@ -1,516 +1,725 @@
 $(function() {
-    /* ChartJS
-     * -------
-     * Data and config for chartjs
-     */
-    'use strict';
-    var dataDay = {
-        labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13","14","15",
-                 "16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3,1],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
-    var dataWeek = {
-        labels: ["W1", "W2", "W3", "W4"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [40, 75, 30, 50],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
-    var dataMonth = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [10, 19, 3, 5, 2, 3,10, 19, 3, 5, 2, 3],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
+  /* ChartJS
+   * -------
+   * Data and config for chartjs
+   */
+  "use strict";
+  var dataDay = {
+    labels: [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31"
+    ],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [
+          10,
+          19,
+          3,
+          5,
+          2,
+          3,
+          10,
+          19,
+          3,
+          5,
+          2,
+          3,
+          10,
+          19,
+          3,
+          5,
+          2,
+          3,
+          10,
+          19,
+          3,
+          5,
+          2,
+          3,
+          10,
+          19,
+          3,
+          5,
+          2,
+          3,
+          1
+        ],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
+  var dataWeek = {
+    labels: ["W1", "W2", "W3", "W4"],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [40, 75, 30, 50],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
+  var dataMonth = {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [10, 19, 3, 5, 2, 3, 10, 19, 3, 5, 2, 3],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
 
-    var dataQuarter = {
-        labels: ["Q1", "Q2", "Q3", "Q4"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [1200, 1822, 1564, 1478],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
-    var dataYear = {
-        labels: ["2010", "2011", "2012", "2013", "2014","2015", "2016", "2017", "2018", "2019"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [18200, 18722, 15604, 14780,18200, 18722, 15604, 14780, 15604, 14780],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
+  var dataQuarter = {
+    labels: ["Q1", "Q2", "Q3", "Q4"],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [1200, 1822, 1564, 1478],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
+  var dataYear = {
+    labels: [
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019"
+    ],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [
+          18200,
+          18722,
+          15604,
+          14780,
+          18200,
+          18722,
+          15604,
+          14780,
+          15604,
+          14780
+        ],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
 
-    var dataTop = {
-        labels: ["SP1", "SP2", "SP3", "SP4", "SP5","SP6", "SP7", "SP8", "SP9", "SP10"],
-        datasets: [{
-            label: 'Số tiền',
-            data: [1820, 1760, 1720, 1678,1608, 1580, 1560, 1508, 1460, 1428],
-            backgroundColor: 'rgba(1, 87, 155, 0.85)'
-        }]
-    };
+  var dataTop = {
+    labels: [
+      "SP1",
+      "SP2",
+      "SP3",
+      "SP4",
+      "SP5",
+      "SP6",
+      "SP7",
+      "SP8",
+      "SP9",
+      "SP10"
+    ],
+    datasets: [
+      {
+        label: "Số tiền",
+        data: [1820, 1760, 1720, 1678, 1608, 1580, 1560, 1508, 1460, 1428],
+        backgroundColor: "rgba(1, 87, 155, 0.85)"
+      }
+    ]
+  };
 
-    var dataTypeProduct = {
-        labels: ["Loại 1", "Loại 2", "Loại 3", "Loại 4"],
-        datasets: [{
-            label: 'Số sản phẩm',
-            data: [1820, 1945, 1214, 1678],
-            backgroundColor: [
-                'rgba(1, 87, 155, 0.85)',
-                'rgba(255, 23, 68, 0.85)',
-                'rgba(0, 172, 193, 0.85)',
-                'rgba(255, 152, 0, 0.85)'
-            ]
-        }]
-    };
-    // var dataTop = {
-    //     labels: ["SP1", "SP2", "SP3"],
-    //     datasets: [{
-    //         label: 'Loại 1',
-    //         data: [18200, null, 15604],
-    //         backgroundColor: 'rgba(1, 87, 155, 0.85)'
-            
-    //     },
-    //     {
-    //         label: 'Loại 2',
-    //         data: [null, 18722, null],
-    //         backgroundColor: 'rgba(173, 20, 87, 0.85)'
-            
-    //     }]
-    // };
-    var multiLineData = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-                label: 'Dataset 1',
-                data: [12, 19, 3, 5, 2, 3],
-                borderColor: [
-                    '#587ce4'
-                ],
-                borderWidth: 2,
-                fill: false
-            },
-            {
-                label: 'Dataset 2',
-                data: [5, 23, 7, 12, 42, 23],
-                borderColor: [
-                    '#ede190'
-                ],
-                borderWidth: 2,
-                fill: false
-            },
-            {
-                label: 'Dataset 3',
-                data: [15, 10, 21, 32, 12, 33],
-                borderColor: [
-                    '#f44252'
-                ],
-                borderWidth: 2,
-                fill: false
-            }
+  // var dataTop = {
+  //     labels: ["SP1", "SP2", "SP3"],
+  //     datasets: [{
+  //         label: 'Loại 1',
+  //         data: [18200, null, 15604],
+  //         backgroundColor: 'rgba(1, 87, 155, 0.85)'
+
+  //     },
+  //     {
+  //         label: 'Loại 2',
+  //         data: [null, 18722, null],
+  //         backgroundColor: 'rgba(173, 20, 87, 0.85)'
+
+  //     }]
+  // };
+  var multiLineData = {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: ["#587ce4"],
+        borderWidth: 2,
+        fill: false
+      },
+      {
+        label: "Dataset 2",
+        data: [5, 23, 7, 12, 42, 23],
+        borderColor: ["#ede190"],
+        borderWidth: 2,
+        fill: false
+      },
+      {
+        label: "Dataset 3",
+        data: [15, 10, 21, 32, 12, 33],
+        borderColor: ["#f44252"],
+        borderWidth: 2,
+        fill: false
+      }
+    ]
+  };
+  var options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ]
+    },
+    legend: {
+      display: false
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+  };
+  var optionsTop = {
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ]
+    },
+    title: {
+      display: true,
+      text: name
+    },
+    tooltips: {
+      mode: "index",
+      intersect: false
+    },
+    hover: {
+      mode: "nearest",
+      intersect: true
+    },
+    title: {
+      display: true,
+      text: "Top 10 sản phẩm năm 2012"
+    }
+  };
+  var optionsTypeProduct = {
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ]
+    },
+    title: {
+      display: true,
+      text: name
+    },
+    tooltips: {
+      mode: "index",
+      intersect: false
+    },
+    hover: {
+      mode: "nearest",
+      intersect: true
+    },
+    title: {
+      display: true,
+      text: "Tổng sản phẩm: 6657"
+    }
+  };
+  var doughnutPieData = {
+    datasets: [
+      {
+        data: [30, 40, 30],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+          "rgba(255, 159, 64, 0.5)"
+        ],
+        borderColor: [
+          "rgba(255,99,132,1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)"
         ]
-    };
-    var options = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-        legend: {
+      }
+    ],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: ["Pink", "Blue", "Yellow"]
+  };
+  var doughnutPieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+  var areaData = {
+    labels: ["2013", "2014", "2015", "2016", "2017"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)"
+        ],
+        borderColor: [
+          "rgba(255,99,132,1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)"
+        ],
+        borderWidth: 1,
+        fill: true // 3: no fill
+      }
+    ]
+  };
+
+  var areaOptions = {
+    plugins: {
+      filler: {
+        propagate: true
+      }
+    }
+  };
+
+  var multiAreaData = {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    datasets: [
+      {
+        label: "Facebook",
+        data: [8, 11, 13, 15, 12, 13, 16, 15, 13, 19, 11, 14],
+        borderColor: ["rgba(255, 99, 132, 0.5)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.5)"],
+        borderWidth: 1,
+        fill: true
+      },
+      {
+        label: "Twitter",
+        data: [7, 17, 12, 16, 14, 18, 16, 12, 15, 11, 13, 9],
+        borderColor: ["rgba(54, 162, 235, 0.5)"],
+        backgroundColor: ["rgba(54, 162, 235, 0.5)"],
+        borderWidth: 1,
+        fill: true
+      },
+      {
+        label: "Linkedin",
+        data: [6, 14, 16, 20, 12, 18, 15, 12, 17, 19, 15, 11],
+        borderColor: ["rgba(255, 206, 86, 0.5)"],
+        backgroundColor: ["rgba(255, 206, 86, 0.5)"],
+        borderWidth: 1,
+        fill: true
+      }
+    ]
+  };
+
+  var multiAreaOptions = {
+    plugins: {
+      filler: {
+        propagate: true
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
             display: false
-        },
-        elements: {
-            point: {
-                radius: 0
-            }
+          }
         }
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false
+          }
+        }
+      ]
+    }
+  };
 
-    };
-    var optionsTop = {
+  var scatterChartData = {
+    datasets: [
+      {
+        label: "First Dataset",
+        data: [
+          {
+            x: -10,
+            y: 0
+          },
+          {
+            x: 0,
+            y: 3
+          },
+          {
+            x: -25,
+            y: 5
+          },
+          {
+            x: 40,
+            y: 5
+          }
+        ],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255,99,132,1)"],
+        borderWidth: 1
+      },
+      {
+        label: "Second Dataset",
+        data: [
+          {
+            x: 10,
+            y: 5
+          },
+          {
+            x: 20,
+            y: -30
+          },
+          {
+            x: -25,
+            y: 15
+          },
+          {
+            x: -10,
+            y: 5
+          }
+        ],
+        backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+        borderColor: ["rgba(54, 162, 235, 1)"],
+        borderWidth: 1
+      }
+    ]
+  };
+
+  var scatterChartOptions = {
+    scales: {
+      xAxes: [
+        {
+          type: "linear",
+          position: "bottom"
+        }
+      ]
+    }
+  };
+  // Get context with jQuery - using jQuery's .get() method.
+  if ($("#barChartDay").length) {
+    var barChartCanvas = $("#barChartDay")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "bar",
+      data: dataDay,
+      options: options
+    });
+  }
+
+  if ($("#barChartWeek").length) {
+    var barChartCanvas = $("#barChartWeek")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "bar",
+      data: dataWeek,
+      options: options
+    });
+  }
+  if ($("#barChartMonth").length) {
+    var barChartCanvas = $("#barChartMonth")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "bar",
+      data: dataMonth,
+      options: options
+    });
+  }
+
+  if ($("#barChartQuarter").length) {
+    var barChartCanvas = $("#barChartQuarter")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "bar",
+      data: dataQuarter,
+      options: options
+    });
+  }
+
+  if ($("#barChartYear").length) {
+    var barChartCanvas = $("#barChartYear")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "bar",
+      data: dataYear,
+      options: options
+    });
+  }
+  if ($("#barChartTop").length) {
+    var barChartCanvas = $("#barChartTop")
+      .get(0)
+      .getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChart = new Chart(barChartCanvas, {
+      type: "horizontalBar",
+      data: dataTop,
+      options: optionsTop
+    });
+  }
+  if ($("#barChartTypeProduct").length) {
+    var barChartCanvas = $("#barChartTypeProduct")
+      .get(0)
+      .getContext("2d");
+
+    $.ajax({
+      url: "/products/getStatistic",
+      type: "get",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(result => {
+      $("#loadingStatistic").hide();
+      console.log("statistic", result);
+
+      let dataTypeProduct = {
+        labels: result.labels,
+        datasets: [
+          {
+            label: "Số sản phẩm",
+            data: result.counts,
+            backgroundColor: [
+              "rgba(1, 87, 155, 0.85)",
+              "rgba(255, 23, 68, 0.85)",
+              "rgba(0, 172, 193, 0.85)",
+              "rgba(255, 152, 0, 0.85)"
+            ]
+          }
+        ]
+      };
+
+      let optionsProduct = {
         responsive: true,
         scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+          xAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
         },
         title: {
-            display: true,
-            text: name
+          display: true,
+          text: name
         },
         tooltips: {
-            mode: 'index',
-            intersect: false,
+          mode: "index",
+          intersect: false
         },
         hover: {
-            mode: 'nearest',
-            intersect: true,
+          mode: "nearest",
+          intersect: true
         },
         title: {
-            display: true,
-            text: 'Top 10 sản phẩm năm 2012'
-          }
-    }
-    var optionsTypeProduct = {
-        responsive: true,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-        title: {
-            display: true,
-            text: name
-        },
-        tooltips: {
-            mode: 'index',
-            intersect: false,
-        },
-        hover: {
-            mode: 'nearest',
-            intersect: true,
-        },
-        title: {
-            display: true,
-            text: 'Tổng sản phẩm: 6657'
-          }
-    }
-    var doughnutPieData = {
-        datasets: [{
-            data: [30, 40, 30],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 206, 86, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(153, 102, 255, 0.5)',
-                'rgba(255, 159, 64, 0.5)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-        }],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Pink',
-            'Blue',
-            'Yellow',
-        ]
-    };
-    var doughnutPieOptions = {
-        responsive: true,
-        animation: {
-            animateScale: true,
-            animateRotate: true
+          display: true,
+          text: "Tổng sản phẩm: " + result.total
         }
-    };
-    var areaData = {
-        labels: ["2013", "2014", "2015", "2016", "2017"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-            fill: true, // 3: no fill
-        }]
-    };
+      };
 
-    var areaOptions = {
-        plugins: {
-            filler: {
-                propagate: true
-            }
-        }
-    }
+      var barChart = new Chart(barChartCanvas, {
+        type: "horizontalBar",
+        data: dataTypeProduct,
+        options: optionsProduct
+      });
+    });
+    // This will get the first returned node in the jQuery collection.
+  }
 
-    var multiAreaData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-                label: 'Facebook',
-                data: [8, 11, 13, 15, 12, 13, 16, 15, 13, 19, 11, 14],
-                borderColor: ['rgba(255, 99, 132, 0.5)'],
-                backgroundColor: ['rgba(255, 99, 132, 0.5)'],
-                borderWidth: 1,
-                fill: true
-            },
-            {
-                label: 'Twitter',
-                data: [7, 17, 12, 16, 14, 18, 16, 12, 15, 11, 13, 9],
-                borderColor: ['rgba(54, 162, 235, 0.5)'],
-                backgroundColor: ['rgba(54, 162, 235, 0.5)'],
-                borderWidth: 1,
-                fill: true
-            },
-            {
-                label: 'Linkedin',
-                data: [6, 14, 16, 20, 12, 18, 15, 12, 17, 19, 15, 11],
-                borderColor: ['rgba(255, 206, 86, 0.5)'],
-                backgroundColor: ['rgba(255, 206, 86, 0.5)'],
-                borderWidth: 1,
-                fill: true
-            }
-        ]
-    };
+  if ($("#lineChart").length) {
+    var lineChartCanvas = $("#lineChart")
+      .get(0)
+      .getContext("2d");
+    var lineChart = new Chart(lineChartCanvas, {
+      type: "line",
+      data: data,
+      options: options
+    });
+  }
 
-    var multiAreaOptions = {
-        plugins: {
-            filler: {
-                propagate: true
-            }
-        },
-        elements: {
-            point: {
-                radius: 0
-            }
-        },
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    display: false
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    display: false
-                }
-            }]
-        }
-    }
+  if ($("#linechart-multi").length) {
+    var multiLineCanvas = $("#linechart-multi")
+      .get(0)
+      .getContext("2d");
+    var lineChart = new Chart(multiLineCanvas, {
+      type: "line",
+      data: multiLineData,
+      options: options
+    });
+  }
 
-    var scatterChartData = {
-        datasets: [{
-                label: 'First Dataset',
-                data: [{
-                        x: -10,
-                        y: 0
-                    },
-                    {
-                        x: 0,
-                        y: 3
-                    },
-                    {
-                        x: -25,
-                        y: 5
-                    },
-                    {
-                        x: 40,
-                        y: 5
-                    }
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)'
-                ],
-                borderWidth: 1
-            },
-            {
-                label: 'Second Dataset',
-                data: [{
-                        x: 10,
-                        y: 5
-                    },
-                    {
-                        x: 20,
-                        y: -30
-                    },
-                    {
-                        x: -25,
-                        y: 15
-                    },
-                    {
-                        x: -10,
-                        y: 5
-                    }
-                ],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 1
-            }
-        ]
-    }
+  if ($("#areachart-multi").length) {
+    var multiAreaCanvas = $("#areachart-multi")
+      .get(0)
+      .getContext("2d");
+    var multiAreaChart = new Chart(multiAreaCanvas, {
+      type: "line",
+      data: multiAreaData,
+      options: multiAreaOptions
+    });
+  }
 
-    var scatterChartOptions = {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
-            }]
-        }
-    }
-    // Get context with jQuery - using jQuery's .get() method.
-    if ($("#barChartDay").length) {
-        var barChartCanvas = $("#barChartDay").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: dataDay,
-            options: options
-        });
-    }
+  if ($("#doughnutChart").length) {
+    var doughnutChartCanvas = $("#doughnutChart")
+      .get(0)
+      .getContext("2d");
+    var doughnutChart = new Chart(doughnutChartCanvas, {
+      type: "doughnut",
+      data: doughnutPieData,
+      options: doughnutPieOptions
+    });
+  }
 
-    if ($("#barChartWeek").length) {
-        var barChartCanvas = $("#barChartWeek").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: dataWeek,
-            options: options
-        });
-    }
-    if ($("#barChartMonth").length) {
-        var barChartCanvas = $("#barChartMonth").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: dataMonth,
-            options: options
-        });
-    }
+  if ($("#pieChart").length) {
+    var pieChartCanvas = $("#pieChart")
+      .get(0)
+      .getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: "pie",
+      data: doughnutPieData,
+      options: doughnutPieOptions
+    });
+  }
 
-    if ($("#barChartQuarter").length) {
-        var barChartCanvas = $("#barChartQuarter").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: dataQuarter,
-            options: options
-        });
-    }
+  if ($("#areaChart").length) {
+    var areaChartCanvas = $("#areaChart")
+      .get(0)
+      .getContext("2d");
+    var areaChart = new Chart(areaChartCanvas, {
+      type: "line",
+      data: areaData,
+      options: areaOptions
+    });
+  }
 
-    if ($("#barChartYear").length) {
-        var barChartCanvas = $("#barChartYear").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'bar',
-            data: dataYear,
-            options: options
-        });
-    }
-    if ($("#barChartTop").length) {
-        var barChartCanvas = $("#barChartTop").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'horizontalBar',
-            data: dataTop,
-            options: optionsTop
-        });
-    }
-    if ($("#barChartTypeProduct").length) {
-        var barChartCanvas = $("#barChartTypeProduct").get(0).getContext("2d");
-        // This will get the first returned node in the jQuery collection.
-        var barChart = new Chart(barChartCanvas, {
-            type: 'horizontalBar',
-            data: dataTypeProduct,
-            options: optionsTypeProduct
-        });
-    }
-    
-    if ($("#lineChart").length) {
-        var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-        var lineChart = new Chart(lineChartCanvas, {
-            type: 'line',
-            data: data,
-            options: options
-        });
-    }
+  if ($("#scatterChart").length) {
+    var scatterChartCanvas = $("#scatterChart")
+      .get(0)
+      .getContext("2d");
+    var scatterChart = new Chart(scatterChartCanvas, {
+      type: "scatter",
+      data: scatterChartData,
+      options: scatterChartOptions
+    });
+  }
 
-    if ($("#linechart-multi").length) {
-        var multiLineCanvas = $("#linechart-multi").get(0).getContext("2d");
-        var lineChart = new Chart(multiLineCanvas, {
-            type: 'line',
-            data: multiLineData,
-            options: options
-        });
-    }
-
-    if ($("#areachart-multi").length) {
-        var multiAreaCanvas = $("#areachart-multi").get(0).getContext("2d");
-        var multiAreaChart = new Chart(multiAreaCanvas, {
-            type: 'line',
-            data: multiAreaData,
-            options: multiAreaOptions
-        });
-    }
-
-    if ($("#doughnutChart").length) {
-        var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-        var doughnutChart = new Chart(doughnutChartCanvas, {
-            type: 'doughnut',
-            data: doughnutPieData,
-            options: doughnutPieOptions
-        });
-    }
-
-    if ($("#pieChart").length) {
-        var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-        var pieChart = new Chart(pieChartCanvas, {
-            type: 'pie',
-            data: doughnutPieData,
-            options: doughnutPieOptions
-        });
-    }
-
-    if ($("#areaChart").length) {
-        var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-        var areaChart = new Chart(areaChartCanvas, {
-            type: 'line',
-            data: areaData,
-            options: areaOptions
-        });
-    }
-
-    if ($("#scatterChart").length) {
-        var scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
-        var scatterChart = new Chart(scatterChartCanvas, {
-            type: 'scatter',
-            data: scatterChartData,
-            options: scatterChartOptions
-        });
-    }
-
-    if ($("#browserTrafficChart").length) {
-        var doughnutChartCanvas = $("#browserTrafficChart").get(0).getContext("2d");
-        var doughnutChart = new Chart(doughnutChartCanvas, {
-            type: 'doughnut',
-            data: browserTrafficData,
-            options: doughnutPieOptions
-        });
-    }
+  if ($("#browserTrafficChart").length) {
+    var doughnutChartCanvas = $("#browserTrafficChart")
+      .get(0)
+      .getContext("2d");
+    var doughnutChart = new Chart(doughnutChartCanvas, {
+      type: "doughnut",
+      data: browserTrafficData,
+      options: doughnutPieOptions
+    });
+  }
 });

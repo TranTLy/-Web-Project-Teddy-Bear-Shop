@@ -2,23 +2,25 @@ const {
   createProduct,
   getProducts,
   getTypes,
+  getStatistic,
   insertProduct,
   updateProduct,
   deleteProduct
 } = require("../models/product.model");
+
 const { getOrigins } = require("../models/origin.model");
 const { getProducers } = require("../models/producer.model");
 const ListProductInBillSchema = require("../models/listProductInBill");
 
 var ObjectId = require("mongodb").ObjectID;
 exports.index = async function(req, res, next) {
-  if (req.isAuthenticated()) {
-    console.log("Render","Đã render");
+  // if (req.isAuthenticated()) {
+    console.log("Render", "Đã render");
     res.render("pages/products/index", {
-      title: "Quản lý sản phẩm",
+      title: "Quản lý sản phẩm"
     });
-  }
-  return res.redirect("/");
+  // } 
+  // return res.redirect("/");
 };
 
 exports.getTypes = async function(req, res, next) {
@@ -113,4 +115,39 @@ exports.delete = async function(req, res, next) {
       msg: "Không thể xóa sản phẩm vì có tham chiếu tới hóa đơn!"
     });
   }
+};
+
+exports.getStatistic = async function(req, res, next) {
+  const cursor = await getStatistic();
+  const dbTypes = await getTypes();
+  const resultFunc = cursor.toArray();
+  console.log("dbTypes", dbTypes);
+  resultFunc.then(result => {
+    console.log("onfile", result);
+    let labels = [];
+    for(let i = 0; i < result.length;i++) {
+      for(let j = 0; j < dbTypes.length;j++) {
+        console.log("onfile", result[i]._id + " : " + dbTypes[j]._id );
+        if(result[i]._id.toString() === dbTypes[j]._id.toString()) {
+          console.log("onfile11111", dbTypes[i].name );
+          labels.push(dbTypes[j].name);
+          break;
+        }
+      }
+    }
+    
+    let counts = result.map(value => value.count) 
+    let total = 0
+    result.forEach((product) => {
+      total += product.count
+    }) 
+
+    res.send({ isSuccess: true, msg: "Thành công!" ,labels : labels,counts: counts,total : total});
+  },err => {
+    console.log("onreject", err);
+    res.send({ isSuccess: false, msg: "Thất bại!" });
+  }).catch(onrejected => {
+    console.log("onreject", onrejected);
+    res.send({ isSuccess: false, msg: "Thất bại!" });
+  })
 };

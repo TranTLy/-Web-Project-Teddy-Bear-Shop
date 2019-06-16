@@ -20,6 +20,19 @@ const getProducts = async function(filter) {
   return await collection.find(filter).toArray();
 };
 
+const getStatistic = async function() {
+  const connect = await client.connect();
+  const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
+  // connect.close();
+  let query = [
+    { $group : {
+      _id : "$type", count: {$sum:1}}
+    }
+  ]
+  return await collection.aggregate(query);
+};
+
+
 const getTypes = async function() {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_TYPE);
@@ -115,3 +128,4 @@ exports.deleteProduct = deleteProduct;
 exports.isExistTypeInProducts = isExistTypeInProducts;
 exports.isExistOriginInProducts = isExistOriginInProducts;
 exports.isExistProducerInProducts = isExistProducerInProducts;
+exports.getStatistic = getStatistic;
