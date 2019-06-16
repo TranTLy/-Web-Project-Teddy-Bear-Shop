@@ -77,7 +77,6 @@
                         id="repassword"
                         placeholder="Nhập lại mật khẩu"
                         required
-                        disabled
                         onkeyup="checkrepassword(this.value)"
                       />
                       <div class="valid-repassword invalid-feedback">
@@ -138,7 +137,6 @@
                       document.getElementsByClassName(
                         "valid-newpassword-number"
                       )[0].style.display = "none";
-                      document.getElementById("repassword").disabled = false;
                     }
                   }
                   function checkrepassword(repass) {

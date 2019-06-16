@@ -50,7 +50,6 @@
                       placeholder="Email"
                       required
                       onkeyup="checkEmail(this.value)"
-                      disabled
                     />
                     <div class="valid-email invalid-feedback">
                       Email đã tồn tại, bạn vui lòng nhập email khác!!.
@@ -76,7 +75,6 @@
                       id="password"
                       placeholder="Mật khẩu"
                       required
-                      disabled
                       onkeyup="checkpassword(this.value)" onblur="checkpassword(this.value)"
                     />
                     <div class="valid-password-8 invalid-feedback">
@@ -109,7 +107,6 @@
                       id="repassword"
                       placeholder="Nhập lại mật khẩu"
                       required
-                      disabled
                       onkeyup="checkrepassword(this.value)"
                     />
                     <div class="valid-repassword invalid-feedback">
@@ -135,7 +132,6 @@
                   document.getElementsByClassName("valid-username")[0].style.display = "block";
                 }else{
                   document.getElementsByClassName("valid-username")[0].style.display = "none";
-                  document.getElementById("email").disabled = false;
                 }
               }
               function checkEmail(email) {
@@ -154,7 +150,6 @@
             } else {
               document.getElementsByClassName("valid-email")[0].style.display =
                 "none";
-              document.getElementById("password").disabled = false;
             }
           })
           .fail(function(err) {});

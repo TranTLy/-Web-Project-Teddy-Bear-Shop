@@ -59,8 +59,7 @@ h6 {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(116, 114, 114, 0.8) url("http://i.stack.imgur.com/FhHRx.gif")
-    50% 50% no-repeat;
+  background: #ddd url("http://i.stack.imgur.com/FhHRx.gif") 50% 50% no-repeat;
 }
 
 .loading .modal {

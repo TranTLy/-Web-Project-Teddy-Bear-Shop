@@ -86,25 +86,26 @@ exports.register = function(req, res) {
     } else {
       var newUser = new User(req.body);
       newUser.password = bcrypt.hashSync(req.body.password, 10);
-      newUser.save(function(err, user) {
-        if (err) {
-          res.render("pages/register/index", {
-            title: "Đăng ký thất bại",
-            isSuccess: false,
-            message: "Có lỗi xảy ra trong quá trình đăng ký",
-            layout: false
+      const token = jwt.sign({ newUser }, "secret", { expiresIn: 1440 });
+      const url = "https://" + req.headers.host + "/infor?token=" + token;
+      var mainOptions = {
+        from: "tranphunguyen111@gmail.com",
+        to: newUser.email,
+        subject: "Xác thực tài khoản",
+        html:
+          "<div><h3>Xin chào " +
+          newUser.name +
+          "</h3><p> Nhấn vào link " +
+          url +
+          " để xác thực tài khoản</p>"
+      };
+      transporter.sendMail(mainOptions, function(err) {
+        if (!err) {
+          return res.json({
+            message: "Mời bạn kiểm tra mail để xác thực tài khoản!!"
           });
         } else {
-          // User.hash_password = undefined;
-          req.login(user, err => {
-            if (err) {
-              res.send(err);
-            }
-            const token = jwt.sign({ user }, "secret", { expiresIn: 1440 });
-            res.cookie("token", token);
-            res.cookie("user", user);
-            return res.redirect("/dashboard");
-          });
+          return done(err);
         }
       });
     }
@@ -205,16 +206,24 @@ exports.reset_password = function(req, res, next) {
             message: err
           });
         } else {
-          res.render("pages/infor/index", {
-            message:
-              "Thay đổi mật khẩu thành công, mời bạn đăng nhập để tiếp tục",
-            layout: false
+          req.login(user, err => {
+            if (err) {
+              res.send(err);
+            }
+            const token = jwt.sign({ user }, "secret");
+            res.cookie("token", token);
+            res.cookie("user", user);
+            res.render("pages/infor/index", {
+              message: "Thay đổi mật khẩu thành công, mời bạn OK để tiếp tục",
+              layout: false
+            });
           });
         }
       });
     } else {
       return res.status(400).send({
-        message: "Password reset token is invalid or has expired."
+        message:
+          "Mã thông báo đặt lại mật khẩu không hợp lệ hoặc đã hết hạn, mời bạn thử lại!."
       });
     }
   });
@@ -228,10 +237,7 @@ exports.logout = function(req, res) {
 };
 
 exports.isLoggedIn = function(req, res, next) {
-  // if (req.isAuthenticated()) {
-  //   return next();
-  // }
-  if (true) {
+  if (req.isAuthenticated()) {
     return next();
   }
   res.redirect("/");

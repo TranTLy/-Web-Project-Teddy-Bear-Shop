@@ -33,7 +33,7 @@
                         type="password"
                         class="form-control form-control-lg border-left-0"
                         id="password"
-                        placeholder="Password"
+                        placeholder="Mật khẩu"
                         required
                         onkeyup="checkInputPassword(this.value)"
                       />
@@ -59,9 +59,8 @@
                         class="form-control form-control-lg border-left-0"
                         name="newpassword"
                         id="newpassword"
-                        placeholder="newpassword"
+                        placeholder="Nhập mật khẩu mới"
                         required
-                        disabled
                         onkeyup="checknewpassword(this.value)"
                       />
                       <div class="valid-newpassword-8 invalid-feedback">
@@ -92,9 +91,8 @@
                         class="form-control form-control-lg border-left-0"
                         name="repassword"
                         id="repassword"
-                        placeholder="RePassword"
+                        placeholder="Nhập lại mật khẩu"
                         required
-                        disabled
                         onkeyup="checkrepassword(this.value)"
                       />
                       <div class="valid-repassword invalid-feedback">
@@ -133,9 +131,6 @@
                           document.getElementsByClassName(
                             "valid-password"
                           )[0].style.display = "none";
-                          document.getElementById(
-                            "newpassword"
-                          ).disabled = false;
                         }
                       })
                       .fail(function(err) {});
@@ -182,7 +177,6 @@
                       document.getElementsByClassName(
                         "valid-newpassword-number"
                       )[0].style.display = "none";
-                      document.getElementById("repassword").disabled = false;
                     }
                   }
                   function checkrepassword(repass) {
@@ -198,7 +192,6 @@
                       document.getElementById("btn-sign-up").disabled = false;
                     }
                   }
-                
                 </script>
               </div>
             </div>

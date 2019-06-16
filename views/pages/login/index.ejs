@@ -63,7 +63,6 @@
                         placeholder="Mật khẩu"
                         required
                         onkeyup="checkInputPassword(this.value)"
-                        disabled
                       />
                       <div class="valid-password invalid-feedback">
                         Bạn nhập mật khẩu chưa đúng!!.
@@ -123,7 +122,6 @@
             } else {
               document.getElementsByClassName("valid-email")[0].style.display =
                 "none";
-              document.getElementById("password").disabled = false;
             }
           })
           .fail(function(err) {});

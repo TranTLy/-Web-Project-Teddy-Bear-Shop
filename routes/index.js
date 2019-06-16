@@ -34,13 +34,16 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 router.get("/detail", detail_controller.get);
 router.get("/detail_customer", detail_customer_controller.get);
 
-
 router.get("/admin", admin_controller.get);
 
 router.get("/change-password", admin_controller.change_password_template);
 router.post("/change-password", admin_controller.change_password);
 
-router.get("/infor", admin_controller.getInfoSuccess);
+router.get(
+  "/infor",
+  admin_controller.isAuthenUser,
+  admin_controller.getInfoSuccess
+);
 
 router.get(
   "/dashboard",
