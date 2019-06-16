@@ -8,12 +8,48 @@
               <div class="card-header card-header-primary">
                 <h4 class="card-title font-weight-light">Thông tin chi tiết</h4>
               </div>
-              <div class="card-body">
-                <form>
-                  <div class="row">
-                    <div class="form-group ml-3">
-                      <label class="bmd-label-floating">Tên đăng nhập</label>
-                      <p style="font-weight:500;"><%=user.name%></p>
+              <div class="card-body col-md-12">
+                <form class="w-100"">
+                  <div class="row w-100">
+                    <div class="form-group ml-3 w-100">
+                      <label class="bmd-label-floating d-flex"
+                        >Tên đăng nhập</label
+                      >
+                      <div class="d-flex edit-detail-admin w-100">
+                        <input
+                          class="user-name-admin"
+                          style="font-weight:500;"
+                          value="<%=user.name%>"
+                          id="username"
+                          width="w-75"
+                        />
+                        <button
+                          type="button"
+                          class="btn btn-primary mr-3"
+                          onclick="editClick()"
+                          id="edit"
+                        >
+                          Sửa
+                        </button>
+                        <div style="display: none" class="execute-edit">
+                          <button
+                            type="button"
+                            class="btn btn-primary mr-3"
+                            id="done"
+                            onclick="doneClick()"
+                          >
+                            Xong
+                          </button>
+                          <button
+                            type="reset"
+                            class="btn btn-primary mr-3"
+                            id="cancel"
+                            onclick="cancelClick()"
+                          >
+                            Hủy
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -30,12 +66,7 @@
                   </div>
                   <div class="row mt-5">
                     <div class="col-md-12 d-flex justify-content-center">
-                      <a href="/users">
-                        <button type="button" class="btn btn-primary mr-3">
-                          Sửa
-                        </button>
-                      </a>
-                      <a href="/reset-password">
+                      <a href="/change-password?_id=<%= user._id %>">
                         <button type="button" class="btn btn-primary ml-3">
                           Thay đổi mật khẩu
                         </button>
@@ -52,3 +83,36 @@
     </div>
   </div>
 </div>
+<script>
+  function editClick() {
+  
+    username.focus();
+    document.getElementById("edit").style.display = "none";
+    document.getElementsByClassName("execute-edit")[0].style.display = "block";
+  }
+  function cancelClick() {
+    document.getElementById("edit").style.display = "block";
+    document.getElementsByClassName("execute-edit")[0].style.display = "none";
+  }
+  function doneClick() {
+    const username = document.getElementById("username").value;
+          $.ajax({
+             url: "/users/edit-username",
+              type: "post",
+             data: {name: username},
+              dataType: "json"
+            })
+             .done(str => {
+                      alert(str.msg);
+                      document.getElementById("edit").style.display = "block";
+    document.getElementsByClassName("execute-edit")[0].style.display = "none";
+    window.location.reload();
+                    })
+                    .fail(() => {
+                      alert("Cập nhật thất bại");
+                      document.getElementById("edit").style.display = "none";
+    document.getElementsByClassName("execute-edit")[0].style.display = "block";
+                    })
+   
+  }
+</script>

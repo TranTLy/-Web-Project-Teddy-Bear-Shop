@@ -69,7 +69,7 @@ passport.use(
             msg: "Tên đăng nhập hoặc mật khẩu sai."
           });
         } else {
-          const match = bcrypt.compare(password, user.password);
+          const match = bcrypt.compareSync(password, user.password);
           if (match) {
             return done(null, user);
           } else {

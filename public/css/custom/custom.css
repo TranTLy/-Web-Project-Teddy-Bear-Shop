@@ -59,8 +59,7 @@ h6 {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(116, 114, 114, 0.8) url("http://i.stack.imgur.com/FhHRx.gif")
-    50% 50% no-repeat;
+  background: #ddd url("http://i.stack.imgur.com/FhHRx.gif") 50% 50% no-repeat;
 }
 
 .loading .modal {
@@ -204,4 +203,21 @@ img {
 }
 .card {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.edit-detail-admin {
+  justify-content: space-between;
+}
+.edit-detail-admin input {
+  border: transparent;
+  font-size: 0.813rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.3rem;
+  color: #1c2c42;
+}
+.edit-detail-admin input:focus {
+  width: 50%;
+  border: solid 1px #1a2763;
+  /* box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(6, 33, 185, 0.4); */
 }

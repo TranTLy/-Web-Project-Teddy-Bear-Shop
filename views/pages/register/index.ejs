@@ -5,9 +5,6 @@
   </head>
   <body>
 <div class="container-scroller">
-
-
-
   <div class="container-fluid page-body-wrapper full-page-wrapper">
     <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
       <div class="row flex-grow">
@@ -28,68 +25,98 @@
                     </span>
                   </div>
                   <input type="text" class="form-control form-control-lg border-left-0 type-text"
-                    placeholder="Tên đăng nhập" id="name" name="name" required />
-                  <div class="invalid-feedback"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Email<span>*</span></label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="mdi mdi-email-outline text-primary"></i>
-                    </span>
-                  </div>
-                  <input id="email" name="email" type="email" class="form-control form-control-lg border-left-0 "
-                    placeholder="Email" required />
-                  <div class="invalid-feedback"></div>
-                </div>
-              </div>
-              <!-- <div class="form-group">
-                <label>Giới tính</label>
-                <select
-                  class="form-control form-control-lg"
-                  id="exampleFormControlSelect2"
-                >
-                  <option>Giới tính</option>
-                  <option>Nam</option>
-                  <option>Nữ</option>
-                  <option>Khác</option>
-                </select>
-              </div> -->
-              <div class="form-group">
-                <label id="label-pass">Mật khẩu<span>*</span></label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="mdi mdi-lock-outline text-primary"></i>
-                    </span>
-                  </div>
-                  <input name="password" type="password" class="form-control form-control-lg border-left-0"
-                    id="password" placeholder="Password" required />
-                  <div class="valid-feedback">
-                    Vui lòng nhập mật khẩu lớn hơn hoặc 8 ký tự.
+                    placeholder="Tên đăng nhập" id="name" name="name" required
+                    onkeyup="checkUsername(this.value)" />
+                  <div class="valid-username invalid-feedback">
+                    Bạn vui lòng nhập tên đăng nhập!
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label id="label-repass">Nhập lại mật khẩu<span>*</span></label>
-                <div class="input-group">
-                  <div class="input-group-prepend bg-transparent">
-                    <span class="input-group-text bg-transparent border-right-0">
-                      <i class="mdi mdi-lock-outline text-primary"></i>
-                    </span>
-                  </div>
-                  <input type="password" class="form-control form-control-lg border-left-0" name="repassword"
-                    id="repassword" placeholder="RePassword" required />
-                  <div class="valid-feedback">
-                    Hai mật khẩu không trùng nhau.
+                  <label for="exampleInputEmail">Email*</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span
+                        class="input-group-text bg-transparent border-right-0"
+                      >
+                        <i class="mdi mdi-account-outline text-primary"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="email"
+                      class="form-control form-control-lg border-left-0 type-text"
+                      id="email"
+                      name="email"
+                      placeholder="Email"
+                      required
+                      onkeyup="checkEmail(this.value)"
+                    />
+                    <div class="valid-email invalid-feedback">
+                      Email đã tồn tại, bạn vui lòng nhập email khác!!.
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div class="form-group">
+                  <label id="label-repass"
+                    >Mật khẩu<span>*</span></label
+                  >
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span
+                        class="input-group-text bg-transparent border-right-0"
+                      >
+                        <i class="mdi mdi-lock-outline text-primary"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control form-control-lg border-left-0"
+                      name="password"
+                      id="password"
+                      placeholder="Mật khẩu"
+                      required
+                      onkeyup="checkpassword(this.value)" onblur="checkpassword(this.value)"
+                    />
+                    <div class="valid-password-8 invalid-feedback">
+                      Vui lòng nhập mật khẩu lớn hơn hoặc 8 ký tự.
+                    </div>
+                    <div class="valid-password-char invalid-feedback">
+                      Vui lòng nhập mật khẩu có chứa kí tự.
+                    </div>
+                    <div class="valid-password-number invalid-feedback">
+                      Vui lòng nhập mật khẩu có chứa số.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label id="label-repass"
+                    >Nhập lại mật khẩu<span>*</span></label
+                  >
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span
+                        class="input-group-text bg-transparent border-right-0"
+                      >
+                        <i class="mdi mdi-lock-outline text-primary"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control form-control-lg border-left-0"
+                      name="repassword"
+                      id="repassword"
+                      placeholder="Nhập lại mật khẩu"
+                      required
+                      onkeyup="checkrepassword(this.value)"
+                    />
+                    <div class="valid-repassword invalid-feedback">
+                      Hai mật khẩu không trùng nhau.
+                    </div>
+                  </div>
+                </div>
               <div class="mt-3">
                 <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="btn-sign-up"
-                  type="submit">
+                  type="submit" disabled>
                   Đăng ký
                 </button>
               </div>
@@ -100,45 +127,91 @@
 
             </form>
             <script>
-              (function () {
-                'use strict';
-                const checkPassword = () => {
-                  console.log("Đang kiểm tra mật khẩu!")
-                  const pass = document.getElementById("password");
-                  const repass = document.getElementById("repassword");
-                  if (pass === null || repass === null) return false;
-                  console.log("in check pass");
-                  if (pass.value.length < 8) {
-                    pass.focus();
-                    return false;
+              function checkUsername(name){
+                if(name.length <= 0){
+                  document.getElementsByClassName("valid-username")[0].style.display = "block";
+                }else{
+                  document.getElementsByClassName("valid-username")[0].style.display = "none";
+                }
+              }
+              function checkEmail(email) {
+        $.ajax({
+          url: "/users/check-email-login?email=" + email,
+          type: "get",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        })
+          .done(function(check) {
+            if (check.check) {
+              console.log("check", check.check);
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "block";
+              document.getElementById("email").focus();
+            } else {
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "none";
+            }
+          })
+          .fail(function(err) {});
+      }
+                  function checkpassword(pass) {
+                    if (pass.length < 8) {
+                      document.getElementsByClassName(
+                        "valid-password-8 "
+                      )[0].style.display = "block";
+                      document.getElementsByClassName(
+                        "valid-password-char "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-number"
+                      )[0].style.display = "none";
+                    } else if (pass.search(/[a-zA-Z]/i) < 0) {
+                      document.getElementsByClassName(
+                        "valid-password-8 "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-char "
+                      )[0].style.display = "block";
+                      document.getElementsByClassName(
+                        " valid-password-number "
+                      )[0].style.display = "none";
+                    } else if (pass.search(/[0-9]/) < 0) {
+                      document.getElementsByClassName(
+                        "valid-password-8 "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-char "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-number"
+                      )[0].style.display = "block";
+                    } else {
+                      document.getElementsByClassName(
+                        "valid-password-8 "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-char "
+                      )[0].style.display = "none";
+                      document.getElementsByClassName(
+                        "valid-password-number"
+                      )[0].style.display = "none";
+                      document.getElementById("repassword").disabled = false;
+                    }
                   }
-
-                  if (pass.value == repass.value) {
-                    return true;
-                  } else {
-                    repass.focus();
-                    return false;
+            
+                  function checkrepassword(repass) {
+                    const pass = document.getElementById("password").value;
+                    if (repass === null || repass !== pass) {
+                      document.getElementsByClassName(
+                        "valid-repassword"
+                      )[0].style.display = "block";
+                    } else {
+                      document.getElementsByClassName(
+                        "valid-repassword"
+                      )[0].style.display = "none";
+                      document.getElementById("btn-sign-up").disabled = false;
+                    }
                   }
-                };
-                window.addEventListener('load', function () {
-                  console.log("Đang kiểm tra");
-                  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                  var forms = document.getElementsByClassName('needs-validation');
-                  // Loop over them and prevent submission
-                  var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                      console.log("Đang kiểm tra nè!");
-                      if (checkPassword() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        console.log("Đang kiểm tra nè m!");
-                      }
-                      form.classList.add('was-validated');
-                    }, false);
-                  });
-                }, false);
-              })();
-
             </script>
           </div>
         </div>

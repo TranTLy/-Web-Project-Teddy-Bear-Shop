@@ -34,8 +34,17 @@ router.post("/reset-password", accountadmin_controller.reset_password);
 router.get("/detail", detail_controller.get);
 router.get("/detail_customer", detail_customer_controller.get);
 
-
 router.get("/admin", admin_controller.get);
+
+router.get("/change-password", admin_controller.change_password_template);
+router.post("/change-password", admin_controller.change_password);
+
+router.get(
+  "/infor",
+  admin_controller.isAuthenUser,
+  admin_controller.getInfoSuccess
+);
+
 router.get(
   "/dashboard",
   accountadmin_controller.isLoggedIn,
@@ -46,6 +55,10 @@ router.post("/dashboard", dashboard_controller.statistical);
 router.get("/users", users_controller.index);
 router.put("/users/:_id", users_controller.update);
 router.get("/users/getUser", users_controller.getUsers);
+router.get("/users/checkpassword", users_controller.checkpassword);
+router.get("/users/check-email-login", users_controller.checkemaillogin);
+router.get("/users/check-pass-login", users_controller.checkpasswordlogin);
+router.post("/users/edit-username", users_controller.edit_username);
 
 router.put("/customers/:_id", customers_controller.update);
 router.get("/customers/getUser", customers_controller.getUsers);
@@ -77,14 +90,5 @@ router.put("/producers/:_id", producers_controller.update);
 router.get("/bills", bills_controller.get);
 router.put("/bills/:_id", bills_controller.update);
 router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
-// router.post("/bills", bills_controller.search_sort);
-
-// router.get("/register", function(req, res) {
-//   res.render("pages/register/index", { title: "Đăng ký" });
-// });
-
-// router.get("/login", function(req, res) {
-//   res.render("pages/login/index", { title: "Đăng nhập" });
-// });
 
 module.exports = router;

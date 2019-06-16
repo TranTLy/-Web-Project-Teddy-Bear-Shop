@@ -64,7 +64,7 @@
       contentType: "application/json; charset=utf-8",
       dataType: "json"
     }).done(result => {
-      console.log("TYPES",result)
+      console.log("TYPES", result);
       types = result;
     });
 
@@ -74,7 +74,7 @@
       contentType: "application/json; charset=utf-8",
       dataType: "json"
     }).done(result => {
-      console.log("producers",result)
+      console.log("producers", result);
       producers = result;
     });
 
@@ -84,7 +84,7 @@
       contentType: "application/json; charset=utf-8",
       dataType: "json"
     }).done(result => {
-      console.log("origins",result)
+      console.log("origins", result);
       origins = result;
     });
 
@@ -97,39 +97,42 @@
       // const cache = $("#cache").data;
       // console.log("Cache", cache);
       // console.log("CAche", cache.get("types"));
-      if(types != null) {
+      if (types != null) {
         $("#type").empty();
         $("#type").append(() => {
-          let result = ""
+          let result = "";
           types.map(value => {
-            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
-          })
-          return result
-        })
+            result +=
+              '<option value="' + value._id + '">' + value.name + "</option>";
+          });
+          return result;
+        });
       }
 
-      if(producers != null) {
+      if (producers != null) {
         $("#producer").empty();
         $("#producer").append(() => {
-          let result = ""
+          let result = "";
           producers.map(value => {
-            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
-          })
-          return result
-        })
+            result +=
+              '<option value="' + value._id + '">' + value.name + "</option>";
+          });
+          return result;
+        });
       }
 
-      if(origins != null) {
+      if (origins != null) {
         $("#origin").empty();
         $("#origin").append(() => {
-          let result = ""
+          let result = "";
           origins.map(value => {
-            result += "<option value=\"" + value._id + "\">" + value.name + "</option>"
-          })
-          return result
-        })
+            result +=
+              '<option value="' + value._id + '">' + value.name + "</option>";
+          });
+          return result;
+        });
       }
-      
+
       $("#name").val(category.name);
       if (dialogType === "Sửa") {
         $("#_id").val(category._id);
@@ -143,6 +146,7 @@
       $("#origin").val(category.origin);
       $("#decription").val(category.decription);
       $("#imgs").val(category.imgs);
+
       dialog
         .dialog("option", "title", dialogType + " thông tin")
         .dialog("open");

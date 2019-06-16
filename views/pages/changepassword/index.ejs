@@ -17,9 +17,35 @@
                 <div class="brand-logo">
                   <img src="../../../../images/logo-dark.svg" alt="logo" />
                 </div>
-                <form action="/reset-password" method="POST" class="pt-1">
-                  <div class="form-group reset">
+                <form action="/change-password" method="POST" class="pt-1">
+                  <div class="form-group">
                     <label id="label-pass">Mật khẩu<span>*</span></label>
+                    <div class="input-group">
+                      <div class="input-group-prepend bg-transparent">
+                        <span
+                          class="input-group-text bg-transparent border-right-0"
+                        >
+                          <i class="mdi mdi-lock-outline text-primary"></i>
+                        </span>
+                      </div>
+                      <input
+                        name="password"
+                        type="password"
+                        class="form-control form-control-lg border-left-0"
+                        id="password"
+                        placeholder="Mật khẩu"
+                        required
+                        onkeyup="checkInputPassword(this.value)"
+                      />
+                      <div class="valid-password invalid-feedback">
+                        Bạn nhập mật khẩu chưa đúng!!.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label id="label-repass"
+                      >Nhập mật khẩu mới<span>*</span></label
+                    >
                     <div class="input-group">
                       <div class="input-group-prepend bg-transparent">
                         <span
@@ -33,7 +59,7 @@
                         class="form-control form-control-lg border-left-0"
                         name="newpassword"
                         id="newpassword"
-                        placeholder="Mật khẩu"
+                        placeholder="Nhập mật khẩu mới"
                         required
                         onkeyup="checknewpassword(this.value)"
                       />
@@ -47,18 +73,8 @@
                         Vui lòng nhập mật khẩu có chứa số.
                       </div>
                     </div>
-                    <% if(token) {%>
-                    <input
-                      name="token"
-                      type="text"
-                      class="form-control form-control-lg border-left-0"
-                      id="token"
-                      value="<%= token %>"
-                      hidden
-                    />
-                    <%} %>
                   </div>
-                  <div class="form-group reset">
+                  <div class="form-group">
                     <label id="label-repass"
                       >Nhập lại mật khẩu<span>*</span></label
                     >
@@ -87,7 +103,7 @@
                   <div class="mt-3">
                     <button
                       class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                      id="confirm"
+                      id="btn-sign-up"
                       type="submit"
                       disabled
                     >
@@ -96,6 +112,30 @@
                   </div>
                 </form>
                 <script>
+                  function checkInputPassword(pass) {
+                    $.ajax({
+                      url: "/users/checkpassword?pass=" + pass,
+                      type: "get",
+                      contentType: "application/json; charset=utf-8",
+                      dataType: "json"
+                    })
+                      .done(function(check) {
+                        console.log("tems", check);
+                        if (!check.check) {
+                          console.log("check", check.check);
+                          document.getElementsByClassName(
+                            "valid-password"
+                          )[0].style.display = "block";
+                          document.getElementById("password").focus();
+                        } else {
+                          document.getElementsByClassName(
+                            "valid-password"
+                          )[0].style.display = "none";
+                        }
+                      })
+                      .fail(function(err) {});
+                  }
+
                   function checknewpassword(pass) {
                     if (pass.length < 8) {
                       document.getElementsByClassName(
@@ -149,7 +189,7 @@
                       document.getElementsByClassName(
                         "valid-repassword"
                       )[0].style.display = "none";
-                      document.getElementById("confirm").disabled = false;
+                      document.getElementById("btn-sign-up").disabled = false;
                     }
                   }
                 </script>

@@ -37,7 +37,12 @@
                         id="email"
                         name="email"
                         placeholder="Email"
+                        required
+                        onkeyup="checkEmail(this.value)"
                       />
+                      <div class="valid-email invalid-feedback">
+                        Bạn nhập email chưa đúng!!.
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -56,7 +61,12 @@
                         id="password"
                         name="password"
                         placeholder="Mật khẩu"
+                        required
+                        onkeyup="checkInputPassword(this.value)"
                       />
+                      <div class="valid-password invalid-feedback">
+                        Bạn nhập mật khẩu chưa đúng!!.
+                      </div>
                     </div>
                   </div>
                   <div
@@ -72,22 +82,14 @@
                       <button
                         type="submit"
                         class="btn btn-primary btn-lg btn-block"
+                        id="login"
+                        disabled
                       >
                         Đăng nhập
                       </button>
                     </div>
                   </div>
-                  <div class="mb-2 d-flex">
-                    <button
-                      type="button"
-                      class="btn btn-facebook flex-grow mr-1"
-                    >
-                      <i class="mdi mdi-facebook mr-1"></i>Facebook
-                    </button>
-                    <button type="button" class="btn btn-google flex-grow ml-1">
-                      <i class="mdi mdi-google mr-1"></i>Google
-                    </button>
-                  </div>
+
                   <div class="text-center mt-4 font-weight-light">
                     Bạn không có tài khoản?
                     <a href="/register" class="text-primary">Tạo tài khoản</a>
@@ -104,8 +106,51 @@
     </div>
     <% include ../../elements/scripts %>
     <script>
-      function checkEmail() {
-        $jaxa;
+      function checkEmail(email) {
+        $.ajax({
+          url: "/users/check-email-login?email=" + email,
+          type: "get",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        })
+          .done(function(check) {
+            if (!check.check) {
+              console.log("check", check.check);
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "block";
+              document.getElementById("email").focus();
+            } else {
+              document.getElementsByClassName("valid-email")[0].style.display =
+                "none";
+            }
+          })
+          .fail(function(err) {});
+      }
+
+      function checkInputPassword(pass) {
+        const email = document.getElementById("email").value;
+        $.ajax({
+          url: "/users/check-pass-login?pass=" + pass + "&email=" + email,
+          type: "get",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        })
+          .done(function(check) {
+            console.log("tems", check);
+            if (!check.check) {
+              console.log("check", check.check);
+              document.getElementsByClassName(
+                "valid-password"
+              )[0].style.display = "block";
+              document.getElementById("password").focus();
+            } else {
+              document.getElementsByClassName(
+                "valid-password"
+              )[0].style.display = "none";
+              document.getElementById("login").disabled = false;
+            }
+          })
+          .fail(function(err) {});
       }
     </script>
   </body>
