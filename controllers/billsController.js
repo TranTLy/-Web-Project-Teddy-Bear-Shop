@@ -53,3 +53,17 @@ exports.getProductsByIdBill = async function(req, res) {
   );
   res.send(bill.products);
 };
+
+exports.update = function(req, res, next) {
+  let billUpdate = req.body;
+  console.log("billUpdate", billUpdate);
+  let id = req.params._id;
+
+  Bill.findByIdAndUpdate(id, billUpdate, function(err, model) {
+    if (err) {
+      res.send({ isSuccess: false, msg: "Cập nhật thất bại!" });
+      return;
+    }
+    res.send({ isSuccess: true, msg: "Cập nhật thành công!" });
+  });
+};

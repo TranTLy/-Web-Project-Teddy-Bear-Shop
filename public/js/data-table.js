@@ -2,13 +2,13 @@
   "use strict";
   $(function() {
     $("#order-listing").DataTable({
-      aLengthMenu: [[5, 10, 15, -1], [5, 10, 15, "Tất cả"]],
+      aLengthMenu: [[5, 10, 15], [5, 10, 15]],
       iDisplayLength: 10,
       language: {
         search: ""
       }
     });
-    
+
     $("body").removeClass(".modal-backdrop");
     function Person(name, age, position) {
       this._name = name;
@@ -60,16 +60,75 @@
     });
   });
 
+  $(".status_select").change(function() {
+    var selected = $(this).val();
+
+    const $td = $(this)
+      .closest("tr")
+      .children("td");
+    const id = $td.eq(0).text();
+    // const status = $td.eq(1).text().trim();
+    var oldval =
+      $(this).attr("data-old") !== undefined ? $(this).attr("data-old") : "";
+
+    console.log("selected", selected);
+    console.log("id", id);
+    console.log("status", oldval);
+
+    let res = confirm("Bạn chắc chắn muốn thay đổi?");
+    if (res) {
+      updateStatusBill(id, selected).then(result => {
+        if (result.isSuccess) {
+          $(this).val(selected);
+          $(this).attr("data-old", selected);
+          alert(result.msg);
+          console.log(result.msg);
+          return true;
+        }
+        alert(result.msg);
+        console.log(result.msg);
+      });
+    }
+    $(this).val(oldval);
+    return false;
+  });
+
+  async function updateStatusBill(id, selected) {
+    let resultFunc;
+
+    resultFunc = await $.ajax({
+      url: "/bills/" + id,
+      type: "put",
+      dataType: "json",
+      data: { status: selected }
+    });
+
+    return resultFunc;
+    // .done(function(result) {
+
+    // })
+    // .fail(function(err) {
+    //   $(this).val(oldval);
+    //   alert(err);
+    //   return false;
+    // });
+    // return false;
+  }
   // //Me
   $("body").removeClass(".modal-backdrop");
   $("#myModal").on("show.bs.modal", function(e) {
-    $("#myModal").find("#list-product").empty();
+    $("#myModal")
+      .find("#list-product")
+      .empty();
     $("body").removeClass(".modal-backdrop");
     // $(".modal-backdrop").remove();
     var _button = $(e.relatedTarget);
 
     // console.log(_button, _button.parents("tr"));
     var _row = _button.parents("tr");
+    // _row.onclick( () => {
+    //     alert("AAAAAAAAAAA")
+    // })
 
     var id = _row.find(".id").text();
     var date = _row.find(".date").text();
@@ -111,38 +170,49 @@
       url: "/bills/getlistproducts?_id=" + id,
       type: "get",
       contentType: "application/json; charset=utf-8",
-      dataType: "json"})
+      dataType: "json"
+    })
       .done(function(items) {
-        items.map((item) => {
+        items.map(item => {
           // <div class="col-sm-2" style="align-content:center;">
           //         <img src="../images/a1.jpg" style="width:50px;" class="img-rounded" alt="Cinque Terre" />
           //       </div>
-          $("#myModal").find("#list-product")
-          .append(()=> {
-            return "<div class=\"row\">" + 
-            "<div class=\"col-sm-2\" style=\"align-content:center;\">" +
-            "<img src=\"" + item.imgs + "\" style=\"width:50px;\" class=\"img-rounded\" alt=\"Cinque Terre\" />"+
-            "</div>"+
-            "<div class=\"col-sm-4 d-flex\">" +
-            "<h6 class=\"name-product\" style=\"align-self: center;\">" + item.name + "</h6>" +
-            "</div>"+
-            "<div class=\"col-sm-3 none-padding d-flex\">" +
-            "<h6 class=\"price-product\" style=\"align-self: center;\">" + item.price + "</h6>" +
-            "</div>"+
-            "<div class=\"col-sm-3 none-padding d-flex\">" +
-            "<h6 class=\"amount-product\" style=\"align-self: center;\">"+ item.amount +"</h6>"+
-            "</div>" +
-            "</div>" +
-            "<hr class=\"pt-0 pb-0 mt-1 mb-0\" />";
-          });
-        console.log("List",items);
+          $("#myModal")
+            .find("#list-product")
+            .append(() => {
+              return (
+                '<div class="row">' +
+                '<div class="col-sm-2" style="align-content:center;">' +
+                '<img src="' +
+                item.imgs +
+                '" style="width:50px;" class="img-rounded" alt="Cinque Terre" />' +
+                "</div>" +
+                '<div class="col-sm-4 d-flex">' +
+                '<h6 class="name-product" style="align-self: center;">' +
+                item.name +
+                "</h6>" +
+                "</div>" +
+                '<div class="col-sm-3 none-padding d-flex">' +
+                '<h6 class="price-product" style="align-self: center;">' +
+                item.price +
+                "</h6>" +
+                "</div>" +
+                '<div class="col-sm-3 none-padding d-flex">' +
+                '<h6 class="amount-product" style="align-self: center;">' +
+                item.amount +
+                "</h6>" +
+                "</div>" +
+                "</div>" +
+                '<hr class="pt-0 pb-0 mt-1 mb-0" />'
+              );
+            });
+          console.log("List", items);
         });
-        
       })
       .fail(function(err) {
         alert(err);
       });
-    
+
     $(this)
       .find(".id")
       .text(id);

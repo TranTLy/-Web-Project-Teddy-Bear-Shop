@@ -75,6 +75,7 @@ router.delete("/producers/:_id", producers_controller.delete);
 router.put("/producers/:_id", producers_controller.update);
 
 router.get("/bills", bills_controller.get);
+router.put("/bills/:_id", bills_controller.update);
 router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
 // router.post("/bills", bills_controller.search_sort);
 
