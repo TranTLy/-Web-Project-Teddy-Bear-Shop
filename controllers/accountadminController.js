@@ -57,9 +57,10 @@ exports.reset_password_template = function(req, res) {
 exports.login = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err || !user) {
-      return res.status(400).json({
-        message: "Something is not right",
-        user: user
+      return res.render("pages/login/index", {
+        title: "Đăng nhập thất bại",
+        message: "Đã xảy ra lỗi trong quá trình đăng nhập, mời bạn thử lại",
+        layout: false
       });
     }
     req.login(user, err => {
@@ -68,7 +69,7 @@ exports.login = (req, res, next) => {
       }
       const token = jwt.sign({ user }, "secret");
       res.cookie("token", token);
-      res.cookie = res.cookie("user", user);
+      res.cookie("user", user);
       return res.redirect("/dashboard");
     });
   })(req, res);

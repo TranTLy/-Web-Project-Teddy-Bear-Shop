@@ -10,11 +10,12 @@
           class="content-wrapper d-flex align-items-stretch auth auth-img-bg"
         >
           <div class="row flex-grow">
+             
             <div
-              class="col-lg-6 d-flex align-items-center justify-content-center"
+              class="col-lg-6 d-flex align-items-center justify-content-center d-flex" style="flex-direction: column;"
             >
-              <% if (message.length > 0) { %>
-              <div class="alert alert-danger"><%= message %></div>
+            <% if (message.length > 0) { %>
+              <div class="alert alert-danger" style="margin-top: 30px"><%= message %></div>
               <% } %>
               <div class="auth-form-transparent text-left p-3">
                 <div class="brand-logo">
@@ -62,7 +63,6 @@
                         name="password"
                         placeholder="Mật khẩu"
                         required
-                        onkeyup="checkInputPassword(this.value)"
                       />
                       <div class="valid-password invalid-feedback">
                         Bạn nhập mật khẩu chưa đúng!!.
@@ -83,7 +83,7 @@
                         type="submit"
                         class="btn btn-primary btn-lg btn-block"
                         id="login"
-                        disabled
+                        onclick="checkInputPassword()"
                       >
                         Đăng nhập
                       </button>
@@ -127,7 +127,8 @@
           .fail(function(err) {});
       }
 
-      function checkInputPassword(pass) {
+      function checkInputPassword() {
+        const pass = document.getElementById("password").value;
         const email = document.getElementById("email").value;
         $.ajax({
           url: "/users/check-pass-login?pass=" + pass + "&email=" + email,
@@ -147,10 +148,12 @@
               document.getElementsByClassName(
                 "valid-password"
               )[0].style.display = "none";
-              document.getElementById("login").disabled = false;
             }
           })
-          .fail(function(err) {});
+          .fail(function(err) {
+            console.log("err",err);
+            window.location.href = "/";
+          });
       }
     </script>
   </body>
