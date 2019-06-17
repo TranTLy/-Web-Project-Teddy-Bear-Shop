@@ -7,7 +7,7 @@ const Product = require("../models/product");
 var moment = require("moment");
 
 exports.index = function(req, res, next) {
-    res.render("pages/bills/index", { title: "QUản lý đặt hàng" });
+  res.render("pages/bills/index", { title: "QUản lý đặt hàng" });
 };
 
 exports.get = async function(req, res) {
@@ -323,62 +323,53 @@ exports.getStatistic = function(req, res, next) {
   }
 };
 
-exports.getTop10 = function(req, res, next) {
+exports.getTop10 = async function(req, res, next) {
   console.log("GetTop10", "top10");
-
-  Bill.aggregate(
-    [
+  try {
+    let result = await Bill.aggregate([
       {
         $unwind: "$products"
-     },
-     {
-        $replaceRoot: { newRoot: "$products"}
-     }
-     ,
+      },
       {
-        $group : {
-          _id : '$id_product',
-          total: { $sum: '$amount' },
+        $replaceRoot: { newRoot: "$products" }
+      },
+      {
+        $group: {
+          _id: "$id_product",
+          total: { $sum: "$amount" }
         }
-      }, 
-    ]
-  ).then(result => {
-    console.log("Top10",result)
-  })
+      },
+      {
+        $sort : {total : -1}
+      },
+      {
+        $limit: 10
+      }
+    ]);
   
-  // Bill.aggregate([
-  //   {
-  //     $match: {
-  //       // date: { $gte: startDay, $lt: endDay }
-  //     }
-  //   },
-  //   {
-  //     $group: {
-  //       _id: "$products.id_product",
-  //       count: { $sum: 1 }
-  //       // _id: { year: { $year: "$date" } },
-  //       // total: { $sum: "$total" }
-  //     }
-  //   }
-  // ])
-  //   .then(result => {
-  //     let list = Array(10);
-  //     list.fill(0);
-  //     let labels = Array(10);
-
-  //     console.log("Top10", result);
-
-  //     // for (let i = startYear; i < startYear + 10; i++) {
-  //     //   labels[i - startYear] = i.toString();
-  //     // }
-
-  //     // result.forEach(element => {
-  //     //   list[element._id.year - startYear] = element.total;
-  //     // });
-
-  //     // res.send({ list: list, labels: labels });
-  //   })
-  //   .catch(err => {
-  //     console.log("err", err);
-  //   });
+    await Promise.all(
+      result.map(async bill => {
+        const product = await Product.findOne({
+          _id: ObjectId(bill._id)
+        });
+  
+        bill.name = product.name;
+        return bill;
+      })
+    );
+    let labels = Array(10);
+    labels.fill("");
+    let list = Array(10);
+    list.fill(0);
+  
+    for(let i = 0; i < result.length; i++) {
+        labels[i] = result[i].name;
+        list[i] = result[i].total;
+    }
+  
+    res.send({list: list,labels : labels})
+  }catch(err) {
+    console.log("ERRRRRRRRRRRR",err);
+  }
+  
 };

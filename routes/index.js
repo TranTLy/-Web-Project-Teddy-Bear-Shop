@@ -45,9 +45,11 @@ router.get(
   admin_controller.getInfoSuccess
 );
 
+
+
 router.get(
   "/dashboard",
-  accountadmin_controller.isLoggedIn,
+  // accountadmin_controller.isLoggedIn,
   dashboard_controller.index
 );
 router.post("/dashboard", dashboard_controller.statistical);

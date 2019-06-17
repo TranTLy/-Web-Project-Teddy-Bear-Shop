@@ -44,7 +44,10 @@ exports.checkpassword = function(req, res) {
 exports.checkemaillogin = function(req, res) {
   const email = req.query.email;
   User.findOne({ email: email }, (err, user) => {
-    if (user) return res.send({ check: true });
+    if (user){
+      if(user.is_block === "Hoạt động")
+      return res.send({ check: true });
+    }
     else return res.send({ check: false });
   });
 };

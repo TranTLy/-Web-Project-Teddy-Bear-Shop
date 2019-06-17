@@ -10,56 +10,6 @@ $(function() {
  
 
 
-  var dataTop = {
-    labels: [
-      "SP1",
-      "SP2",
-      "SP3",
-      "SP4",
-      "SP5",
-      "SP6",
-      "SP7",
-      "SP8",
-      "SP9",
-      "SP10"
-    ],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [1820, 1760, 1720, 1678, 1608, 1580, 1560, 1508, 1460, 1428],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
-
-  var optionsTop = {
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            beginAtZero: true
-          }
-        }
-      ]
-    },
-    title: {
-      display: true,
-      text: name
-    },
-    tooltips: {
-      mode: "index",
-      intersect: false
-    },
-    hover: {
-      mode: "nearest",
-      intersect: true
-    },
-    title: {
-      display: true,
-      text: "Top 10 sản phẩm năm 2012"
-    }
-  };
   var optionsTypeProduct = {
     responsive: true,
     scales: {
@@ -330,17 +280,7 @@ $(function() {
   //     options: options
   //   });
   // }
-  if ($("#barChartTop").length) {
-    var barChartCanvas = $("#barChartTop")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "horizontalBar",
-      data: dataTop,
-      options: optionsTop
-    });
-  }
+
   if ($("#barChartTypeProduct").length) {
     var barChartCanvas = $("#barChartTypeProduct")
       .get(0)

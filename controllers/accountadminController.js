@@ -56,13 +56,23 @@ exports.reset_password_template = function(req, res) {
 
 exports.login = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
-    if (err || !user) {
+
+    if (user.is_block === "Bị khóa" ) {
+      return res.render("pages/login/index", {
+        title: "Đăng nhập thất bại",
+        message: "Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên!",
+        layout: false
+      });
+    }
+
+    if (err || !user ) {
       return res.render("pages/login/index", {
         title: "Đăng nhập thất bại",
         message: "Đã xảy ra lỗi trong quá trình đăng nhập, mời bạn thử lại",
         layout: false
       });
     }
+
     req.login(user, err => {
       if (err) {
         res.send(err);
