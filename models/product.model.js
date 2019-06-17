@@ -53,12 +53,18 @@ const insertProduct = async function(insetProduct) {
   });
 };
 
-const createProduct = async function(product) {
+const createProduct = async function(product, res) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  console.log("Đang thêm!");
+  console.log("Đang thêm!", product);
 
-  // try {
+  try {
+
+    if(product.discount < 0 || product.discount > 1 || isNaN(product.discount)) throw new Error("Discount không hợp lệ");
+    if(product.price < 0 || isNaN(product.price)) throw new Error("Giá không hợp lệ");
+    if(product.origin === '' || product.producer === '' || product.type === '' || product.imgs === '' || product.name === '' ||
+    product.size === '' || product.color === '') throw new Error("Các trường không được rỗng!");
+
     product.discount = parseFloat(product.discount);
     product.price = parseInt(product.price);
     product.origin = new ObjectId(product.origin);
@@ -70,11 +76,10 @@ const createProduct = async function(product) {
     product.isNew = true;
     product.rating = 0;
 
-    let productResult = await collection.insertOne(product);
-    return {isSuccess : true,product : productResult}
-  // } catch (err) {
-  //   return {isSuccess : false,err: err }
-  // }
+    return await collection.insertOne(product);
+  } catch (err) {
+    res.send({ isSuccess: false, msg: "Tạo thất bại\nDữ liệu không hợp lệ!\n" + err.message });
+  }
 };
 
 const updateProduct = async function(id, product) {

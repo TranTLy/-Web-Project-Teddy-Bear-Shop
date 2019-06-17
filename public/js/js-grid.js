@@ -242,9 +242,8 @@
                 })
                   .done(function(result) {
                     if (result.isSuccess) {
-                      // alert(result.msg);
-                      d.reject();
-                      //d.resolve();
+                      alert(result.msg);
+                      d.resolve();
                     } else {
                       d.reject();
                       alert(result.msg);
@@ -295,6 +294,7 @@
                   if (result.isSuccess) {
                     d.resolve(item);
                     console.log(result.msg);
+                    alert(result.msg);
                     console.log(result.result);
                   } else {
                     alert(result.msg);

@@ -16,7 +16,7 @@
                 <th>Tổng tiền (VND)</th>
                 <th style="display: none">discount</th>
                 <th style="display: none">price</th>
-                <th style="word-wrap: break-word; max-width: 100px;">Sửa</th>
+                <th style="word-wrap: break-word; max-width: 100px;">Tình trạng</th>
                 <th style="word-wrap: break-word; max-width: 30px;">Xem</th>
               </tr>
             </thead>
@@ -39,10 +39,10 @@
                 <td class="name_customer"><%=item.name_customer%></td>
                 <td class="id_customer" style="word-wrap: break-word; max-width: 100px;"><%=item.id_customer%></td>
                 <td class="city"><%=item.city%></td>
-                <td class="total"><%=item.total%> USD</td>
-                <td class="discount" style="display: none"><%=(item.discount * item.total).toFixed(2)%> USD</td>
+                <td class="total"><%=item.total%> VND</td>
+                <td class="discount" style="display: none"><%=(item.discount * item.total).toFixed(2)%> VND</td>
                 <td class="price" style="display: none">
-                  <%=(parseFloat(item.total) + (item.discount * item.total)).toFixed(2)%> USD</td>
+                  <%=(parseFloat(item.total) + (item.discount * item.total)).toFixed(2)%> VND</td>
                 <td>
                   <form>
                     <div class="form-group">
