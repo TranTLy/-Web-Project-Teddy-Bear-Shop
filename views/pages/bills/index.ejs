@@ -14,7 +14,6 @@
                 <th style="word-wrap: break-word; max-width: 80px;">ID Khách hàng</th>
                 <th style="word-wrap: break-word; max-width: 160px;">Địa điểm</th>
                 <th>Tổng tiền (VND)</th>
-                <th style="display: none">price</th>
                 <th style="word-wrap: break-word; max-width: 100px;">Tình trạng</th>
                 <th style="word-wrap: break-word; max-width: 30px;">Xem</th>
               </tr>
@@ -37,7 +36,7 @@
                 <td class="date"><%=moment(item.date).format('HH:mm DD/MM/YYYY') %></td>
                 <td class="name_customer"><%=item.name_customer%></td>
                 <td class="id_customer" style="word-wrap: break-word; max-width: 100px;"><%=item.id_customer%></td>
-                <td class="address" style="word-wrap: break-word; max-width: 160px;" ><%=item.address%></td>
+                <td class="address" style="word-wrap: break-word; max-width: 160px;"><%=item.address%></td>
                 <td class="total"><%=item.total%> VND</td>
                 <td>
                   <form>

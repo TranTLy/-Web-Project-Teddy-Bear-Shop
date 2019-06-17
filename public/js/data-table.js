@@ -224,9 +224,9 @@
     $(this)
       .find(".id_customer")
       .text("ID khách hàng: " + id_customer);
-    $(this)
-      .find(".address")
-      .text(address);
+    // $(this)
+    //   .find(".address")
+    //   .text(address);
     $(this)
       .find(".price_total")
       .text(total);
