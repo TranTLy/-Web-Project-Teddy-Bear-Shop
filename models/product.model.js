@@ -20,6 +20,21 @@ const getProducts = async function(filter) {
   return await collection.find(filter).toArray();
 };
 
+const getStatistic = async function() {
+  const connect = await client.connect();
+  const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
+  // connect.close();
+  let query = [
+    {
+      $group: {
+        _id: "$type",
+        count: { $sum: 1 }
+      }
+    }
+  ];
+  return await collection.aggregate(query);
+};
+
 const getTypes = async function() {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_TYPE);
@@ -38,27 +53,33 @@ const insertProduct = async function(insetProduct) {
   });
 };
 
-const createProduct = async function(product) {
+const createProduct = async function(product, res) {
   const connect = await client.connect();
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
-  console.log("Đang thêm!");
+  console.log("Đang thêm!", product);
 
-  product.discount = parseFloat(product.discount);
-  product.price = parseInt(product.price);
-  product.origin = new ObjectId(product.origin);
-  product.producer = new ObjectId(product.producer);
-  product.type = new ObjectId(product.type);
-  product.rating = parseInt(product.rating);
-  (product.isDeleted = false),
-    (product.isStandOut = false),
-    (product.isNew = true),
-    (product.rating = 0);
+  try {
 
-  console.log("product", product);
-  const obID = new ObjectId();
-  product._id = obID;
+    if(product.discount < 0 || product.discount > 1 || isNaN(product.discount)) throw new Error("Discount không hợp lệ");
+    if(product.price < 0 || isNaN(product.price)) throw new Error("Giá không hợp lệ");
+    if(product.origin === '' || product.producer === '' || product.type === '' || product.imgs === '' || product.name === '' ||
+    product.size === '' || product.color === '') throw new Error("Các trường không được rỗng!");
 
-  return await collection.insertOne(product);
+    product.discount = parseFloat(product.discount);
+    product.price = parseInt(product.price);
+    product.origin = new ObjectId(product.origin);
+    product.producer = new ObjectId(product.producer);
+    product.type = new ObjectId(product.type);
+    product.rating = parseInt(product.rating);
+    product.isDeleted = false;
+    product.isStandOut = false;
+    product.isNew = true;
+    product.rating = 0;
+
+    return await collection.insertOne(product);
+  } catch (err) {
+    res.send({ isSuccess: false, msg: "Tạo thất bại\nDữ liệu không hợp lệ!\n" + err.message });
+  }
 };
 
 const updateProduct = async function(id, product) {
@@ -115,3 +136,4 @@ exports.deleteProduct = deleteProduct;
 exports.isExistTypeInProducts = isExistTypeInProducts;
 exports.isExistOriginInProducts = isExistOriginInProducts;
 exports.isExistProducerInProducts = isExistProducerInProducts;
+exports.getStatistic = getStatistic;

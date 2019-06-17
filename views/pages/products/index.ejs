@@ -3,19 +3,11 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Quản lý hệ thống gian hàng</h4>
-        <div id="loading" class="modal"></div>
-        <div
-          id="js-grid-products"
-          class="pt-3 jsgrid"
-          style="position: relative; height: 516px; width: 100%;"
-        >
+        <div id="loading" class="modal-loading"></div>
+        <div id="js-grid-products" class="pt-3 jsgrid" style="position: relative; height: 516px; width: 100%;">
           <div class="jsgrid-grid-header jsgrid-header-scrollbar">
             <table class="jsgrid-table">
-              <div
-                id="dialog-form"
-                title="Details"
-                style="display:none; position:center;"
-              >
+              <div id="dialog-form" title="Details" style="display:none; position:center;">
                 <form id="categoryForm" class="needs-validation" novalidate>
                   <div class="form-row">
                     <div class="col-sm-6">
@@ -29,32 +21,20 @@
                       </p>
                       <p>
                         <label class="col-sm-4 p-0 m-0">Giá:</label>
-                        <input
-                          type="number"
-                          id="price"
-                          class="col-sm-8 p-0 m-0"
-                          required
-                        />
+                        <input type="number" id="price" class="col-sm-8 p-0 m-0" required />
                       </p>
                       <p>
-                        <label class="col-sm-4 p-0 m-0" required
-                          >Chiếc khấu:
+                        <label class="col-sm-4 p-0 m-0" required>Chiếc khấu:
                         </label>
-                        <input
-                          type="number"
-                          id="discount"
-                          class="col-sm-8 p-0 m-0"
-                        />
+                        <input type="number" id="discount" class="col-sm-8 p-0 m-0" />
                       </p>
                       <p>
-                        <label class="col-sm-4 p-0 m-0" required
-                          >Kích thước:
+                        <label class="col-sm-4 p-0 m-0" required>Kích thước:
                         </label>
                         <input id="size" class="col-sm-8 p-0 m-0" />
                       </p>
                       <p>
-                        <label class="col-sm-4 p-0 m-0" required
-                          >Màu sắc:
+                        <label class="col-sm-4 p-0 m-0" required>Màu sắc:
                         </label>
                         <input id="color" class="col-sm-8 p-0 m-0" />
                       </p>
@@ -82,14 +62,11 @@
                       </p>
                       <p>
                         <label class="col-sm-4 p-0 m-0"></label>
-                        <input type="button"
-                        id="btnChooseFile"
-                          class="btn btn-outline-primary"
-                          value="Chọn ảnh"
-                          onclick="document.getElementById('filesToUpload').click();"
-                        >
-                         
+                        <input type="button" id="btnChooseFile" class="btn btn-outline-primary" value="Chọn ảnh"
+                          onclick="document.getElementById('filesToUpload').click();">
+
                         </button>
+<<<<<<< HEAD
                         <input
                           name="filesToUpload[]"
                           id="filesToUpload"
@@ -99,6 +76,11 @@
                           style="display: none"
                           accept=".png, .jpg, .jpeg, .gif"
                         />
+=======
+                        <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" onchange="Uploadfile()"
+                          style="display: none" accept=".png, .jpg, .jpeg, .gif" />
+                        <img src="" id="output">
+>>>>>>> master
                       </p>
                     </div>
                   </div>
@@ -110,9 +92,7 @@
       </div>
     </div>
   </div>
-  <div
-    class="col-lg-12 grid-margin stretch-card justify-content-center add-padding-top-20px pt-5"
-  >
+  <div class="col-lg-12 grid-margin stretch-card justify-content-center add-padding-top-20px pt-5">
     <div class="card">
       <div class="custom-card-header card-header ">
         <div class="row">
@@ -122,34 +102,20 @@
         </div>
       </div>
       <div class="card-body custom-card-body">
-        <div
-          class="chartjs-size-monitor"
-          style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
-        >
-          <div
-            class="chartjs-size-monitor-expand"
-            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"
-          >
-            <div
-              style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"
-            ></div>
+        <div id="loadingStatistic" class="modal-loading"></div>
+        <div class="chartjs-size-monitor"
+          style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+          <div class="chartjs-size-monitor-expand"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
           </div>
-          <div
-            class="chartjs-size-monitor-shrink"
-            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"
-          >
-            <div
-              style="position:absolute;width:200%;height:200%;left:0; top:0"
-            ></div>
+          <div class="chartjs-size-monitor-shrink"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
           </div>
         </div>
-        <canvas
-          id="barChartTypeProduct"
-          width="1000"
-          height="250"
-          class="chartjs-render-monitor"
-          style="display: block; width: 457px; height: 228px;"
-        ></canvas>
+        <canvas id="barChartTypeProduct" width="1000" height="250" class="chartjs-render-monitor"
+          style="display: block; width: 457px; height: 228px;"></canvas>
       </div>
     </div>
   </div>
@@ -157,37 +123,43 @@
 <script>
   function Uploadfile() {
     const input = document.getElementById("filesToUpload");
-    if(input.files.length > 5){
+    if (input.files.length > 5) {
       alert("Bạn chỉ được chọn tốt đa 5 ảnh, xin mời bạn chọn lại");
     }
-    else{
-   
-    let imgs = document.getElementById("imgs");
-    const apiUrl = "https://api.imgur.com/3/image";
-    const token = "4262f0ea0613e5e6565050b4c5b7775c78d3722d";
-    let settings = {
-      async: false,
-      crossDomain: true,
-      processData: false,
-      contentType: false,
-      type: "POST",
-      url: apiUrl,
-      headers: {
-        Authorization: "Bearer " + token,
-        Accept: "application/json"
-      },
-      mimeType: "multipart/form-data"
-    };
-    let formData = new FormData();
-    for (let x = 0; x < input.files.length; x++) {
-      formData.append("image", imgfile);
-      settings.data = formData;
-      $.ajax(settings)
-        .done(
-          res => (imgs.value = imgs.value + ", " + JSON.parse(res).data.link)
-        )
-        .fail(err => console.log("err", err));
+    else {
+
+      let imgs = document.getElementById("imgs");
+      const apiUrl = "https://api.imgur.com/3/image";
+      const token = "4262f0ea0613e5e6565050b4c5b7775c78d3722d";
+      let settings = {
+        async: false,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        type: "POST",
+        url: apiUrl,
+        headers: {
+          Authorization: "Bearer " + token,
+          Accept: "application/json"
+        },
+        mimeType: "multipart/form-data"
+      };
+      let formData = new FormData();
+      for (let x = 0; x < input.files.length; x++) {
+        formData.append("image", input.files[x]);
+        settings.data = formData;
+        $.ajax(settings)
+          .done(
+            res => {
+              if(imgs.value === '') {
+                imgs.value = JSON.parse(res).data.link
+              } else {
+                imgs.value = imgs.value + ", " + JSON.parse(res).data.link
+              }
+            }
+          )
+          .fail(err => console.log("err", err));
+      }
     }
   }
-  }
- </script>
+</script>

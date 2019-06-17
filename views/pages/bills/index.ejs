@@ -7,37 +7,64 @@
           <table id="order-listing" class="table">
             <thead>
               <tr>
-                <th style="word-wrap: break-word; max-width: 100px;">ID Hóa đơn</th>
+                <th style="word-wrap: break-word; max-width: 80px;">ID Hóa đơn</th>
+                <th style="display: none">Tình trạng </th>
                 <th>Thời gian mua</th>
                 <th>Tên khách hàng</th>
-                <th style="word-wrap: break-word; max-width: 100px;">ID Khách hàng</th>
+                <th style="word-wrap: break-word; max-width: 80px;">ID Khách hàng</th>
                 <th>Địa điểm</th>
                 <th>Tổng tiền (VND)</th>
-                <th>Tình trạng</th>
-                <th>Hành động</th>
+                <th style="display: none">price</th>
+                <th style="word-wrap: break-word; max-width: 100px;">Tình trạng</th>
+                <th style="word-wrap: break-word; max-width: 30px;">Xem</th>
               </tr>
             </thead>
             <tbody>
               <% bills.forEach(function(item){ %>
               <tr>
                 <td class="id" style="word-wrap: break-word; max-width: 100px;"><%=item._id%></td>
+                <td style="display: none">
+                  <% if(item.status === "Đã giao") {%>
+                  <label class="badge badge-success"><%=item.status%></label>
+                  <% }%>
+                  <% if(item.status === "Đang giao") {%>
+                  <label class="badge badge-warstatus_selectning"><%=item.status%></label>
+                  <% }%>
+                  <% if(item.status === "Chưa giao") {%>
+                  <label class="badge badge-danger"><%=item.status%></label>
+                  <% }%>
+                </td>
                 <td class="date"><%=moment(item.date).format('HH:mm DD/MM/YYYY') %></td>
                 <td class="name_customer"><%=item.name_customer%></td>
                 <td class="id_customer" style="word-wrap: break-word; max-width: 100px;"><%=item.id_customer%></td>
                 <td class="city"><%=item.city%></td>
-                <td class="total"><%=item.total%> USD</td>
-                <td class="discount" style="display: none"><%=(item.discount * item.total).toFixed(2)%> USD</td>
-                <td class="price"style="display: none"><%=(parseFloat(item.total) + (item.discount * item.total)).toFixed(2)%> USD</td>
+                <td class="total"><%=item.total%> VND</td>
                 <td>
-                  <% if(item.status === "Đã giao") {%>
-                  <label class="badge badge-success status"><%=item.status%></label>
-                  <% }%>
-                  <% if(item.status === "Đang giao") {%>
-                  <label class="badge badge-warning status"><%=item.status%></label>
-                  <% }%>
-                  <% if(item.status === "Chưa giao") {%>
-                  <label class="badge badge-danger status"><%=item.status%></label>
-                  <% }%>
+                  <form>
+                    <div class="form-group">
+                      <% if(item.status === "Đã giao") {%>
+                      <select class="form-control status_select" id="selectBox" data-old="Đã giao">
+                        <option selected>Đã giao</option>
+                        <option>Đang giao</option>
+                        <option>Chưa giao</option>
+                      </select>
+                      <% }%>
+                      <% if(item.status === "Đang giao") {%>
+                      <select class="form-control status_select" id="selectBox" data-old="Đang giao">
+                        <option>Đã giao</option>
+                        <option selected>Đang giao</option>
+                        <option>Chưa giao</option>
+                      </select>
+                      <% }%>
+                      <% if(item.status === "Chưa giao") {%>
+                      <select class="form-control status_select" id="selectBox" data-old="Chưa giao">
+                        <option>Đã giao</option>
+                        <option>Đang giao</option>
+                        <option selected>Chưa giao</option>
+                      </select>
+                      <% }%>
+                    </div>
+                  </form>
                 </td>
                 <td>
                   <button id="vip" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
@@ -75,14 +102,19 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                   <div style="display:flex; flex-direction:row; justify-content: space-between">
                     <h6>Trạng thái</h6>
+                  </div>
+                </div>
+                <div class="col-sm-6 none-padding">
+                  <div style="display:flex; flex-direction:row; justify-content: space-between">
                     <div class="pt-1">
                       <label class="badge status">Đã giao</label>
                     </div>
                   </div>
                 </div>
+
               </div>
               <div class="row">
                 <div class="col-sm-6">
@@ -100,30 +132,6 @@
               <div class="row margin-top-20px">
                 <div class="col-sm-12 none-padding-right">
                   <h5>Thông tin đơn hàng</h5>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <p>Tạm tính (4 sản phẩm)</p>
-                </div>
-                <div class="col-sm-6 none-padding">
-                  <p class="price" style="text-align: end;"></p>
-                </div>
-              </div>
-              <!-- <div class="row">
-                <div class="col-sm-6">
-                  <p>Phí giao hàng</p>
-                </div>
-                <div class="col-sm-6 none-padding">
-                  <p style="text-align: end;">22000 VNĐ</p>
-                </div>
-              </div> -->
-              <div class="row">
-                <div class="col-sm-6">
-                  <p>Giảm giá</p>
-                </div>
-                <div class="col-sm-6 none-padding">
-                  <p class="discount" style="text-align: end;"></p>
                 </div>
               </div>
               <div class="row">

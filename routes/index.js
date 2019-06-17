@@ -65,6 +65,8 @@ router.get("/customers/getUser", customers_controller.getUsers);
 
 router.get("/products", products_controller.index);
 router.get("/products/get", products_controller.get);
+router.get("/products/getStatistic", products_controller.getStatistic);
+
 router.post("/products", products_controller.create);
 router.delete("/products/:_id", products_controller.delete);
 router.put("/products/:_id", products_controller.update);
@@ -88,6 +90,10 @@ router.delete("/producers/:_id", producers_controller.delete);
 router.put("/producers/:_id", producers_controller.update);
 
 router.get("/bills", bills_controller.get);
+router.get("/bills/getStatistic", bills_controller.getStatistic);
+router.get("/bills/getTop10", bills_controller.getTop10);
+router.put("/bills/:_id", bills_controller.update);
 router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
+
 
 module.exports = router;

@@ -15,7 +15,7 @@ var BillSchema = new Schema(
     id_customer: {
       type: SchemaTypes.ObjectId
     },
-    city: {
+    address: {
       type: String
     },
     status: {
@@ -23,11 +23,6 @@ var BillSchema = new Schema(
     },
     total: {
       type: SchemaTypes.Decimal128,
-      default: 0
-    },
-    discount: {
-      type: SchemaTypes.Decimal128,
-      required: false,
       default: 0
     }
   },
