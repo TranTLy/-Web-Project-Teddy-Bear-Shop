@@ -7,10 +7,7 @@ const Product = require("../models/product");
 var moment = require("moment");
 
 exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
     res.render("pages/bills/index", { title: "QUản lý đặt hàng" });
-  }
-  return res.reyrect("/");
 };
 
 exports.get = async function(req, res) {

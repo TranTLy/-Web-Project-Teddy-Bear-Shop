@@ -8,10 +8,7 @@ const {
 const { isExistTypeInProducts } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
     res.render("pages/types/index", { title: "Quản lý loại sản phẩm" });
-  }
-  return res.redirect("/");
 };
 
 exports.get = async function(req, res, next) {

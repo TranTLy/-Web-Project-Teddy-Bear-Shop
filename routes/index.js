@@ -52,7 +52,7 @@ router.get(
 );
 router.post("/dashboard", dashboard_controller.statistical);
 
-router.get("/users", users_controller.index);
+router.get("/users",  accountadmin_controller.isLoggedIn,users_controller.index);
 router.put("/users/:_id", users_controller.update);
 router.get("/users/getUser", users_controller.getUsers);
 router.get("/users/checkpassword", users_controller.checkpassword);
@@ -63,7 +63,7 @@ router.post("/users/edit-username", users_controller.edit_username);
 router.put("/customers/:_id", customers_controller.update);
 router.get("/customers/getUser", customers_controller.getUsers);
 
-router.get("/products", products_controller.index);
+router.get("/products",  accountadmin_controller.isLoggedIn,products_controller.index);
 router.get("/products/get", products_controller.get);
 router.get("/products/getStatistic", products_controller.getStatistic);
 
@@ -71,25 +71,25 @@ router.post("/products", products_controller.create);
 router.delete("/products/:_id", products_controller.delete);
 router.put("/products/:_id", products_controller.update);
 
-router.get("/types", types_controller.index);
+router.get("/types",  accountadmin_controller.isLoggedIn,types_controller.index);
 router.get("/types/get", types_controller.get);
 router.post("/types", types_controller.create);
 router.delete("/types/:_id", types_controller.delete);
 router.put("/types/:_id", types_controller.update);
 
-router.get("/origins", origins_controller.index);
+router.get("/origins", accountadmin_controller.isLoggedIn, origins_controller.index);
 router.get("/origins/get", origins_controller.get);
 router.post("/origins", origins_controller.create);
 router.delete("/origins/:_id", origins_controller.delete);
 router.put("/origins/:_id", origins_controller.update);
 
-router.get("/producers", producers_controller.index);
+router.get("/producers", accountadmin_controller.isLoggedIn, producers_controller.index);
 router.get("/producers/get", producers_controller.get);
 router.post("/producers", producers_controller.create);
 router.delete("/producers/:_id", producers_controller.delete);
 router.put("/producers/:_id", producers_controller.update);
 
-router.get("/bills", bills_controller.get);
+router.get("/bills",  accountadmin_controller.isLoggedIn,bills_controller.get);
 router.get("/bills/getStatistic", bills_controller.getStatistic);
 router.get("/bills/getTop10", bills_controller.getTop10);
 router.put("/bills/:_id", bills_controller.update);

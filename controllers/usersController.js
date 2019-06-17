@@ -31,10 +31,7 @@ exports.update = function(req, res, next) {
 };
 
 exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
     res.render("pages/users/index", { title: "Quản lý người dùng" });
-  }
-  return res.redirect("/");
 };
 
 exports.checkpassword = function(req, res) {

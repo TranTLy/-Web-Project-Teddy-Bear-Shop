@@ -14,13 +14,10 @@ const ListProductInBillSchema = require("../models/listProductInBill");
 
 var ObjectId = require("mongodb").ObjectID;
 exports.index = async function(req, res, next) {
-  if (req.isAuthenticated()) {
   console.log("Render", "Đã render");
   res.render("pages/products/index", {
     title: "Quản lý sản phẩm"
   });
-  }
-  return res.redirect("/");
 };
 
 exports.getTypes = async function(req, res, next) {
@@ -54,6 +51,7 @@ exports.get = async function(req, res, next) {
 exports.crud = function(req, res, next) {
   res.render("pages/products/index", { title: "Quản lý sản phẩm" });
 };
+
 exports.create = async function(req, res, next) {
   const product = req.body;
   const promistResult = createProduct(product, res);
