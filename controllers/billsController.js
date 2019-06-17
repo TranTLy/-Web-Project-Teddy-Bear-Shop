@@ -10,7 +10,7 @@ exports.index = function(req, res, next) {
   if (req.isAuthenticated()) {
     res.render("pages/bills/index", { title: "QUản lý đặt hàng" });
   }
-  return res.redirect("/");
+  return res.reyrect("/");
 };
 
 exports.get = async function(req, res) {

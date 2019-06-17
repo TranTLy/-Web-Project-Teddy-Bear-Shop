@@ -12,7 +12,7 @@
                 <th>Thời gian mua</th>
                 <th>Tên khách hàng</th>
                 <th style="word-wrap: break-word; max-width: 80px;">ID Khách hàng</th>
-                <th>Địa điểm</th>
+                <th style="word-wrap: break-word; max-width: 160px;">Địa điểm</th>
                 <th>Tổng tiền (VND)</th>
                 <th style="display: none">price</th>
                 <th style="word-wrap: break-word; max-width: 100px;">Tình trạng</th>
@@ -37,7 +37,7 @@
                 <td class="date"><%=moment(item.date).format('HH:mm DD/MM/YYYY') %></td>
                 <td class="name_customer"><%=item.name_customer%></td>
                 <td class="id_customer" style="word-wrap: break-word; max-width: 100px;"><%=item.id_customer%></td>
-                <td class="city"><%=item.city%></td>
+                <td class="address" style="word-wrap: break-word; max-width: 160px;" ><%=item.address%></td>
                 <td class="total"><%=item.total%> VND</td>
                 <td>
                   <form>
@@ -126,7 +126,7 @@
               </div>
               <div class="row border-bottom">
                 <div class="col-sm-12 none-padding-right">
-                  <p class="city"></p>
+                  <p class="address"></p>
                 </div>
               </div>
               <div class="row margin-top-20px">

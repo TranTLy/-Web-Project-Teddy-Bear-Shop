@@ -135,7 +135,7 @@
     var date = _row.find(".date").text();
     var name = _row.find(".name_customer").text();
     var id_customer = _row.find(".id_customer").text();
-    var city = _row.find(".city").text();
+    var address = _row.find(".address").text();
     var total = _row.find(".total").text();
     var status = _row.find(".status_select").attr("data-old")
     var badge = $(this).find(".status");
@@ -225,8 +225,8 @@
       .find(".id_customer")
       .text("ID khách hàng: " + id_customer);
     $(this)
-      .find(".city")
-      .text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + city);
+      .find(".address")
+      .text(address);
     $(this)
       .find(".price_total")
       .text(total);
