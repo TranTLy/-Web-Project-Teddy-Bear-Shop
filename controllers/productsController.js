@@ -57,16 +57,21 @@ exports.crud = function(req, res, next) {
 exports.create = async function(req, res, next) {
   const product = req.body;
   const promistResult = createProduct(product);
-  promistResult.then(value => {
-    if (value.result.ok === 1) {
-      product._id = value.insertedId;
-      console.log("Thành công!", product);
-      res.send({ isSuccess: true, msg: "Tạo thành công!", product: product });
-    } else {
-      console.log("Thất bại!");
-      res.send({ isSuccess: false, msg: "Tạo thất bại!" });
-    }
-  });
+  if(promistResult.isSuccess) {
+    promistResult.product.then(value => {
+      if (value.result.ok === 1) {
+        product._id = value.insertedId;
+        console.log("Thành công!", product);
+        res.send({ isSuccess: true, msg: "Tạo thành công!", product: product });
+      } else {
+        console.log("Thất bại!");
+        res.send({ isSuccess: false, msg: "Tạo thất bại!" });
+      }
+    });
+  } else {
+    console.log("ERRr",promistResult.err);
+    res.send({ isSuccess: false, msg: "Dữ liệu nhập không hợp lệ!" });
+  }
 };
 
 exports.update = function(req, res, next) {

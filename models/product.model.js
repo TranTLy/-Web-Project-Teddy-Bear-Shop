@@ -25,13 +25,15 @@ const getStatistic = async function() {
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
   // connect.close();
   let query = [
-    { $group : {
-      _id : "$type", count: {$sum:1}}
+    {
+      $group: {
+        _id: "$type",
+        count: { $sum: 1 }
+      }
     }
-  ]
+  ];
   return await collection.aggregate(query);
 };
-
 
 const getTypes = async function() {
   const connect = await client.connect();
@@ -56,22 +58,23 @@ const createProduct = async function(product) {
   const collection = client.db(DATABASE).collection(COLLECTION_PRODUCTS);
   console.log("Đang thêm!");
 
-  product.discount = parseFloat(product.discount);
-  product.price = parseInt(product.price);
-  product.origin = new ObjectId(product.origin);
-  product.producer = new ObjectId(product.producer);
-  product.type = new ObjectId(product.type);
-  product.rating = parseInt(product.rating);
-  (product.isDeleted = false),
-    (product.isStandOut = false),
-    (product.isNew = true),
-    (product.rating = 0);
+  // try {
+    product.discount = parseFloat(product.discount);
+    product.price = parseInt(product.price);
+    product.origin = new ObjectId(product.origin);
+    product.producer = new ObjectId(product.producer);
+    product.type = new ObjectId(product.type);
+    product.rating = parseInt(product.rating);
+    product.isDeleted = false;
+    product.isStandOut = false;
+    product.isNew = true;
+    product.rating = 0;
 
-  console.log("product", product);
-  const obID = new ObjectId();
-  product._id = obID;
-
-  return await collection.insertOne(product);
+    let productResult = await collection.insertOne(product);
+    return {isSuccess : true,product : productResult}
+  // } catch (err) {
+  //   return {isSuccess : false,err: err }
+  // }
 };
 
 const updateProduct = async function(id, product) {

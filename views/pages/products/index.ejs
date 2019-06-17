@@ -134,11 +134,17 @@
       };
       let formData = new FormData();
       for (let x = 0; x < input.files.length; x++) {
-        formData.append("image", imgfile);
+        formData.append("image", input.files[x]);
         settings.data = formData;
         $.ajax(settings)
           .done(
-            res => (imgs.value = imgs.value + ", " + JSON.parse(res).data.link)
+            res => {
+              if(imgs.value === '') {
+                imgs.value = JSON.parse(res).data.link
+              } else {
+                imgs.value = imgs.value + ", " + JSON.parse(res).data.link
+              }
+            }
           )
           .fail(err => console.log("err", err));
       }

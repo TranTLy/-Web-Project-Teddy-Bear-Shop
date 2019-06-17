@@ -4,156 +4,11 @@ $(function() {
    * Data and config for chartjs
    */
   "use strict";
-  var dataDay = {
-    labels: [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-      "24",
-      "25",
-      "26",
-      "27",
-      "28",
-      "29",
-      "30",
-      "31"
-    ],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [
-          10,
-          19,
-          3,
-          5,
-          2,
-          3,
-          10,
-          19,
-          3,
-          5,
-          2,
-          3,
-          10,
-          19,
-          3,
-          5,
-          2,
-          3,
-          10,
-          19,
-          3,
-          5,
-          2,
-          3,
-          10,
-          19,
-          3,
-          5,
-          2,
-          3,
-          1
-        ],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
-  var dataWeek = {
-    labels: ["W1", "W2", "W3", "W4"],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [40, 75, 30, 50],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
-  var dataMonth = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [10, 19, 3, 5, 2, 3, 10, 19, 3, 5, 2, 3],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
 
-  var dataQuarter = {
-    labels: ["Q1", "Q2", "Q3", "Q4"],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [1200, 1822, 1564, 1478],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
-  var dataYear = {
-    labels: [
-      "2010",
-      "2011",
-      "2012",
-      "2013",
-      "2014",
-      "2015",
-      "2016",
-      "2017",
-      "2018",
-      "2019"
-    ],
-    datasets: [
-      {
-        label: "Số tiền",
-        data: [
-          18200,
-          18722,
-          15604,
-          14780,
-          18200,
-          18722,
-          15604,
-          14780,
-          15604,
-          14780
-        ],
-        backgroundColor: "rgba(1, 87, 155, 0.85)"
-      }
-    ]
-  };
+
+
+ 
+
 
   var dataTop = {
     labels: [
@@ -177,70 +32,10 @@ $(function() {
     ]
   };
 
-  // var dataTop = {
-  //     labels: ["SP1", "SP2", "SP3"],
-  //     datasets: [{
-  //         label: 'Loại 1',
-  //         data: [18200, null, 15604],
-  //         backgroundColor: 'rgba(1, 87, 155, 0.85)'
-
-  //     },
-  //     {
-  //         label: 'Loại 2',
-  //         data: [null, 18722, null],
-  //         backgroundColor: 'rgba(173, 20, 87, 0.85)'
-
-  //     }]
-  // };
-  var multiLineData = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: ["#587ce4"],
-        borderWidth: 2,
-        fill: false
-      },
-      {
-        label: "Dataset 2",
-        data: [5, 23, 7, 12, 42, 23],
-        borderColor: ["#ede190"],
-        borderWidth: 2,
-        fill: false
-      },
-      {
-        label: "Dataset 3",
-        data: [15, 10, 21, 32, 12, 33],
-        borderColor: ["#f44252"],
-        borderWidth: 2,
-        fill: false
-      }
-    ]
-  };
-  var options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true
-          }
-        }
-      ]
-    },
-    legend: {
-      display: false
-    },
-    elements: {
-      point: {
-        radius: 0
-      }
-    }
-  };
   var optionsTop = {
     responsive: true,
     scales: {
-      yAxes: [
+      xAxes: [
         {
           ticks: {
             beginAtZero: true
@@ -268,7 +63,7 @@ $(function() {
   var optionsTypeProduct = {
     responsive: true,
     scales: {
-      yAxes: [
+      xAxes: [
         {
           ticks: {
             beginAtZero: true
@@ -424,7 +219,7 @@ $(function() {
           }
         }
       ],
-      yAxes: [
+      xAxes: [
         {
           gridLines: {
             display: false
@@ -498,64 +293,43 @@ $(function() {
     }
   };
   // Get context with jQuery - using jQuery's .get() method.
-  if ($("#barChartDay").length) {
-    var barChartCanvas = $("#barChartDay")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "bar",
-      data: dataDay,
-      options: options
-    });
-  }
 
-  if ($("#barChartWeek").length) {
-    var barChartCanvas = $("#barChartWeek")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "bar",
-      data: dataWeek,
-      options: options
-    });
-  }
-  if ($("#barChartMonth").length) {
-    var barChartCanvas = $("#barChartMonth")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "bar",
-      data: dataMonth,
-      options: options
-    });
-  }
 
-  if ($("#barChartQuarter").length) {
-    var barChartCanvas = $("#barChartQuarter")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "bar",
-      data: dataQuarter,
-      options: options
-    });
-  }
+  // if ($("#barChartMonth").length) {
+  //   var barChartCanvas = $("#barChartMonth")
+  //     .get(0)
+  //     .getContext("2d");
+  //   // This will get the first returned node in the jQuery collection.
+  //   var barChart = new Chart(barChartCanvas, {
+  //     type: "bar",
+  //     data: dataMonth,
+  //     options: options
+  //   });
+  // }
 
-  if ($("#barChartYear").length) {
-    var barChartCanvas = $("#barChartYear")
-      .get(0)
-      .getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChart = new Chart(barChartCanvas, {
-      type: "bar",
-      data: dataYear,
-      options: options
-    });
-  }
+  // if ($("#barChartQuarter").length) {
+  //   var barChartCanvas = $("#barChartQuarter")
+  //     .get(0)
+  //     .getContext("2d");
+  //   // This will get the first returned node in the jQuery collection.
+  //   var barChart = new Chart(barChartCanvas, {
+  //     type: "bar",
+  //     data: dataQuarter,
+  //     options: options
+  //   });
+  // }
+
+  // if ($("#barChartYear").length) {
+  //   var barChartCanvas = $("#barChartYear")
+  //     .get(0)
+  //     .getContext("2d");
+  //   // This will get the first returned node in the jQuery collection.
+  //   var barChart = new Chart(barChartCanvas, {
+  //     type: "bar",
+  //     data: dataYear,
+  //     options: options
+  //   });
+  // }
   if ($("#barChartTop").length) {
     var barChartCanvas = $("#barChartTop")
       .get(0)
@@ -587,12 +361,7 @@ $(function() {
           {
             label: "Số sản phẩm",
             data: result.counts,
-            backgroundColor: [
-              "rgba(1, 87, 155, 0.85)",
-              "rgba(255, 23, 68, 0.85)",
-              "rgba(0, 172, 193, 0.85)",
-              "rgba(255, 152, 0, 0.85)"
-            ]
+            backgroundColor: "rgba(1, 87, 155, 0.85)"
           }
         ]
       };

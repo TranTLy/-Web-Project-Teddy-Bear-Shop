@@ -90,7 +90,9 @@ router.delete("/producers/:_id", producers_controller.delete);
 router.put("/producers/:_id", producers_controller.update);
 
 router.get("/bills", bills_controller.get);
+router.get("/bills/getStatistic", bills_controller.getStatistic);
 router.put("/bills/:_id", bills_controller.update);
 router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
+
 
 module.exports = router;
