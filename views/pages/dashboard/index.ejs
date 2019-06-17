@@ -594,10 +594,12 @@
               </div>
               <div class="col-sm-3">
                 <div class="well">
-                  <div class="input-append date" id="dpYearEnd" data-date=" <%=moment(new Date()).format('YYYY') %>" data-date-format=" yyyy">
+                  <div class="input-append date" id="dpYearEnd" data-date=" <%=moment(new Date()).format('YYYY') %>"
+                    data-date-format=" yyyy">
                     <h6>Đến: </h6>
                     <span class="add-on"><i class="mdi mdi-calendar-text"></i></span>
-                    <input id="staticYear" class="span2 cus_span2" size="14" type="text" value="<%=moment(new Date()).format('YYYY') %>">
+                    <input id="staticYear" class="span2 cus_span2" size="14" type="text"
+                      value="<%=moment(new Date()).format('YYYY') %>">
                   </div>
                 </div>
               </div>
@@ -771,6 +773,17 @@
         </div>
       </div>
       <script>
+
+        $.ajax({
+          url: "/bills/getTop10",
+          type: "get",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        }).done(result => {
+          // $("#loadingYear").hide();
+          console.log("listYear", result);
+        });
+
         $('#dpTopYearStart').datepicker(
           {
             viewMode: 'years',

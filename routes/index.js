@@ -91,6 +91,7 @@ router.put("/producers/:_id", producers_controller.update);
 
 router.get("/bills", bills_controller.get);
 router.get("/bills/getStatistic", bills_controller.getStatistic);
+router.get("/bills/getTop10", bills_controller.getTop10);
 router.put("/bills/:_id", bills_controller.update);
 router.get("/bills/getlistproducts", bills_controller.getProductsByIdBill);
 

@@ -1,6 +1,7 @@
 var ObjectId = require("mongodb").ObjectID;
 const Bill = require("../models/bill");
 const ListProductInBill = require("../models/listProductInBill");
+const ItemProductInBill = require("../models/itemProductInBill");
 const Customer = require("../models/customer");
 const Product = require("../models/product");
 var moment = require("moment");
@@ -47,7 +48,6 @@ exports.getProductsByIdBill = async function(req, res) {
       product.imgs = productMongo.imgs;
       product.name = productMongo.name;
       product.price = productMongo.price;
-      product.discount = productMongo.discount;
       return product;
     })
   );
@@ -56,7 +56,7 @@ exports.getProductsByIdBill = async function(req, res) {
 
 exports.update = function(req, res, next) {
   let billUpdate = req.body;
-  console.log("billUpdate", billUpdate);
+  // console.log("billUpdate", billUpdate);
   let id = req.params._id;
 
   Bill.findByIdAndUpdate(id, billUpdate, function(err, model) {
@@ -73,7 +73,7 @@ function getDay(startDate, res) {
     .add(1, "M")
     .toDate();
 
-  console.log("startDAte", startDate);
+  // console.log("startDAte", startDate);
 
   Bill.aggregate([
     {
@@ -108,7 +108,7 @@ function getWeek(startDate, res) {
     .add(1, "M")
     .toDate();
 
-  console.log("startDAteWeek", startDate);
+  // console.log("startDAteWeek", startDate);
 
   Bill.aggregate([
     {
@@ -146,7 +146,7 @@ function getWeek(startDate, res) {
       for (let i = 22; i <= 30; i++) {
         listWeek[3] += list[i];
       }
-      console.log("WeekList", listWeek);
+      // console.log("WeekList", listWeek);
       res.send({ list: listWeek });
     })
     .catch(err => {
@@ -159,8 +159,8 @@ function getMonth(startDate, res) {
     .add(1, "Y")
     .toDate();
 
-  console.log("startDAteMonth", startDate);
-  console.log("EndDAteMonth", endDay);
+  // console.log("startDAteMonth", startDate);
+  // console.log("EndDAteMonth", endDay);
 
   Bill.aggregate([
     {
@@ -179,7 +179,7 @@ function getMonth(startDate, res) {
       let list = Array(12);
       list.fill(0);
 
-      console.log("Month", result);
+      // console.log("Month", result);
 
       result.forEach(element => {
         list[element._id.month - 1] = element.total;
@@ -197,7 +197,7 @@ function getQuarter(startDate, res) {
     .add(1, "Y")
     .toDate();
 
-  console.log("startDAteMonth", startDate);
+  // console.log("startDAteMonth", startDate);
 
   Bill.aggregate([
     {
@@ -216,7 +216,7 @@ function getQuarter(startDate, res) {
       let list = Array(12);
       list.fill(0);
 
-      console.log("Quarter", result);
+      // console.log("Quarter", result);
 
       result.forEach(element => {
         list[element._id.month - 1] = element.total;
@@ -253,8 +253,8 @@ function getYear(endDate, res) {
     .add(-9, "Y")
     .toDate();
 
-  console.log("StartYear", startDay);
-  console.log("EndYear", endDay);
+  // console.log("StartYear", startDay);
+  // console.log("EndYear", endDay);
   let startYear = startDay.getFullYear();
 
   Bill.aggregate([
@@ -275,17 +275,17 @@ function getYear(endDate, res) {
       list.fill(0);
       let labels = Array(10);
 
-      console.log("Quarter", result);
+      // console.log("Quarter", result);
 
-      for(let i = startYear;i < startYear + 10;i++) {
-        labels[i-startYear] = i.toString();
+      for (let i = startYear; i < startYear + 10; i++) {
+        labels[i - startYear] = i.toString();
       }
 
       result.forEach(element => {
         list[element._id.year - startYear] = element.total;
       });
 
-      res.send({ list: list,labels: labels});
+      res.send({ list: list, labels: labels });
     })
     .catch(err => {
       console.log("err", err);
@@ -324,4 +324,64 @@ exports.getStatistic = function(req, res, next) {
       getYear(startDate, res);
       break;
   }
+};
+
+exports.getTop10 = function(req, res, next) {
+  console.log("GetTop10", "top10");
+
+  Bill.aggregate(
+    [
+      {
+        $unwind: "$products"
+     },
+     {
+        $replaceRoot: { newRoot: "$products"}
+     }
+     ,
+      {
+        $group : {
+          _id : '$id_product',
+          total: { $sum: '$amount' },
+        }
+      }, 
+    ]
+  ).then(result => {
+    console.log("Top10",result)
+  })
+  
+  // Bill.aggregate([
+  //   {
+  //     $match: {
+  //       // date: { $gte: startDay, $lt: endDay }
+  //     }
+  //   },
+  //   {
+  //     $group: {
+  //       _id: "$products.id_product",
+  //       count: { $sum: 1 }
+  //       // _id: { year: { $year: "$date" } },
+  //       // total: { $sum: "$total" }
+  //     }
+  //   }
+  // ])
+  //   .then(result => {
+  //     let list = Array(10);
+  //     list.fill(0);
+  //     let labels = Array(10);
+
+  //     console.log("Top10", result);
+
+  //     // for (let i = startYear; i < startYear + 10; i++) {
+  //     //   labels[i - startYear] = i.toString();
+  //     // }
+
+  //     // result.forEach(element => {
+  //     //   list[element._id.year - startYear] = element.total;
+  //     // });
+
+  //     // res.send({ list: list, labels: labels });
+  //   })
+  //   .catch(err => {
+  //     console.log("err", err);
+  //   });
 };

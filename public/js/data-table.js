@@ -44,6 +44,7 @@
       table.row.add(new Person("Ashton Cox", 66, "Junior Technical Author"));
       table.draw();
     });
+
     $("#order-listing").each(function() {
       var datatable = $(this);
       // SEARCH - Add the placeholder for Search and Turn this into in-line form control
@@ -136,9 +137,7 @@
     var id_customer = _row.find(".id_customer").text();
     var city = _row.find(".city").text();
     var total = _row.find(".total").text();
-    var discount = _row.find(".discount").text();
     var status = _row.find(".status_select").attr("data-old")
-    var price = _row.find(".price").text();
     var badge = $(this).find(".status");
     if (status === "Đã giao") {
       if (badge.hasClass("badge-danger")) {
@@ -228,12 +227,6 @@
     $(this)
       .find(".city")
       .text("123 Hoàng Văn Thụ, Phường 5, Quận 9 ," + city);
-    $(this)
-      .find(".price")
-      .text(price);
-    $(this)
-      .find(".discount")
-      .text(discount);
     $(this)
       .find(".price_total")
       .text(total);

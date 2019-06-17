@@ -124,6 +124,7 @@ exports.delete = async function(req, res, next) {
   const product = await ListProductInBillSchema.findOne({
     "products.id_product": ObjectId(id)
   });
+  
   if (product == null) {
     const promistResult = deleteProduct(id);
     promistResult.then(value => {
