@@ -13,10 +13,10 @@ exports.update = function(req, res, next) {
   let user = req.body;
   let id = req.params._id;
 
-  let myId = req.cookies.user._id
-  if(myId === id) {
+  let myId = req.cookies.user._id;
+  if (myId === id) {
     res.send({ isSuccess: false, msg: "Không thể khóa tài khoản của mình!" });
-    return
+    return;
   }
 
   var updateObj = { is_block: user.is_block };
@@ -55,19 +55,22 @@ exports.checkemaillogin = function(req, res) {
 exports.checkpasswordlogin = function(req, res) {
   const pass = req.query.pass;
   const email = req.query.email;
-  console.log("pass", pass);
-  console.log("email", email);
+  console.log("pass fgdfg", pass);
+  console.log("email dfgdf", email);
   User.findOne({ email: email }, (err, user) => {
+    console.log("sklfjkladjkfakds", err);
+    console.log("sklfjkladjkfakddfasfass", user);
     if (user) {
       const match = bcrypt.compareSync(pass, user.password);
+      console.log("match", match);
       if (match) return res.send({ check: true });
+      else return res.send({ check: false });
     }
     return res.send({ check: false });
   });
 };
 
 exports.edit_username = function(req, res) {
-  console.log("áhd", req.body);
   const objUser = { name: req.body.username };
   console.log("name", objUser);
   User.findByIdAndUpdate(req.cookies.user._id, req.body, function(err, user) {

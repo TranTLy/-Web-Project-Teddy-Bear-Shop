@@ -17,6 +17,11 @@
                 <div class="brand-logo">
                   <img src="../../../../images/logo-dark.svg" alt="logo" />
                 </div>
+                <% if (message.length > 0) { %>
+                <div class="alert alert-danger" style="margin-top: 30px">
+                  <%= message %>
+                </div>
+                <% } %>
                 <form action="/change-password" method="POST" class="pt-1">
                   <div class="form-group">
                     <label id="label-pass">Mật khẩu<span>*</span></label>
@@ -35,7 +40,6 @@
                         id="password"
                         placeholder="Mật khẩu"
                         required
-                        onkeyup="checkInputPassword(this.value)"
                       />
                       <div class="valid-password invalid-feedback">
                         Bạn nhập mật khẩu chưa đúng!!.
@@ -105,14 +109,15 @@
                       class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                       id="btn-sign-up"
                       type="submit"
-                      disabled
+                      onclick="checkInputPassword()"
                     >
                       Xác nhận
                     </button>
                   </div>
                 </form>
                 <script>
-                  function checkInputPassword(pass) {
+                  function checkInputPassword() {
+                    const pass = document.getElementById("password").value;
                     $.ajax({
                       url: "/users/checkpassword?pass=" + pass,
                       type: "get",
@@ -120,7 +125,6 @@
                       dataType: "json"
                     })
                       .done(function(check) {
-                        console.log("tems", check);
                         if (!check.check) {
                           console.log("check", check.check);
                           document.getElementsByClassName(
