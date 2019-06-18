@@ -8,11 +8,13 @@ const {
   deleteProduct
 } = require("../models/product.model");
 
-const { getOrigins } = require("../models/origin.model");
-const { getProducers } = require("../models/producer.model");
+// const { getOrigins } = require("../models/origin.model");
+// const { getProducers } = require("../models/producer.model");
 const ListProductInBillSchema = require("../models/listProductInBill");
+const Product = require("../models/product");
 
 var ObjectId = require("mongodb").ObjectID;
+
 exports.index = async function(req, res, next) {
   console.log("Render", "Đã render");
   res.render("pages/products/index", {
@@ -44,8 +46,14 @@ exports.get = async function(req, res, next) {
   if (filter.type === "") delete filter.type;
   else filter.type = ObjectId(filter.type);
   console.log("FILTERAFTER", filter);
-  const dbProducts = await getProducts(filter);
-  res.send(dbProducts);
+  Product.find(filter, {}, {}, (err, product) => {
+    if (err == null) {
+      res.send(product);
+      // console.log("PRODUCT", product);
+    } else {
+      console.log("ErrPro", err);
+    }
+  });
 };
 
 exports.crud = function(req, res, next) {
@@ -122,7 +130,7 @@ exports.delete = async function(req, res, next) {
   const product = await ListProductInBillSchema.findOne({
     "products.id_product": ObjectId(id)
   });
-  
+
   if (product == null) {
     const promistResult = deleteProduct(id);
     promistResult.then(value => {
@@ -141,47 +149,52 @@ exports.delete = async function(req, res, next) {
 };
 
 exports.getStatistic = async function(req, res, next) {
-  const cursor = await getStatistic();
-  const dbTypes = await getTypes();
-  const resultFunc = cursor.toArray();
-  console.log("dbTypes", dbTypes);
-  resultFunc
-    .then(
-      result => {
-        console.log("onfile", result);
-        let labels = [];
-        for (let i = 0; i < result.length; i++) {
-          for (let j = 0; j < dbTypes.length; j++) {
-            console.log("onfile", result[i]._id + " : " + dbTypes[j]._id);
-            if (result[i]._id.toString() === dbTypes[j]._id.toString()) {
-              console.log("onfile11111", dbTypes[i].name);
-              labels.push(dbTypes[j].name);
-              break;
-            }
-          }
+  Product.aggregate([
+    {
+      $group: {
+        _id: "$type",
+        count: {
+          $sum: 1
         }
-
-        let counts = result.map(value => value.count);
-        let total = 0;
-        result.forEach(product => {
-          total += product.count;
-        });
-
-        res.send({
-          isSuccess: true,
-          msg: "Thành công!",
-          labels: labels,
-          counts: counts,
-          total: total
-        });
-      },
-      err => {
-        console.log("onreject", err);
-        res.send({ isSuccess: false, msg: "Thất bại!" });
       }
-    )
-    .catch(onrejected => {
-      console.log("onreject", onrejected);
-      res.send({ isSuccess: false, msg: "Thất bại!" });
+    },
+    {
+      $lookup: {
+        from: "type",
+        localField: "_id",
+        foreignField: "_id",
+        as: "name"
+      }
+    }
+  ])
+    .then(products => {
+      let lengthProducts = products.length;
+      let labels = Array(lengthProducts);
+      labels.fill("");
+      let counts = Array(lengthProducts);
+      counts.fill(0);
+      let total = 0;
+      for(let i = 0; i < lengthProducts; i++) {
+        labels[i] = products[i].name[0].name;
+        counts[i] = products[i].count;
+        total += products[i].count;
+      }
+
+      res.send({
+        isSuccess: true,
+        msg: "Thành công!",
+        labels: labels,
+        counts: counts,
+        total: total
+      });
+    })
+    .catch(err => {
+      res.send({
+        isSuccess: false,
+        msg: "Thất bại!\n" + err.message,
+        labels: labels,
+        counts: counts,
+        total: total
+      });
     });
 };

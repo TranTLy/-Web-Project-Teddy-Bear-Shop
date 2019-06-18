@@ -64,23 +64,10 @@
                         <label class="col-sm-4 p-0 m-0"></label>
                         <input type="button" id="btnChooseFile" class="btn btn-outline-primary" value="Chọn ảnh"
                           onclick="document.getElementById('filesToUpload').click();">
-
                         </button>
-<<<<<<< HEAD
-                        <input
-                          name="filesToUpload[]"
-                          id="filesToUpload"
-                          type="file"
-                          multiple=""
-                          onchange="Uploadfile()"
-                          style="display: none"
-                          accept=".png, .jpg, .jpeg, .gif"
-                        />
-=======
                         <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" onchange="Uploadfile()"
                           style="display: none" accept=".png, .jpg, .jpeg, .gif" />
                         <img src="" id="output">
->>>>>>> master
                       </p>
                     </div>
                   </div>
@@ -151,7 +138,7 @@
         $.ajax(settings)
           .done(
             res => {
-              if(imgs.value === '') {
+              if (imgs.value === '') {
                 imgs.value = JSON.parse(res).data.link
               } else {
                 imgs.value = imgs.value + ", " + JSON.parse(res).data.link

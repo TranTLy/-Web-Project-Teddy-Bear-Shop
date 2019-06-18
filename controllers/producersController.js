@@ -4,7 +4,7 @@ const {
   deleteProducer,
   updateProducer
 } = require("../models/producer.model");
-
+const Producer = require("../models/producer");
 const { isExistProducerInProducts } = require("../models/product.model");
 
 exports.index = function(req, res, next) {
@@ -13,8 +13,14 @@ exports.index = function(req, res, next) {
 };
 
 exports.get = async function(req, res, next) {
-  const dbProducers = await getProducers();
-  res.send(dbProducers);
+  await Producer.find({}, (err, result) => {
+    if (err != null) {
+      console.log("ErrType", err);
+    } else {
+      // console.log("PRODUCER", result);
+      res.send(result)
+    }
+  });
 };
 
 exports.create = async function(req, res, next) {

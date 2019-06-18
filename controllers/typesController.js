@@ -6,14 +6,21 @@ const {
 } = require("../models/type.model");
 
 const { isExistTypeInProducts } = require("../models/product.model");
+const Type = require("../models/type");
 
 exports.index = function(req, res, next) {
-    res.render("pages/types/index", { title: "Quản lý loại sản phẩm" });
+  res.render("pages/types/index", { title: "Quản lý loại sản phẩm" });
 };
 
 exports.get = async function(req, res, next) {
-  const dbTypes = await getTypes();
-  res.send(dbTypes);
+  await Type.find({}, (err, result) => {
+    if (err != null) {
+      console.log("ErrType", err);
+    } else {
+      console.log("TYPEEE", result);
+      res.send(result)
+    }
+  });
 };
 
 exports.create = async function(req, res, next) {

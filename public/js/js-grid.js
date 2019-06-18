@@ -190,6 +190,7 @@
 
       dialog.dialog("close");
     };
+    
     $.ajax({
       url: "/types/get",
       type: "get",
