@@ -604,108 +604,108 @@
                 </div>
               </div>
               <script>
-                $('#fromYear').val($('#staticYear').val() - 9)
+                $(document).ready(function () {
+                  $('#fromYear').val($('#staticYear').val() - 9)
 
-                $('#dpYearEnd').datepicker(
-                  {
-                    viewMode: 'years',
-                    format: ' yyyy'
-                  }
-                );
-
-                var formatDate = function (d) {
-                  var date = d.getDate();
-                  var month = d.getMonth() + 1;
-                  var year = d.getFullYear();
-                  var newDate = year + '-' + (month < 10 ? ('0' + month) : month) + '-' + (date < 10 ? ('0' + date) : date);
-
-                  return newDate
-                }
-
-                var formatDateInput = function (d) {
-                  return d + '-' + '01-01'
-                }
-
-                var options = {
-                  scales: {
-                    xAxes: [
-                      {
-                        ticks: {
-                          beginAtZero: true
-                        }
-                      }
-                    ]
-                  },
-                  legend: {
-                    display: false
-                  },
-                  elements: {
-                    point: {
-                      radius: 0
+                  $('#dpYearEnd').datepicker(
+                    {
+                      viewMode: 'years',
+                      format: ' yyyy'
                     }
+                  );
+
+                  var formatDate = function (d) {
+                    var date = d.getDate();
+                    var month = d.getMonth() + 1;
+                    var year = d.getFullYear();
+                    var newDate = year + '-' + (month < 10 ? ('0' + month) : month) + '-' + (date < 10 ? ('0' + date) : date);
+
+                    return newDate
                   }
-                };
 
-                var getStatisticYear = function (date) {
-                  console.log("Datein", date);
+                  var formatDateInput = function (d) {
+                    return d + '-' + '01-01'
+                  }
 
-                  $("#loadingYear").show();
-                  $.ajax({
-                    url: "/bills/getStatistic?start_date=" + date + "&mode=year",
-                    type: "get",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json"
-                  }).done(result => {
-                    $("#loadingYear").hide();
-                    console.log("listYear", result);
-
-                    var dataYear = {
-                      labels: result.labels,
-                      datasets: [
+                  var options = {
+                    scales: {
+                      xAxes: [
                         {
-                          label: "Số tiền",
-                          data: result.list,
-                          backgroundColor: "rgba(1, 87, 155, 0.85)"
+                          ticks: {
+                            beginAtZero: true
+                          }
                         }
                       ]
-                    };
-
-                    if ($("#barChartYear").length) {
-                      $('#barChartYear').replaceWith('<canvas id="barChartYear" width="1000" height="400" class="chartjs-render-monitor"style="display: block; width: 457px; height: 228px;"></canvas>');
-
-                      let barChartCanvas = $("#barChartYear")
-                        .get(0)
-                        .getContext("2d");
-
-                      let barChart = new Chart(barChartCanvas, {
-                        type: "bar",
-                        data: dataYear,
-                        options: options
-                      });
+                    },
+                    legend: {
+                      display: false
+                    },
+                    elements: {
+                      point: {
+                        radius: 0
+                      }
                     }
+                  };
 
-                  }).fail(err => {
-                    $("#loadingYear").hide();
-                    console.log("err", err);
-                  })
-                }
+                  var getStatisticYear = function (date) {
+                    console.log("Datein", date);
 
-                getStatisticYear(formatDateInput($('#staticYear').val()))
+                    $("#loadingYear").show();
+                    $.ajax({
+                      url: "/bills/getStatistic?start_date=" + date + "&mode=year",
+                      type: "get",
+                      contentType: "application/json; charset=utf-8",
+                      dataType: "json"
+                    }).done(result => {
+                      $("#loadingYear").hide();
+                      console.log("listYear", result);
 
-                $('#dpYearEnd').on('changeDate', function (ev) {
-                  if (ev.viewMode === 'years') {
-                    date = formatDate(ev.date)
-                    console.log("dateYear", date);
+                      var dataYear = {
+                        labels: result.labels,
+                        datasets: [
+                          {
+                            label: "Số tiền",
+                            data: result.list,
+                            backgroundColor: "rgba(1, 87, 155, 0.85)"
+                          }
+                        ]
+                      };
 
-                    $('#fromYear').val((ev.date.getFullYear() - 9).toString())
+                      if ($("#barChartYear").length) {
+                        $('#barChartYear').replaceWith('<canvas id="barChartYear" width="1000" height="400" class="chartjs-render-monitor"style="display: block; width: 457px; height: 228px;"></canvas>');
 
-                    getStatisticYear(date);
-                    $('#dp').datepicker('hide');
-                    $("div.datepicker.dropdown-menu").css({ display: 'none', });
+                        let barChartCanvas = $("#barChartYear")
+                          .get(0)
+                          .getContext("2d");
+
+                        let barChart = new Chart(barChartCanvas, {
+                          type: "bar",
+                          data: dataYear,
+                          options: options
+                        });
+                      }
+
+                    }).fail(err => {
+                      $("#loadingYear").hide();
+                      console.log("err", err);
+                    })
                   }
-                });
 
+                  getStatisticYear(formatDateInput($('#staticYear').val()))
 
+                  $('#dpYearEnd').on('changeDate', function (ev) {
+                    if (ev.viewMode === 'years') {
+                      date = formatDate(ev.date)
+                      console.log("dateYear", date);
+
+                      $('#fromYear').val((ev.date.getFullYear() - 9).toString())
+
+                      getStatisticYear(date);
+                      $('#dp').datepicker('hide');
+                      $("div.datepicker.dropdown-menu").css({ display: 'none', });
+                    }
+                  });
+                }) 
               </script>
             </div>
           </div>
