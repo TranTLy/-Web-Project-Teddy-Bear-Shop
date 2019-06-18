@@ -18,10 +18,6 @@ exports.get = async function(req, res, next) {
   });
 };
 exports.change_password_template = async function(req, res) {
-  // const admin = await User.findById(req.query._id, (err, admin) => {
-  //   return admin;
-  // });
-
   res.render("pages/changepassword/index", {
     title: "Thay đổi mật khẩu",
     message: "",
@@ -32,42 +28,30 @@ exports.change_password_template = async function(req, res) {
 exports.change_password = async function(req, res) {
   const user = req.cookies.user;
   console.log("pass", user.password);
-  await User.findOne({ email: user.email }, (err, result) => {
-    if (result) {
-      const match = bcrypt.compareSync(result.password, req.body.password);
-      console.log("match", match);
-      if (match) {
-        password = bcrypt.hashSync(req.body.newpassword, 10);
+
+  password = bcrypt.hashSync(req.body.newpassword, 10);
+  user.password = password;
+  res.cookie("user", user);
+  const userUpdate = { password: password };
+  User.findByIdAndUpdate(user._id, userUpdate, (err, result) => {
+    if (err) {
+      return res.render("pages/changepassword/index", {
+        title: "Thay đổi mật khẩu",
+        message: "Thay đổi mật khẩu thất bại, bạn đã nhập mật khẩu sai!!!",
+        layout: false
+      });
+    } else {
+      req.login(result, err => {
+        if (err) {
+          res.send(err);
+        }
         res.cookie("user", result);
-        console.log("pass hash", result.password);
-        const userUpdate = { password: password };
-        User.findByIdAndUpdate(user._id, userUpdate, (err, result) => {
-          if (err)
-            return res.send({
-              message:
-                err + "Đã có lỗi xảy ra trong quá trình thay đổi mật khẩu"
-            });
-          else {
-            req.login(result, err => {
-              if (err) {
-                res.send(err);
-              }
-              res.cookie("user", result);
-              return res.render("pages/infor/index", {
-                message:
-                  "Thay đổi mật khẩu thành công, mời bạn nhấn OK để tiếp tục",
-                layout: false
-              });
-            });
-          }
+        return res.render("pages/infor/index", {
+          message: "Thay đổi mật khẩu thành công, mời bạn nhấn OK để tiếp tục",
+          layout: false
         });
-      }
+      });
     }
-  });
-  return res.render("pages/changepassword/index", {
-    title: "Thay đổi mật khẩu",
-    message: "Thay đổi mật khẩu thất bại, bạn đã nhập mật khẩu sai!!!",
-    layout: false
   });
 };
 

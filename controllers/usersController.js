@@ -31,12 +31,13 @@ exports.update = function(req, res, next) {
 };
 
 exports.index = function(req, res, next) {
-    res.render("pages/users/index", { title: "Quản lý người dùng" });
+  res.render("pages/users/index", { title: "Quản lý người dùng" });
 };
 
 exports.checkpassword = function(req, res) {
   const pass = req.query.pass;
   const match = bcrypt.compareSync(pass, req.cookies.user.password);
+  console.log("matcj chhsda", match);
   if (match) res.send({ check: true });
   else res.send({ check: false });
 };
@@ -44,11 +45,9 @@ exports.checkpassword = function(req, res) {
 exports.checkemaillogin = function(req, res) {
   const email = req.query.email;
   User.findOne({ email: email }, (err, user) => {
-    if (user){
-      if(user.is_block === "Hoạt động")
-      return res.send({ check: true });
-    }
-    else return res.send({ check: false });
+    if (user) {
+      if (user.is_block === "Hoạt động") return res.send({ check: true });
+    } else return res.send({ check: false });
   });
 };
 

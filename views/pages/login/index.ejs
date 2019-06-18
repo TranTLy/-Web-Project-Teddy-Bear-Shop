@@ -10,18 +10,20 @@
           class="content-wrapper d-flex align-items-stretch auth auth-img-bg"
         >
           <div class="row flex-grow">
-             
             <div
-              class="col-lg-6 d-flex align-items-center justify-content-center d-flex" style="flex-direction: column;"
+              class="col-lg-6 d-flex align-items-center justify-content-center d-flex"
+              style="flex-direction: column;"
             >
-            <% if (message.length > 0) { %>
-              <div class="alert alert-danger" style="margin-top: 30px"><%= message %></div>
-              <% } %>
+              <!-- <% if (message.length > 0) { %>
+              <div class="alert alert-danger" style="margin-top: 30px">
+                <%= message %>
+              </div>
+              <% } %> -->
               <div class="auth-form-transparent text-left p-3">
                 <div class="brand-logo">
                   <img src="../../../../images/logo-dark.svg" alt="logo" />
                 </div>
-                <form action="/" method="POST" class="pt-1">
+                <form class="pt-1" id="form-login">
                   <div class="form-group">
                     <label for="exampleInputEmail">Email</label>
                     <div class="input-group">
@@ -80,7 +82,7 @@
                   <div class="my-3">
                     <div>
                       <button
-                        type="submit"
+                        type="button"
                         class="btn btn-primary btn-lg btn-block"
                         id="login"
                         onclick="checkInputPassword()"
@@ -148,10 +150,13 @@
               document.getElementsByClassName(
                 "valid-password"
               )[0].style.display = "none";
+              document.getElementById("form-login").method = "POST";
+              document.getElementById("form-login").action = "/";
+              document.getElementById("form-login").submit();
             }
           })
           .fail(function(err) {
-            console.log("err",err);
+            console.log("err", err);
             window.location.href = "/";
           });
       }

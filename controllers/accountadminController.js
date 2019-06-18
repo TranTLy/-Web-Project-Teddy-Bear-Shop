@@ -56,16 +56,16 @@ exports.reset_password_template = function(req, res) {
 
 exports.login = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
-
-    if (user.is_block === "Bị khóa" ) {
+    if (user.is_block === "Bị khóa") {
       return res.render("pages/login/index", {
         title: "Đăng nhập thất bại",
-        message: "Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên!",
+        message:
+          "Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên!",
         layout: false
       });
     }
 
-    if (err || !user ) {
+    if (err || !user) {
       return res.render("pages/login/index", {
         title: "Đăng nhập thất bại",
         message: "Đã xảy ra lỗi trong quá trình đăng nhập, mời bạn thử lại",
@@ -203,9 +203,6 @@ exports.reset_password = function(req, res, next) {
     }
   }).exec(function(err, user) {
     if (!err && user) {
-      // user.password = bcrypt.hashSync(req.body.repassword, 10);
-      // user.reset_password_token = undefined;
-      // user.reset_password_expires = undefined;
       const objUser = {
         password: bcrypt.hashSync(req.body.repassword, 10),
         reset_password_token: undefined,

@@ -22,7 +22,7 @@
                   <%= message %>
                 </div>
                 <% } %>
-                <form action="/change-password" method="POST" class="pt-1">
+                <form id="form-change-password" class="pt-1">
                   <div class="form-group">
                     <label id="label-pass">Mật khẩu<span>*</span></label>
                     <div class="input-group">
@@ -108,7 +108,7 @@
                     <button
                       class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                       id="btn-sign-up"
-                      type="submit"
+                      type="button"
                       onclick="checkInputPassword()"
                     >
                       Xác nhận
@@ -135,6 +135,15 @@
                           document.getElementsByClassName(
                             "valid-password"
                           )[0].style.display = "none";
+                          document.getElementById(
+                            "form-change-password"
+                          ).method = "POST";
+                          document.getElementById(
+                            "form-change-password"
+                          ).action = "change-password";
+                          document
+                            .getElementById("form-change-password")
+                            .submit();
                         }
                       })
                       .fail(function(err) {});
